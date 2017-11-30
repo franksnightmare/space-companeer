@@ -4,7 +4,7 @@
 // @include         *sparticle999.github.io/SpaceCompany*
 // @version         1
 // @grant           none
-// @require         dataframe.js
+// @require         scorer.js
 // @description:en  Plays space company.
 // ==/UserScript==
 
