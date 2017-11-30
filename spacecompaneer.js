@@ -1,13 +1,3 @@
-// ==UserScript==
-// @name            Space Companeer
-// @namespace       https://sparticle999.github.io/SpaceCompany/
-// @include         *sparticle999.github.io/SpaceCompany*
-// @version         1
-// @grant           none
-// @require         scorer.js
-// @description:en  Plays space company.
-// ==/UserScript==
-
 var Script = (function {
 	
 	var phase = 0;
