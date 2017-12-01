@@ -6,8 +6,6 @@ var Script = (function() {
 	instance.labTier = 1;
 	instance.energyTier = 0;
 	
-	instance.u = unsafeWindow;
-	
 	instance.init = function()
 	{
 		setInterval(spaceCompaneer, 1000);
@@ -15,7 +13,7 @@ var Script = (function() {
 	
 	instance.spaceCompaneer = function()
 	{
-		u.gainResource('metal');
+		gainResource('metal');
 	}
 	
 	
