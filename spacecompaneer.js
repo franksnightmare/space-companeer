@@ -10,8 +10,7 @@ var Script = (function() {
 	
 	instance.spaceCompaneer = function()
 	{
-		console.log("Boop?");
-		gainResource('metal');
+		
 	};
 	
 	instance.boosterino = function()
@@ -20,14 +19,13 @@ var Script = (function() {
 		if (!getProduction('metal')) {gainResource('metal'); getMiner(); done = false;}
 		if (!getProduction('gem')) {gainResource('gem'); getGemMiner(); done = false;}
 		if (!getProduction('wood')) {gainResource('wood'); getWoodcutter(); done = false;}
-		if (done) {instance.phase = 1; clearInterval(instance.boosterino_t);}
+		if (done) {instance.phase = 1; clearInterval(instance.boosterino_t); setInterval(instance.spaceCompaneer, 1000);}
 	};
 	
 	instance.init = function()
 	{
 		console.log("Starting Space Companeer");
-		setInterval(instance.spaceCompaneer, 1000);
-		instance.boosterino_t = setInterval(instance.boosterino, 100);
+		instance.boosterino_t = setInterval(instance.boosterino, 1000);
 	};
 	
 	return instance;

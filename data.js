@@ -1,11 +1,13 @@
 Script.data = (function(){
 	
-	var energyData;
-	var labData;
-	var producerData;
-	var producerColumn = "wood";
+	Script.data = {};
 	
-	function update()
+	Script.data.energyData = {};
+	Script.data.labData = {};
+	Script.data.producerData = {};
+	Script.data.producerColumn = "wood";
+	
+	Script.data.update = function()
 	{
 		// Energy Producers
 		energyData[0] = {cost:{"metal":charcoalEngineMetalCost, "gem":charcoalEngineGemCost}, prod:charcoalEngineOutput, cons:{"charcoal":charcoalEngineCharcoalInput}};
