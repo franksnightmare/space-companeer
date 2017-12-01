@@ -15,7 +15,7 @@ var Script = (function() {
 	instance.init = function()
 	{
 		console.log("Starting?");
-		setInterval(this.spaceCompaneer, 1000);
+		setInterval(instance.spaceCompaneer, 1000);
 		console.log("It should run now.");
 	}
 	
