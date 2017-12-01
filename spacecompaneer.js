@@ -12,7 +12,7 @@ var Script = (function() {
 	
 	function spaceCompaneer()
 	{
-		this.Data.update();
+		u.gainResource('metal');
 	}
 
 }());
