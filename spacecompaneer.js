@@ -1,4 +1,4 @@
-var Script = (function {
+var Script = (function() {
 	
 	var phase = 0;
 	var machineTier = 1;
