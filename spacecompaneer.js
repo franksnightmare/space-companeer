@@ -6,16 +6,17 @@ var Script = (function() {
 	instance.labTier = 1;
 	instance.energyTier = 0;
 	
-	instance.init = function()
-	{
-		console.log("Starting?");
-		setInterval(self.spaceCompaneer, 1000);
-	}
-	
 	instance.spaceCompaneer = function()
 	{
 		console.log("Boop?");
 		gainResource('metal');
+	}
+	
+	instance.init = function()
+	{
+		console.log("Starting?");
+		setInterval(this.spaceCompaneer, 1000);
+		console.log("It should run now.");
 	}
 	
 	return instance;
