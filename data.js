@@ -6,7 +6,7 @@ Script.data = (function(){
 	instance.energyData = {};
 	instance.labData = {};
 	instance.producerData = {};
-	instance.data.producerColumn = "wood";
+	instance.producerColumn = "wood";
 	
 	instance.update = function()
 	{
