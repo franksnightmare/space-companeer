@@ -8,14 +8,15 @@ var Script = (function() {
 	
 	instance.init = function()
 	{
+		console.log("Starting?");
 		setInterval(spaceCompaneer, 1000);
 	}
 	
 	instance.spaceCompaneer = function()
 	{
+		console.log("Boop?");
 		gainResource('metal');
 	}
-	
 	
 	return instance;
 }());
