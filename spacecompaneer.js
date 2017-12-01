@@ -9,7 +9,7 @@ var Script = (function() {
 	instance.init = function()
 	{
 		console.log("Starting?");
-		setInterval(spaceCompaneer, 1000);
+		setInterval(self.spaceCompaneer, 1000);
 	}
 	
 	instance.spaceCompaneer = function()
