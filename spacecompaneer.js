@@ -1,3 +1,5 @@
+var SC_base = 'https://franksnightmare.github.io/space-companeer/';
+
 var Script = (function() {
 	
 	var instance = {};
@@ -10,16 +12,28 @@ var Script = (function() {
 	{
 		console.log("Boop?");
 		gainResource('metal');
-	}
+	};
+	
+	instance.boosterino = function()
+	{
+		var done = true;
+		if (!getProduction('metal')) {gainResource('metal'); getMiner(); done = false;}
+		if (!getProduction('gem')) {gainResource('gem'); getGemMiner(); done = false;}
+		if (!getProduction('wood')) {gainResource('wood'); getWoodcutter(); done = false;}
+		if (done) {instance.phase = 1; clearInterval(instance.boosterino_t);}
+	};
 	
 	instance.init = function()
 	{
-		console.log("Starting?");
+		console.log("Starting Space Companeer");
 		setInterval(instance.spaceCompaneer, 1000);
-		console.log("It should run now.");
-	}
+		instance.boosterino_t = setInterval(instance.boosterino, 100);
+	};
 	
 	return instance;
 }());
+
+document.head.appendChild(document.createElement('script')).src = SC_base + 'utils.js';
+document.head.appendChild(document.createElement('script')).src = SC_base + 'data.js';
 
 setTimeout(Script.init, 2000);

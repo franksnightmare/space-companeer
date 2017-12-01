@@ -1,5 +1,3 @@
-var u = unsafeWindow;
-
 Script.scoreEntry = function(entry)
 {
 	var score = 1;
@@ -10,7 +8,7 @@ Script.scoreEntry = function(entry)
 	var max = {time:1, res:"null", problem:false};
 	for (var key in entry.cost)
 	{
-		var prod = u.getProduction(key);
+		var prod = getProduction(key);
 		if (prod < prodLimit) {prod = prodLimit;}
 		var time = entry.cost[key] / prod;
 		
@@ -21,15 +19,14 @@ Script.scoreEntry = function(entry)
 		}
 	}
 	score /= max.time;
-	if (!score) {console.log(score);}
 	
 	var costs = 0;
 	var div = 0;
 	for (var key in entry.cons)
 	{
-		var prod = u.getProduction(key);
+		var prod = getProduction(key);
 		var cost = entry.cons[key];
-		if (prod < cost * (1 + consumptionRemainder)) {max.res = key; max.problem = true;}
+		if (prod < cost * (1 + Script.consumptionRemainder)) {max.res = key; max.problem = true;}
 		
 		costs += cost;
 		div += 1;

@@ -9,8 +9,5 @@
 
 var script = document.createElement('script');
 script.id = 'Space Companeer';
-// Development
-script.src = 'https://rawgit.com/franksnightmare/space-companeer/master/spacecompaneer.js';
-// Production
-// script.src = 'https://cdn.rawgit.com/franksnightmare/space-companeer/master/spacecompaneer.js';
+script.src = 'https://franksnightmare.github.io/space-companeer/spacecompaneer.js';
 document.head.appendChild(script);
