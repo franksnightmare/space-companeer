@@ -7,6 +7,7 @@ Script.data = (function(){
 	instance.labData = {};
 	instance.producerData = {};
 	instance.producerColumn = "wood";
+	instance.maxEnergy = 0;
 	
 	instance.update = function()
 	{
@@ -34,6 +35,17 @@ Script.data = (function(){
 		
 		this.producerData["oil"][0] = {cost:{"metal":pumpMetalCost, "gem":pumpGemCost}, prod:pumpOutput, cons:{}, mk:getPump};
 		this.producerData["oil"][1] = {cost:{"metal":pumpjackMetalCost, "gem":pumpjackGemCost, "oil":pumpjackOilCost}, prod:pumpjackOutput, cons:{"energy":pumpjackEnergyInput}, mk:getPumpjack};
+		
+		var maxEnergy = 0;
+		for (key in this.producerData)
+		{
+			if ("energy" in this.producerData[key][Script.machineTier].cons)
+			{
+				var energy = this.producerData[key][Script.machineTier].cons["energy"];
+				if (energy > maxEnergy) {maxEnergy = energy};
+			}
+		}
+		this.maxEnergy = maxEnergy;
 	}
 	
 	return instance;
