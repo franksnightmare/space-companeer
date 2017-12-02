@@ -4,7 +4,7 @@ Script.goals = (function(){
 	instance = {};
 	
 	instance.nodes = {"energy":0, "science":0, "production":0};
-	instance.modifers = {"energy":0, "science":0, "production":1};
+	instance.modifiers = {"energy":0, "science":0, "production":1};
 	instance.balance = {"energy":1/3, "science":1/3, "production":1/3};
 	instance.newTechs = 0;
 	
