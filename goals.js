@@ -20,7 +20,7 @@ Script.goals = (function(){
 	
 	instance.boostNode = function(key, amount)
 	{
-		instance.nodes[key] += instance.modifiers(key) * amount;
+		instance.nodes[key] += instance.modifiers[key] * amount;
 	};
 	
 	instance.updateNode = function(key)
