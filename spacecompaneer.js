@@ -20,7 +20,7 @@ var Script = (function() {
 		if (!getProduction('metal')) {gainResource('metal'); getMiner(); done = false;}
 		if (!getProduction('gem')) {gainResource('gem'); getGemMiner(); done = false;}
 		if (!getProduction('wood')) {gainResource('wood'); getWoodcutter(); done = false;}
-		if (done) {this.phase = 1; clearInterval(this.boosterino_t); setInterval(instance.spaceCompaneer, 1000); console.log("Space Companeer: Phase 0 complete!");}
+		if (done) {instance.phase = 1; clearInterval(instance.boosterino_t); setInterval(instance.spaceCompaneer, 1000); console.log("Space Companeer: Phase 0 complete!");}
 	};
 	
 	instance.init = function()
