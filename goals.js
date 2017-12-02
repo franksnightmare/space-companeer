@@ -16,17 +16,17 @@ Script.goals = (function(){
 		else {strength -= amount;}
 		
 		instance.nodes[key] = strength;
-	}
+	};
 	
 	instance.boostNode = function(key, amount)
 	{
 		instance.nodes[key] += instance.modifiers(key) * amount;
-	}
+	};
 	
 	instance.updateNode = function(key)
 	{
 		instance.nodes[key] *= 0.9;
-	}
+	};
 	
 	instance.sumNodes = function()
 	{
@@ -36,7 +36,7 @@ Script.goals = (function(){
 			total += instance.nodes[key];
 		}
 		return total;
-	}
+	};
 	
 	instance.update = function()
 	{
@@ -62,12 +62,12 @@ Script.goals = (function(){
 		{
 			instance.balance[key] = instance.nodes[key] / total;
 		}
-	}
+	};
 	
 	instance.print = function()
 	{
 		console.log("(" + this.balance["energy"] + ", " + this.balance["science"] + ", " + this.balance["production"] + ")");
-	}
+	};
 	
 	return instance;
 }());
