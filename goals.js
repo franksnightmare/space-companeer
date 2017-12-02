@@ -43,8 +43,8 @@ Script.goals = (function(){
 		var energy = getProduction("energy");
 		var maxEnergy = Script.data.maxEnergy;
 		
-		if (energy < 1) {boostNode("energy", maxEnergy);}
-		else {boostNode("energy", (10/3) * (maxEnergy / energy));}
+		if (energy < 1) {instance.boostNode("energy", maxEnergy);}
+		else {instance.boostNode("energy", (10/3) * (maxEnergy / energy));}
 		
 		instance.boostNode("science", instance.newTechs / (instance.newTechs + 1));
 		instance.boostNode("production", 1);
