@@ -67,4 +67,4 @@ document.head.appendChild(document.createElement('script')).src = SC_base + 'goa
 document.head.appendChild(document.createElement('script')).src = SC_base + 'science.js';
 document.head.appendChild(document.createElement('script')).src = SC_base + 'decisions.js';
 
-setTimeout(Script.init, 2000);
+setTimeout(Script.init, 4000);

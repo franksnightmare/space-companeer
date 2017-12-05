@@ -42,7 +42,7 @@ Script.data = (function(){
 			if (!tech.done)
 			{
 				purchaseTech(tech.name);
-				if (isPurchased(tech.name)
+				if (isPurchased(tech.name))
 				{
 					instance.techs[i].done = true;
 					instance.unlockTechs(tech.unlocks);
