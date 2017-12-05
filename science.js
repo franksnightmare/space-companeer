@@ -42,7 +42,7 @@ Script.science = (function(){
 			if (tech.available && !tech.done)
 			{
 				purchaseTech(tech.name);
-				if (isPurchased(tech.name))
+				if (Game.tech.isPurchased(tech.name))
 				{
 					self.techs[i].done = true;
 					self.unlockTechs(self, tech.unlocks);
