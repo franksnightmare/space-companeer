@@ -6,17 +6,17 @@ Script.data = (function(){
 	instance.techs = [
 	{name:"unlockStorage", available:true, done:false, unlocks:["unlockBasicOil"], consequences:function(){}},
 	{name:"unlockBasicEnergy", available:true, done:false, unlocks:["unlockSolar", "unlockMachines", "upgradeEngineTech"], consequences:function(){Script.data.producerColumn = "charcoal"; Script.energyTier = 1;}},
-	{name:"unlockOil", available:false, done:false, unlocks:[], consequences = function(){Script.data.producerColumn = "oil";}},
-	{name:"unlockSolar", available:false, done:false, unlocks:["upgradeSolarTech"], consequences = function(){Script.energyTier = 2;}},
-	{name:"unlockMachines", available:false, done:false, unlocks:["unlockDestruction", "unlockSolarSystem", "upgradeResourceTech"], consequences = function(){Script.machineTier = 2;}},
-	{name:"unlockDestruction", available:false, done:false, unlocks:[], consequences = function(){}},
-	{name:"unlockSolarSystem", available:false, done:false, unlocks:["unlockLabT2", "unlockRocketFuelT2"], consequences = function(){Script.data.producerColumn = "fuel"; Script.fuelTier = 1;}},
-	{name:"upgradeResourceTech", available:false, done:false, unlocks:[], consequences = function(){}},,
-	{name:"unlockLabT2", available:false, done:false, unlocks:["unlockLabT3"], consequences = function(){Script.labTier = 2;}},
-	{name:"upgradeEngineTech", available:false, done:false, unlocks:[], consequences = function(){}},
-	{name:"unlockLabT3", available:false, done:false, unlocks:[], consequences = function(){Script.labTier = 3;}},
-	{name:"upgradeSolarTech", available:false, done:false, unlocks:[], consequences = function(){}},
-	{name:"unlockRocketFuelT2", available:false, done:false, unlocks:[], consequences = function(){}}
+	{name:"unlockOil", available:false, done:false, unlocks:[], consequences:function(){Script.data.producerColumn = "oil";}},
+	{name:"unlockSolar", available:false, done:false, unlocks:["upgradeSolarTech"], consequences:function(){Script.energyTier = 2;}},
+	{name:"unlockMachines", available:false, done:false, unlocks:["unlockDestruction", "unlockSolarSystem", "upgradeResourceTech"], consequences:function(){Script.machineTier = 2;}},
+	{name:"unlockDestruction", available:false, done:false, unlocks:[], consequences:function(){}},
+	{name:"unlockSolarSystem", available:false, done:false, unlocks:["unlockLabT2", "unlockRocketFuelT2"], consequences:function(){Script.data.producerColumn = "fuel"; Script.fuelTier = 1;}},
+	{name:"upgradeResourceTech", available:false, done:false, unlocks:[], consequences:function(){}},,
+	{name:"unlockLabT2", available:false, done:false, unlocks:["unlockLabT3"], consequences:function(){Script.labTier = 2;}},
+	{name:"upgradeEngineTech", available:false, done:false, unlocks:[], consequences:function(){}},
+	{name:"unlockLabT3", available:false, done:false, unlocks:[], consequences:function(){Script.labTier = 3;}},
+	{name:"upgradeSolarTech", available:false, done:false, unlocks:[], consequences:function(){}},
+	{name:"unlockRocketFuelT2", available:false, done:false, unlocks:[], consequences:function(){}}
 	];
 	
 	instance.unlockTechs = function(techs)

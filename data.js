@@ -3,9 +3,17 @@ console.log("Space Companeer: Loading Data");
 Script.data = (function(){
 	instance = {};
 	
-	instance.energyData = {};
-	instance.labData = {};
+	instance.energyData = [{}, {}];
+	instance.labData = [{}, {}, {}];
+	
 	instance.producerData = {};
+	instance.producerData["metal"]  = [{}, {}];
+	instance.producerData["wood"]  = [{}, {}];
+	instance.producerData["gem"]  = [{}, {}];
+	instance.producerData["charcoal"]  = [{}, {}];
+	instance.producerData["oil"]  = [{}, {}];
+	instance.producerData["fuel"]  = [{}];
+	
 	instance.producerColumn = "wood";
 	instance.maxEnergy = 0;
 	
