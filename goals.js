@@ -25,7 +25,7 @@ Script.goals = (function(){
 	
 	instance.diminishNode = function(self, key, amount)
 	{
-		var strength = instance.nodes[key];
+		var strength = self.nodes[key];
 		
 		if (strength < amount) {strength = 0;}
 		else {strength -= amount;}
