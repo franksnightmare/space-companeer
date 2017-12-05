@@ -19,13 +19,13 @@ Script.science = (function(){
 	{name:"unlockRocketFuelT2", available:false, done:false, unlocks:[], consequences:function(){}}
 	];
 	
-	instance.unlockTechs = function(self, techs)
+	instance.unlockTechs = function(self, techList)
 	{
-		for (i = 0; i < techs.length; i++)
+		for (i = 0; i < techList.length; i++)
 		{
-			for (j = 0; j < techs.length; j++)
+			for (j = 0; j < self.techs.length; j++)
 			{
-				if (techs[i] === self.techs[j].name && !self.techs[j].available)
+				if (techList[i] === self.techs[j].name && !self.techs[j].available)
 				{
 					self.techs[j].available = true;
 					Script.goals.techs += 1;
@@ -36,10 +36,10 @@ Script.science = (function(){
 	
 	instance.purchaseTech = function(self)
 	{
-		for (i = 0; i < techs.length; i++)
+		for (i = 0; i < self.techs.length; i++)
 		{
 			var tech = self.techs[i];
-			if (!tech.done)
+			if (tech.available && !tech.done)
 			{
 				purchaseTech(tech.name);
 				if (isPurchased(tech.name))
