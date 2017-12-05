@@ -1,6 +1,6 @@
 console.log("Space Companeer: Loading SCIENCE");
 
-Script.data = (function(){
+Script.science = (function(){
 	instance = {};
 	
 	instance.techs = [

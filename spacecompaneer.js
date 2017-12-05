@@ -26,6 +26,8 @@ var Script = (function() {
 		Script.goals.updateProductionGoals();
 		Script.decisions.updateResourceFocus(3);
 		
+		Script.science.unlockTechs();
+		
 		if (Script.goals.highestGoal() === "energy")
 		{
 			return;
