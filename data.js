@@ -63,7 +63,7 @@ Script.data = (function(){
 			if ("energy" in building.cons)
 			{
 				var energy = building.cons["energy"];
-				if (energy > maxEnergy) {maxEnergy = energy};
+				if (energy > maxEnergy) {maxEnergy = energy;}
 			}
 		}
 		Script.data.maxEnergy = maxEnergy;
