@@ -59,17 +59,14 @@ Script.data = (function(){
 		var maxEnergy = 0;
 		for (key in self.producerData)
 		{
-			console.log(Script);
-			console.log(self);
-			console.log(self.producerData);
-			console.log(self.producerData[key]);
-			console.log(Script.machineTier);
-			console.log(self.producerData[key][Script.machineTier]);
-			var building = self.producerData[key][Script.machineTier];
-			if ("energy" in building.cons)
+			if (key !== "fuel")
 			{
-				var energy = building.cons["energy"];
-				if (energy > maxEnergy) {maxEnergy = energy;}
+				var building = self.producerData[key][Script.machineTier];
+				if ("energy" in building.cons)
+				{
+					var energy = building.cons["energy"];
+					if (energy > maxEnergy) {maxEnergy = energy;}
+				}
 			}
 		}
 		self.maxEnergy = maxEnergy;
