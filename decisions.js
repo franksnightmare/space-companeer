@@ -7,50 +7,50 @@ Script.decisions = (function(){
 	instance.labFocus = {id:0, res:"null"};
 	instance.producerFocus = {};
 	
-	instance.init = function()
+	instance.init = function(self)
 	{
-		instance.producerFocus["metal"] = {weight:1/3, current:0, tier:0, canBuild:false}
-		instance.producerFocus["gem"] = {weight:1/3, current:0, tier:0, canBuild:false}
-		instance.producerFocus["wood"] = {weight:1/3, current:0, tier:0, canBuild:false}
-		instance.producerFocus["charcoal"] = {weight:0, current:0, tier:0, canBuild:false}
-		instance.producerFocus["oil"] = {weight:0, current:0, tier:0, canBuild:false}
-		instance.producerFocus["fuel"] = {weight:0, current:0, tier:0, canBuild:false}
+		self.producerFocus["metal"] = {weight:1/3, current:0, tier:0, canBuild:false}
+		self.producerFocus["gem"] = {weight:1/3, current:0, tier:0, canBuild:false}
+		self.producerFocus["wood"] = {weight:1/3, current:0, tier:0, canBuild:false}
+		self.producerFocus["charcoal"] = {weight:0, current:0, tier:0, canBuild:false}
+		self.producerFocus["oil"] = {weight:0, current:0, tier:0, canBuild:false}
+		self.producerFocus["fuel"] = {weight:0, current:0, tier:0, canBuild:false}
 	};
 	
 	// TODO
 	// Add resource matrix thing in a new and improved form
 	// Cleanup ALL the functions
 	
-	instance.updateResourceFocus = function(itterations)
+	instance.updateResourceFocus = function(self, itterations)
 	{
 		var startPoint = Script.goals.productionGoals;
 		
 		var goal = {};
-		for (var key in instance.producerFocus) {goal[key] = startPoint[key]; Script.goals.productionGoals[key] = 0; if (key === Script.producerColumn) {break;}}
+		for (var key in self.producerFocus) {goal[key] = startPoint[key]; Script.goals.productionGoals[key] = 0; if (key === Script.data.producerColumn) {break;}}
 		
 		//var resLine = "GoalStart (";
-		//for (var key in goal) {resLine += goal[key]; if (key === producerColumn) {break;} resLine += ", ";}
+		//for (var key in goal) {resLine += goal[key]; if (key === Script.data.producerColumn) {break;} resLine += ", ";}
 		//console.log(resLine + ")");
 		
 		for (var i = 0; i < itterations; i++)
 		{
 			var newGoal = {};
 			var total = 0;
-			for (var key in instance.producerFocus)
+			for (var key in self.producerFocus)
 			{
 				newGoal[key] = 0;
 				total += goal[key];
-				if (key === Script.producerColumn) {break;}
+				if (key === Script.data.producerColumn) {break;}
 			}
-			if (total) {for (var key in goal) {goal[key] /= total; if (key === Script.producerColumn) {break;}}}
+			if (total) {for (var key in goal) {goal[key] /= total; if (key === Script.data.producerColumn) {break;}}}
 			
 			resLine = "GoalStep (";
-			for (var key in instance.producerFocus) {resLine += goal[key]; if (key === Script.producerColumn) {break;} resLine += ", ";}
+			for (var key in self.producerFocus) {resLine += goal[key]; if (key === Script.data.producerColumn) {break;} resLine += ", ";}
 			console.log(resLine + ")");
 			
 			for (resource in producerFocus)
 			{
-				var building = Script.data.producerData[resource][instance.producerFocus[resource].tier]
+				var building = Script.data.producerData[resource][self.producerFocus[resource].tier]
 				var max = 0;
 				for (var key in building.cost)
 				{
@@ -67,26 +67,26 @@ Script.decisions = (function(){
 					newGoal[key] += goal[key] * 2 * building.cons[key] / max;
 				}
 				
-				if (resource === producerColumn) {break;}
+				if (resource === Script.data.producerColumn) {break;}
 			}
 			total = 0;
-			for (var key in instance.producerFocus) {total += newGoal[key]; if (key === Script.producerColumn) {break;}}
-			for (var key in instance.producerFocus) {goal[key] = newGoal[key] / total; if (key === Script.producerColumn) {break;}}
+			for (var key in self.producerFocus) {total += newGoal[key]; if (key === Script.data.producerColumn) {break;}}
+			for (var key in self.producerFocus) {goal[key] = newGoal[key] / total; if (key === Script.data.producerColumn) {break;}}
 		}
 		
 		var total2 = 0;
-		for (var key in instance.producerFocus)
+		for (var key in self.producerFocus)
 		{
 			total2 += goal[key];
-			if (key === Script.producerColumn) {break;}
+			if (key === Script.data.producerColumn) {break;}
 		}
-		if (total2) {for (var key in instance.producerFocus) {instance.producerFocus[key].weight = goal[key] / total2;}}
+		if (total2) {for (var key in self.producerFocus) {self.producerFocus[key].weight = goal[key] / total2;}}
 	};
 	
-	instance.decideResourceBuildings = function ()
+	instance.decideResourceBuildings = function(self)
 	{
 		//var line1 = "ResScores: ";
-		for (key in instance.producerFocus)
+		for (key in self.producerFocus)
 		{
 			var best = 0;
 			var score = -1;
@@ -110,26 +110,26 @@ Script.decisions = (function(){
 			}
 			//line1 += ")";
 			
-			instance.producerFocus[key].tier = best;
-			instance.producerFocus[key].canBuild = canBuild;
+			self.producerFocus[key].tier = best;
+			self.producerFocus[key].canBuild = canBuild;
 			
-			if (key === producerColumn) {break;}
+			if (key === Script.data.producerColumn) {break;}
 			//line1 += " ";
 		}
 		//console.log(line1);
 	};
 	
-	instance.buildResourceBuildings = function()
+	instance.buildResourceBuildings = function(self)
 	{
 		var best = "null";
 		var score = -1;
 		var line = "Scores: (";
 		var line2 = "Current: (";
 		var line3 = "MachineTiers (";
-		for (key in instance.producerFocus)
+		for (key in self.producerFocus)
 		{
-			var tier = instance.producerFocus[key].tier;
-			var scale = (instance.producerFocus[key].weight - instance.producerFocus[key].current);
+			var tier = self.producerFocus[key].tier;
+			var scale = (self.producerFocus[key].weight - self.producerFocus[key].current);
 			var mult = Math.pow(2, scale * 4);
 			
 			var building = Script.data.producerData[key][tier];
@@ -144,10 +144,10 @@ Script.decisions = (function(){
 			}
 			
 			line += (finalScore);
-			line2 += (instance.producerFocus[key].current);
-			line3 += (instance.producerFocus[key].tier);
+			line2 += (self.producerFocus[key].current);
+			line3 += (self.producerFocus[key].tier);
 			
-			if (key === Script.producerColumn) {break;}
+			if (key === Script.data.producerColumn) {break;}
 			
 			line += ", ";
 			line2 += ", ";
@@ -159,12 +159,12 @@ Script.decisions = (function(){
 		console.log(line);
 		//console.log(line2);
 		console.log(line3);
-		console.log("best: " + best + ", score: " + score + ", tier: " + instance.producerFocus[best].tier);
+		console.log("best: " + best + ", score: " + score + ", tier: " + self.producerFocus[best].tier);
 		
-		if (best != "null" && instance.producerFocus[best].canBuild) {Script.data.producerData[best][instance.producerFocus[best].tier].mk();}
+		if (best != "null" && self.producerFocus[best].canBuild) {Script.data.producerData[best][self.producerFocus[best].tier].mk();}
 	};
 	
-	instance.decideEnergyBuilding = function ()
+	instance.decideEnergyBuilding = function(self)
 	{
 		var best = 0;
 		var score = -1;
@@ -172,7 +172,7 @@ Script.decisions = (function(){
 		var canBuild = false;
 		for (var i = 0; i < Script.energyTier; i++)
 		{
-			var result = getScore(energyData[i]);
+			var result = Script.getScore(energyData[i]);
 			//if (result.problem)
 			//{
 			//	result.score -= 2;
@@ -186,20 +186,20 @@ Script.decisions = (function(){
 			}
 		}
 		
-		instance.energyFocus = {id:best, res:focus, canBuild:canBuild};
+		self.energyFocus = {id:best, res:focus, canBuild:canBuild};
 	};
 
-	instance.buildEnergyBuilding = function()
+	instance.buildEnergyBuilding = function(self)
 	{
-		var building = Script.data.energyData[instance.energyFocus.id];
+		var building = Script.data.energyData[self.energyFocus.id];
 		
-		if (!instance.energyFocus.canBuild)
+		if (!self.energyFocus.canBuild)
 		{
 			for (key in building.cons)
 			{
 				if (getProduction[key] < building.cons[key])
 				{
-					var focus = instance.producerFocus[key];
+					var focus = self.producerFocus[key];
 					if (focus.canBuild)
 					{
 						Script.data.producerData[key][focus.tier].mk();
@@ -225,7 +225,7 @@ Script.decisions = (function(){
 		building.mk();
 	};
 	
-	instance.decideLabBuilding = function()
+	instance.decideLabBuilding = function(self)
 	{
 		var best = 0;
 		var score = -1;
@@ -241,12 +241,12 @@ Script.decisions = (function(){
 			}
 		}
 		
-		instance.labFocus = {id:best, res:focus};
+		self.labFocus = {id:best, res:focus};
 	};
 	
-	instance.buildLabs = function()
+	instance.buildLabs = function(self)
 	{
-		Script.data.labData[instance.labFocus.id].mk();
+		Script.data.labData[self.labFocus.id].mk();
 	};
 	
 	return instance;

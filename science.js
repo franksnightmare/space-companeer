@@ -19,33 +19,33 @@ Script.science = (function(){
 	{name:"unlockRocketFuelT2", available:false, done:false, unlocks:[], consequences:function(){}}
 	];
 	
-	instance.unlockTechs = function(techs)
+	instance.unlockTechs = function(self, techs)
 	{
 		for (i = 0; i < techs.length; i++)
 		{
 			for (j = 0; j < techs.length; j++)
 			{
-				if (techs[i] === instance.techs[j].name && !instance.techs[j].available)
+				if (techs[i] === self.techs[j].name && !self.techs[j].available)
 				{
-					instance.techs[j].available = true;
+					self.techs[j].available = true;
 					Script.goals.techs += 1;
 				}
 			}
 		}
 	};
 	
-	instance.purchaseTech = function()
+	instance.purchaseTech = function(self)
 	{
 		for (i = 0; i < techs.length; i++)
 		{
-			var tech = instance.techs[i];
+			var tech = self.techs[i];
 			if (!tech.done)
 			{
 				purchaseTech(tech.name);
 				if (isPurchased(tech.name))
 				{
-					instance.techs[i].done = true;
-					instance.unlockTechs(tech.unlocks);
+					self.techs[i].done = true;
+					self.unlockTechs(self, tech.unlocks);
 					
 					Script.goals.techs -= 1;
 					

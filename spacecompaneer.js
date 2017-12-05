@@ -14,29 +14,29 @@ var Script = (function() {
 		Script.data.update(Script.data);
 		
 		Script.goals.update(Script.goals);
-		Script.goals.print();
+		Script.goals.print(Script.goals);
 		
 		Script.upgradeStorage();
 		
-		Script.decisions.decideResourceBuildings();
+		Script.decisions.decideResourceBuildings(Script.decisions);
 		
-		Script.decisions.decideEnergyBuilding();
-		Script.decisions.buildEnergyBuilding();
+		Script.decisions.decideEnergyBuilding(Script.decisions);
+		Script.decisions.buildEnergyBuilding(Script.decisions);
 		
-		Script.goals.updateProductionGoals();
-		Script.decisions.updateResourceFocus(3);
+		Script.goals.updateProductionGoals(Script.goals);
+		Script.decisions.updateResourceFocus(Script.decisions, 3);
 		
-		Script.science.unlockTechs();
+		Script.science.unlockTechs(Script.science);
 		
-		if (Script.goals.highestGoal() === "energy")
+		if (Script.goals.highestGoal(Scipt.goals) === "energy")
 		{
 			return;
 		}
 		
-		Script.decisions.decideLabBuilding();
-		Script.decisions.buildLabs();
+		Script.decisions.decideLabBuilding(Script.decisions);
+		Script.decisions.buildLabs(Script.decisions);
 		
-		Script.decisions.buildResourceBuildings();
+		Script.decisions.buildResourceBuildings(Script.decisions);
 	};
 	
 	instance.boosterino = function()
@@ -49,7 +49,7 @@ var Script = (function() {
 			instance.phase = 1;
 			clearInterval(instance.boosterino_t);
 			setInterval(instance.spaceCompaneer, 1000);
-			Script.decisions.init();
+			Script.decisions.init(Script.decisions);
 			console.log("Space Companeer: Phase 0 complete!");
 		}
 	};

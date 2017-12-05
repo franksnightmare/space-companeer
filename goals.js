@@ -9,57 +9,57 @@ Script.goals = (function(){
 	instance.newTechs = 2;
 	instance.productionGoals = {"metal":0, "wood":0, "gem":0, "charcoal":0, "oil":0, "fuel":0};
 	
-	instance.updateProductionGoals = function()
+	instance.updateProductionGoals = function(self)
 	{
 		var energyBuilding = Script.data.energyData[Script.decisions.energyFocus.id];
-		for (key in energyBuilding.cost) {instance.productionGoals[key] += instance.balance["energy"] * enenergyBuilding.cost[key];}
-		for (key in energyBuilding.cons) {instance.productionGoals[key] += instance.balance["energy"] * enenergyBuilding.cons[key];}
+		for (key in energyBuilding.cost) {self.productionGoals[key] += self.balance["energy"] * enenergyBuilding.cost[key];}
+		for (key in energyBuilding.cons) {self.productionGoals[key] += self.balance["energy"] * enenergyBuilding.cons[key];}
 		
 		var labBuilding = Script.data.labData[Script.decisions.labFocus.id];
-		for (key in labBuilding.cost) {instance.productionGoals[key] += instance.balance["science"] * labBuilding.cost[key];}
-		for (key in labBuilding.cons) {instance.productionGoals[key] += instance.balance["science"] * labBuilding.cons[key];}
+		for (key in labBuilding.cost) {self.productionGoals[key] += self.balance["science"] * labBuilding.cost[key];}
+		for (key in labBuilding.cons) {self.productionGoals[key] += self.balance["science"] * labBuilding.cons[key];}
 		
-		if (phase == 1) {instance.productionGoal["metal"] += 0.2; instance.productionGoal["gem"] += 0.2;}
-		if (phase == 2) {instance.productionGoals["fuel"] += 0.1;}
+		if (phase == 1) {self.productionGoal["metal"] += 0.2; self.productionGoal["gem"] += 0.2;}
+		if (phase == 2) {self.productionGoals["fuel"] += 0.1;}
 	};
 	
-	instance.diminishNode = function(key, amount)
+	instance.diminishNode = function(self, key, amount)
 	{
 		var strength = instance.nodes[key];
 		
 		if (strength < amount) {strength = 0;}
 		else {strength -= amount;}
 		
-		instance.nodes[key] = strength;
+		self.nodes[key] = strength;
 	};
 	
-	instance.boostNode = function(key, amount)
+	instance.boostNode = function(self, key, amount)
 	{
-		instance.nodes[key] += instance.modifiers[key] * amount;
+		self.nodes[key] += self.modifiers[key] * amount;
 	};
 	
-	instance.updateNode = function(key)
+	instance.updateNode = function(self, key)
 	{
-		instance.nodes[key] *= 0.9;
+		self.nodes[key] *= 0.9;
 	};
 	
-	instance.sumNodes = function()
+	instance.sumNodes = function(self)
 	{
 		var total = 0;
-		for (key in instance.nodes)
+		for (key in self.nodes)
 		{
-			total += instance.nodes[key];
+			total += self.nodes[key];
 		}
 		return total;
 	};
 	
-	instance.highestGoal = function()
+	instance.highestGoal = function(self)
 	{
 		var highest = 0;
 		var label = "null";
-		for (key in instance.balance)
+		for (key in self.balance)
 		{
-			var score = instance.balance[key];
+			var score = self.balance[key];
 			if (score > highest)
 			{
 				highest = score;
@@ -74,21 +74,21 @@ Script.goals = (function(){
 		var energy = getProduction("energy");
 		var maxEnergy = Script.data.maxEnergy;
 		
-		if (energy < 1) {self.boostNode("energy", maxEnergy);}
-		else {self.boostNode("energy", (10/3) * (maxEnergy / energy));}
+		if (energy < 1) {self.boostNode(self, "energy", maxEnergy);}
+		else {self.boostNode(self, "energy", (10/3) * (maxEnergy / energy));}
 		
-		self.boostNode("science", self.newTechs / (self.newTechs + 1));
-		self.boostNode("production", 1);
+		self.boostNode(self, "science", self.newTechs / (self.newTechs + 1));
+		self.boostNode(self, "production", 1);
 		
-		self.diminishNode("production", 0.05 * self.nodes["energy"]);
-		self.diminishNode("production", 0.05 * self.nodes["science"]);
-		self.diminishNode("science", 0.05 * self.nodes["energy"]);
+		self.diminishNode(self, "production", 0.05 * self.nodes["energy"]);
+		self.diminishNode(self, "production", 0.05 * self.nodes["science"]);
+		self.diminishNode(self, "science", 0.05 * self.nodes["energy"]);
 		
-		self.updateNode("energy");
-		self.updateNode("science");
-		self.updateNode("production");
+		self.updateNode(self, "energy");
+		self.updateNode(self, "science");
+		self.updateNode(self, "production");
 		
-		var total = self.sumNodes();
+		var total = self.sumNodes(self);
 		for (key in self.balance)
 		{
 			self.balance[key] = self.nodes[key] / total;
