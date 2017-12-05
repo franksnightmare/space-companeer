@@ -17,6 +17,8 @@ Script.data = (function(){
 	instance.producerColumn = "wood";
 	instance.maxEnergy = 0;
 	
+	console.log("??????");
+	
 	instance.update = function()
 	{
 		// Production
