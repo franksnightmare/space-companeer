@@ -1,4 +1,4 @@
-console.log("Space Companeer: Loading Decion Functions");
+console.log("Space Companeer: Loading Decision Functions");
 
 Script.decisions = (function(){
 	instance = {};
