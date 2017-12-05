@@ -48,7 +48,7 @@ Script.decisions = (function(){
 			for (var key in self.producerFocus) {resLine += goal[key]; if (key === Script.data.producerColumn) {break;} resLine += ", ";}
 			console.log(resLine + ")");
 			
-			for (resource in producerFocus)
+			for (resource in self.producerFocus)
 			{
 				var building = Script.data.producerData[resource][self.producerFocus[resource].tier]
 				var max = 0;
