@@ -94,7 +94,7 @@ Script.decisions = (function(){
 			//line1 += "(";
 			for (var i = 0; i < Script.machineTier; i++)
 			{
-				var result = Script.getScore(Script.data.producerData[key][i]);
+				var result = Script.scoreEntry(Script.data.producerData[key][i]);
 				//line1 += result.score;
 				if (result.score > score)
 				{
@@ -133,7 +133,7 @@ Script.decisions = (function(){
 			var mult = Math.pow(2, scale * 4);
 			
 			var building = Script.data.producerData[key][tier];
-			var result = Script.getScore(building);
+			var result = Script.scoreEntry(building);
 			
 			var finalScore = Math.pow(2, result.score) * mult
 			//var finalScore = mult;
@@ -172,7 +172,7 @@ Script.decisions = (function(){
 		var canBuild = false;
 		for (var i = 0; i < Script.energyTier; i++)
 		{
-			var result = Script.getScore(energyData[i]);
+			var result = Script.scoreEntry(energyData[i]);
 			//if (result.problem)
 			//{
 			//	result.score -= 2;
@@ -209,7 +209,7 @@ Script.decisions = (function(){
 						for (i = focus.tier - 1; i >= 0; i--)
 						{
 							var producer = Script.data.producerData[key][focus.tier];
-							var canBuild = !Script.getScore(producer).problem;
+							var canBuild = !Script.scoreEntry(producer).problem;
 							if (canBuild)
 							{
 								producer.mk();
@@ -232,7 +232,7 @@ Script.decisions = (function(){
 		var focus = "null";
 		for (var i = 0; i < Script.labTier; i++)
 		{
-			var result = Script.getScore(labData[i]);
+			var result = Script.scoreEntry(labData[i]);
 			if (focus === "null" || result.score > score)
 			{
 				best = i;
