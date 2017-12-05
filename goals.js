@@ -69,35 +69,35 @@ Script.goals = (function(){
 		return key;
 	};
 	
-	instance.update = function()
+	instance.update = function(self)
 	{
 		var energy = getProduction("energy");
 		var maxEnergy = Script.data.maxEnergy;
 		
-		if (energy < 1) {instance.boostNode("energy", maxEnergy);}
-		else {instance.boostNode("energy", (10/3) * (maxEnergy / energy));}
+		if (energy < 1) {self.boostNode("energy", maxEnergy);}
+		else {self.boostNode("energy", (10/3) * (maxEnergy / energy));}
 		
-		instance.boostNode("science", instance.newTechs / (instance.newTechs + 1));
-		instance.boostNode("production", 1);
+		self.boostNode("science", self.newTechs / (self.newTechs + 1));
+		self.boostNode("production", 1);
 		
-		instance.diminishNode("production", 0.05 * instance.nodes["energy"]);
-		instance.diminishNode("production", 0.05 * instance.nodes["science"]);
-		instance.diminishNode("science", 0.05 * instance.nodes["energy"]);
+		self.diminishNode("production", 0.05 * self.nodes["energy"]);
+		self.diminishNode("production", 0.05 * self.nodes["science"]);
+		self.diminishNode("science", 0.05 * self.nodes["energy"]);
 		
-		instance.updateNode("energy");
-		instance.updateNode("science");
-		instance.updateNode("production");
+		self.updateNode("energy");
+		self.updateNode("science");
+		self.updateNode("production");
 		
-		var total = instance.sumNodes();
-		for (key in instance.balance)
+		var total = self.sumNodes();
+		for (key in self.balance)
 		{
-			instance.balance[key] = instance.nodes[key] / total;
+			self.balance[key] = self.nodes[key] / total;
 		}
 	};
 	
-	instance.print = function()
+	instance.print = function(self)
 	{
-		console.log("(" + this.balance["energy"] + ", " + this.balance["science"] + ", " + this.balance["production"] + ")");
+		console.log("(" + self.balance["energy"] + ", " + self.balance["science"] + ", " + self.balance["production"] + ")");
 	};
 	
 	return instance;

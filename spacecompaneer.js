@@ -11,9 +11,9 @@ var Script = (function() {
 	
 	instance.spaceCompaneer = function()
 	{
-		Script.data.update();
+		Script.data.update(Script.data);
 		
-		Script.goals.update();
+		Script.goals.update(Script.goals);
 		Script.goals.print();
 		
 		Script.upgradeStorage();
@@ -74,4 +74,4 @@ var Script = (function() {
 	return instance;
 }());
 
-setTimeout(Script.init, 1000);
+setTimeout(Script.init, 2000);
