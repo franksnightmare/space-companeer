@@ -94,7 +94,7 @@ Script.decisions = (function(){
 			//line1 += "(";
 			for (var i = 0; i < Script.machineTier; i++)
 			{
-				var result = Script.getScore(producerData[key][i]);
+				var result = Script.getScore(Script.data.producerData[key][i]);
 				//line1 += result.score;
 				if (result.score > score)
 				{
