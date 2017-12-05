@@ -59,6 +59,12 @@ Script.data = (function(){
 		var maxEnergy = 0;
 		for (key in Script.data.producerData)
 		{
+			console.log(Script);
+			console.log(Script.data);
+			console.log(Script.data.producerData);
+			console.log(Script.data.producerData[key]);
+			console.log(Script.machineTier);
+			console.log(Script.data.producerData[key][Script.machineTier]);
 			var building = Script.data.producerData[key][Script.machineTier];
 			if ("energy" in building.cons)
 			{
