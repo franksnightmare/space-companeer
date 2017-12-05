@@ -7,11 +7,34 @@ var Script = (function() {
 	instance.machineTier = 1;
 	instance.labTier = 1;
 	instance.energyTier = 0;
+	instance.fuelTier = 0;
 	
 	instance.spaceCompaneer = function()
 	{
+		Script.data.update();
+		
 		Script.goals.update();
 		Script.goals.print();
+		
+		Script.upgradeStorage();
+		
+		Script.decisions.decideResourceBuildings();
+		
+		Script.decisions.decideEnergyBuilding();
+		Script.decisions.buildEnergyBuilding();
+		
+		Script.goals.updateProductionGoals();
+		Script.decisions.updateResourceFocus(3);
+		
+		if (Script.goals.highestGoal() === "energy")
+		{
+			return;
+		}
+		
+		Script.decisions.decideLabBuilding();
+		Script.decisions.buildLabs();
+		
+		Script.decisions.buildResourceBuildings();
 	};
 	
 	instance.boosterino = function()
@@ -20,7 +43,13 @@ var Script = (function() {
 		if (!getProduction('metal')) {gainResource('metal'); getMiner(); done = false;}
 		if (!getProduction('gem')) {gainResource('gem'); getGemMiner(); done = false;}
 		if (!getProduction('wood')) {gainResource('wood'); getWoodcutter(); done = false;}
-		if (done) {instance.phase = 1; clearInterval(instance.boosterino_t); setInterval(instance.spaceCompaneer, 1000); console.log("Space Companeer: Phase 0 complete!");}
+		if (done) {
+			instance.phase = 1;
+			clearInterval(instance.boosterino_t);
+			setInterval(instance.spaceCompaneer, 1000);
+			Script.decisions.init();
+			console.log("Space Companeer: Phase 0 complete!");
+		}
 	};
 	
 	instance.init = function()
@@ -35,5 +64,7 @@ var Script = (function() {
 document.head.appendChild(document.createElement('script')).src = SC_base + 'utils.js';
 document.head.appendChild(document.createElement('script')).src = SC_base + 'data.js';
 document.head.appendChild(document.createElement('script')).src = SC_base + 'goals.js';
+document.head.appendChild(document.createElement('script')).src = SC_base + 'science.js';
+document.head.appendChild(document.createElement('script')).src = SC_base + 'decisions.js';
 
 setTimeout(Script.init, 2000);

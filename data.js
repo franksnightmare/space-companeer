@@ -1,6 +1,6 @@
+console.log("Space Companeer: Loading Data");
+
 Script.data = (function(){
-	console.log("Space Companeer: Loading Data");
-	
 	instance = {};
 	
 	instance.energyData = {};
@@ -11,14 +11,24 @@ Script.data = (function(){
 	
 	instance.update = function()
 	{
+		// Production
+		var total = 0;
+		for (var key in Script.decisions.producerFocus)
+		{
+			var prod = getProduction(key);
+			total += prod;
+			Script.decisions.producerFocus[key].current = prod;
+		}
+		if (total) {for (var key in Script.decisions.producerFocus) {Script.decisions.producerFocus[key].current /= total;}}
+		
 		// Energy Producers
-		instance.energyData[0] = {cost:{"metal":charcoalEngineMetalCost, "gem":charcoalEngineGemCost}, prod:charcoalEngineOutput, cons:{"charcoal":charcoalEngineCharcoalInput}};
-		instance.energyData[1] = {cost:{"metal":solarPanelMetalCost, "gem":solarPanelGemCost}, prod:solarPanelOutput, cons:{}};
+		instance.energyData[0] = {cost:{"metal":charcoalEngineMetalCost, "gem":charcoalEngineGemCost}, prod:charcoalEngineOutput, cons:{"charcoal":charcoalEngineCharcoalInput}, mk:getCharcoalEngine};
+		instance.energyData[1] = {cost:{"metal":solarPanelMetalCost, "gem":solarPanelGemCost}, prod:solarPanelOutput, cons:{}, mk:getSolarPanel};
 		
 		// Science Producers
-		instance.labData[0] = {cost:{"metal":labMetalCost, "gem":labGemCost, "wood":labWoodCost}, prod:labOutput};
-		instance.labData[1] = {cost:{"metal":labT2MetalCost, "gem":labT2GemCost, "wood":labT2WoodCost}, prod:labT2Output};
-		instance.labData[2] = {cost:{"metal":labT3MetalCost, "gem":labT3GemCost, "wood":labT3WoodCost}, prod:labT3Output};
+		instance.labData[0] = {cost:{"metal":labMetalCost, "gem":labGemCost, "wood":labWoodCost}, prod:labOutput, cons:{}, mk:getLab()};
+		instance.labData[1] = {cost:{"metal":labT2MetalCost, "gem":labT2GemCost, "wood":labT2WoodCost}, prod:labT2Output, cons:{}, mk:getLabT2()};
+		instance.labData[2] = {cost:{"metal":labT3MetalCost, "gem":labT3GemCost, "wood":labT3WoodCost}, prod:labT3Output, cons:{}, mk:getLabT3()};
 		
 		// Resource Producers
 		instance.producerData["metal"][0] = {cost:{"metal":minerMetalCost, "wood":minerWoodCost}, prod:minerOutput, cons:{}, mk:getMiner};
@@ -36,6 +46,8 @@ Script.data = (function(){
 		instance.producerData["oil"][0] = {cost:{"metal":pumpMetalCost, "gem":pumpGemCost}, prod:pumpOutput, cons:{}, mk:getPump};
 		instance.producerData["oil"][1] = {cost:{"metal":pumpjackMetalCost, "gem":pumpjackGemCost, "oil":pumpjackOilCost}, prod:pumpjackOutput, cons:{"energy":pumpjackEnergyInput}, mk:getPumpjack};
 		
+		instance.producerData["fuel"][0] = {cost:{"metal":chemicalPlantMetalCost, "gem":chemicalPlantGemCost, "oil":chemicalPlantOilcost}, prod:chemicalPlantOutput, cons:{"oil":chemicalPlantOilInput, "charcoal":chemicalPlantCharcoalInput}, mk:getChemicalPlant};
+		
 		var maxEnergy = 0;
 		for (key in instance.producerData)
 		{
@@ -46,7 +58,7 @@ Script.data = (function(){
 			}
 		}
 		instance.maxEnergy = maxEnergy;
-	}
+	};
 	
 	return instance;
 }());

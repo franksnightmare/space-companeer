@@ -35,3 +35,15 @@ Script.scoreEntry = function(entry)
 	
 	return {score:score, res:max.res, problem:max.problem};
 };
+
+Script.upgradeStorage = function ()
+{
+	if (Game.tech.isPurchased("unlockStorage"))
+	{
+		upgradeMetalStorage();
+		upgradeGemStorage();
+		upgradeWoodStorage();
+		upgradeCharcoalStorage();
+		upgradeOilStorage();
+	}
+};

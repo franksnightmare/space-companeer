@@ -1,12 +1,27 @@
+console.log("Space Companeer: Loading Goal Automata");
+
 Script.goals = (function(){
-	console.log("Space Companeer: Loading Goal Automata");
-	
 	instance = {};
 	
 	instance.nodes = {"energy":0, "science":0, "production":0};
 	instance.modifiers = {"energy":0, "science":0, "production":1};
 	instance.balance = {"energy":1/3, "science":1/3, "production":1/3};
-	instance.newTechs = 0;
+	instance.newTechs = 2;
+	instance.productionGoals = {"metal":0, "wood":0, "gem":0, "charcoal":0, "oil":0, "fuel":0};
+	
+	instance.updateProductionGoals = function()
+	{
+		var energyBuilding = Script.data.energyData[Script.decisions.energyFocus.id];
+		for (key in energyBuilding.cost) {instance.productionGoals[key] += instance.balance["energy"] * enenergyBuilding.cost[key];}
+		for (key in energyBuilding.cons) {instance.productionGoals[key] += instance.balance["energy"] * enenergyBuilding.cons[key];}
+		
+		var labBuilding = Script.data.labData[Script.decisions.labFocus.id];
+		for (key in labBuilding.cost) {instance.productionGoals[key] += instance.balance["science"] * labBuilding.cost[key];}
+		for (key in labBuilding.cons) {instance.productionGoals[key] += instance.balance["science"] * labBuilding.cons[key];}
+		
+		if (phase == 1) {instance.productionGoal["metal"] += 0.2; instance.productionGoal["gem"] += 0.2;}
+		if (phase == 2) {instance.productionGoals["fuel"] += 0.1;}
+	}
 	
 	instance.diminishNode = function(key, amount)
 	{
@@ -37,6 +52,22 @@ Script.goals = (function(){
 		}
 		return total;
 	};
+	
+	instance.highestGoal = function()
+	{
+		var highest = 0;
+		var label = "null";
+		for (key in instance.balance)
+		{
+			var score = instance.balance[key];
+			if (score > highest)
+			{
+				highest = score;
+				label = key;
+			}
+		}
+		return key;
+	}
 	
 	instance.update = function()
 	{
