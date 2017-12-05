@@ -21,7 +21,7 @@ Script.goals = (function(){
 		
 		if (phase == 1) {instance.productionGoal["metal"] += 0.2; instance.productionGoal["gem"] += 0.2;}
 		if (phase == 2) {instance.productionGoals["fuel"] += 0.1;}
-	}
+	};
 	
 	instance.diminishNode = function(key, amount)
 	{
@@ -67,7 +67,7 @@ Script.goals = (function(){
 			}
 		}
 		return key;
-	}
+	};
 	
 	instance.update = function()
 	{

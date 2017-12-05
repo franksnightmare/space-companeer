@@ -32,7 +32,7 @@ Script.data = (function(){
 				}
 			}
 		}
-	}
+	};
 	
 	instance.purchaseTech = function()
 	{

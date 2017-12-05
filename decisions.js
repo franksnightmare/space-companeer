@@ -81,7 +81,7 @@ Script.decisions = (function(){
 			if (key === Script.producerColumn) {break;}
 		}
 		if (total2) {for (var key in instance.producerFocus) {instance.producerFocus[key].weight = goal[key] / total2;}}
-	}
+	};
 	
 	instance.decideResourceBuildings = function ()
 	{
@@ -162,7 +162,7 @@ Script.decisions = (function(){
 		console.log("best: " + best + ", score: " + score + ", tier: " + instance.producerFocus[best].tier);
 		
 		if (best != "null" && instance.producerFocus[best].canBuild) {Script.data.producerData[best][instance.producerFocus[best].tier].mk();}
-	}
+	};
 	
 	instance.decideEnergyBuilding = function ()
 	{
