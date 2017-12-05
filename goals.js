@@ -12,8 +12,8 @@ Script.goals = (function(){
 	instance.updateProductionGoals = function(self)
 	{
 		var energyBuilding = Script.data.energyData[Script.decisions.energyFocus.id];
-		for (key in energyBuilding.cost) {self.productionGoals[key] += self.balance["energy"] * enenergyBuilding.cost[key];}
-		for (key in energyBuilding.cons) {self.productionGoals[key] += self.balance["energy"] * enenergyBuilding.cons[key];}
+		for (key in energyBuilding.cost) {self.productionGoals[key] += self.balance["energy"] * energyBuilding.cost[key];}
+		for (key in energyBuilding.cons) {self.productionGoals[key] += self.balance["energy"] * energyBuilding.cons[key];}
 		
 		var labBuilding = Script.data.labData[Script.decisions.labFocus.id];
 		for (key in labBuilding.cost) {self.productionGoals[key] += self.balance["science"] * labBuilding.cost[key];}
@@ -80,6 +80,8 @@ Script.goals = (function(){
 		self.boostNode(self, "science", self.newTechs / (self.newTechs + 1));
 		self.boostNode(self, "production", 1);
 		
+		console.log("ESP Nodes: (" + self.nodes["energy"] + ", " + self.nodes["science"] + ", " + self.nodes["production"] + ")");
+		
 		self.diminishNode(self, "production", 0.05 * self.nodes["energy"]);
 		self.diminishNode(self, "production", 0.05 * self.nodes["science"]);
 		self.diminishNode(self, "science", 0.05 * self.nodes["energy"]);
@@ -97,7 +99,7 @@ Script.goals = (function(){
 	
 	instance.print = function(self)
 	{
-		console.log("(" + self.balance["energy"] + ", " + self.balance["science"] + ", " + self.balance["production"] + ")");
+		console.log("ESP Balance: (" + self.balance["energy"] + ", " + self.balance["science"] + ", " + self.balance["production"] + ")");
 	};
 	
 	return instance;
