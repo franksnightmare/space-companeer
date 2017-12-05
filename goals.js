@@ -19,8 +19,8 @@ Script.goals = (function(){
 		for (key in labBuilding.cost) {self.productionGoals[key] += self.balance["science"] * labBuilding.cost[key];}
 		for (key in labBuilding.cons) {self.productionGoals[key] += self.balance["science"] * labBuilding.cons[key];}
 		
-		if (phase == 1) {self.productionGoal["metal"] += 0.2; self.productionGoal["gem"] += 0.2;}
-		if (phase == 2) {self.productionGoals["fuel"] += 0.1;}
+		if (Script.phase == 1) {self.productionGoal["metal"] += 0.2; self.productionGoal["gem"] += 0.2;}
+		if (Script.phase == 2) {self.productionGoals["fuel"] += 0.1;}
 	};
 	
 	instance.diminishNode = function(self, key, amount)
