@@ -52,19 +52,24 @@ var Script = (function() {
 		}
 	};
 	
+	instance.waitMore = function()
+	{
+		instance.boosterino_t = setInterval(instance.boosterino, 1000);
+	};
+	
 	instance.init = function()
 	{
 		console.log("Space Companeer: Starting Space Companeer...");
-		instance.boosterino_t = setInterval(instance.boosterino, 1000);
+		setTimeout(instance.waitMore, 2000);
+		
+		document.head.appendChild(document.createElement('script')).src = SC_base + 'utils.js';
+		document.head.appendChild(document.createElement('script')).src = SC_base + 'data.js';
+		document.head.appendChild(document.createElement('script')).src = SC_base + 'goals.js';
+		document.head.appendChild(document.createElement('script')).src = SC_base + 'science.js';
+		document.head.appendChild(document.createElement('script')).src = SC_base + 'decisions.js';
 	};
 	
 	return instance;
 }());
 
-document.head.appendChild(document.createElement('script')).src = SC_base + 'utils.js';
-document.head.appendChild(document.createElement('script')).src = SC_base + 'data.js';
-document.head.appendChild(document.createElement('script')).src = SC_base + 'goals.js';
-document.head.appendChild(document.createElement('script')).src = SC_base + 'science.js';
-document.head.appendChild(document.createElement('script')).src = SC_base + 'decisions.js';
-
-setTimeout(Script.init, 4000);
+setTimeout(Script.init, 1000);
