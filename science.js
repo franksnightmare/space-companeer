@@ -4,7 +4,7 @@ Script.science = (function(){
 	instance = {};
 	
 	instance.techs = [
-	{name:"unlockStorage", available:true, done:false, unlocks:["unlockBasicOil"], consequences:function(){}},
+	{name:"unlockStorage", available:true, done:false, unlocks:["unlockOil"], consequences:function(){}},
 	{name:"unlockBasicEnergy", available:true, done:false, unlocks:["unlockSolar", "unlockMachines", "upgradeEngineTech"], consequences:function(){Script.data.producerColumn = "charcoal"; Script.energyTier = 1;}},
 	{name:"unlockOil", available:false, done:false, unlocks:[], consequences:function(){Script.data.producerColumn = "oil";}},
 	{name:"unlockSolar", available:false, done:false, unlocks:["upgradeSolarTech"], consequences:function(){Script.energyTier = 2;}},
