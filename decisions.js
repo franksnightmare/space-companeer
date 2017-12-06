@@ -24,6 +24,7 @@ Script.decisions = (function(){
 	instance.updateResourceFocus = function(self, itterations)
 	{
 		var startPoint = Script.goals.productionGoals;
+		var resline;
 		
 		var goal = {};
 		for (var key in self.producerFocus) {goal[key] = startPoint[key]; Script.goals.productionGoals[key] = 0; if (key === Script.data.producerColumn) {break;}}
@@ -48,9 +49,9 @@ Script.decisions = (function(){
 			}
 			if (total) {for (var key in goal) {goal[key] /= total; if (key === Script.data.producerColumn) {break;}}}
 			
-			resLine = "GoalStep (";
-			for (var key in self.producerFocus) {resLine += goal[key]; if (key === Script.data.producerColumn) {break;} resLine += ", ";}
-			console.log(resLine + ")");
+			//resLine = "GoalStep (";
+			//for (var key in self.producerFocus) {resLine += goal[key]; if (key === Script.data.producerColumn) {break;} resLine += ", ";}
+			//console.log(resLine + ")");
 			
 			for (resource in self.producerFocus)
 			{
@@ -97,6 +98,10 @@ Script.decisions = (function(){
 			if (key === Script.data.producerColumn) {break;}
 		}
 		if (total2) {for (var key in self.producerFocus) {self.producerFocus[key].weight = goal[key] / total2;}}
+		
+		resLine = "Product Priority (";
+		for (var key in self.producerFocus) {resLine += self.producerFocus[key].weight; if (key === Script.data.producerColumn) {break;} resLine += ", ";}
+		console.log(resLine + ")");
 	};
 	
 	instance.decideResourceBuildings = function(self)
