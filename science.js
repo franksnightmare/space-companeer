@@ -10,7 +10,7 @@ Script.science = (function(){
 	{name:"unlockSolar", available:false, done:false, unlocks:["upgradeSolarTech"], consequences:function(){Script.energyTier = 2;}},
 	{name:"unlockMachines", available:false, done:false, unlocks:["unlockDestruction", "unlockSolarSystem", "upgradeResourceTech"], consequences:function(){Script.machineTier = 2; Script.goals.modifiers["energy"] = 1;}},
 	{name:"unlockDestruction", available:false, done:false, unlocks:[], consequences:function(){}},
-	{name:"unlockSolarSystem", available:false, done:false, unlocks:["unlockLabT2", "unlockRocketFuelT2"], consequences:function(){Script.data.producerColumn = "fuel"; Script.fuelTier = 1; Script.phase = 1;}},
+	{name:"unlockSolarSystem", available:false, done:false, unlocks:["unlockLabT2", "unlockRocketFuelT2"], consequences:function(){Script.data.producerColumn = "fuel"; Script.fuelTier = 1; Script.phase = 2;}},
 	{name:"upgradeResourceTech", available:false, done:false, unlocks:[], consequences:function(){}},
 	{name:"unlockLabT2", available:false, done:false, unlocks:["unlockLabT3"], consequences:function(){Script.labTier = 2;}},
 	{name:"upgradeEngineTech", available:false, done:false, unlocks:[], consequences:function(){}},
