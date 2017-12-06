@@ -62,13 +62,25 @@ Script.decisions = (function(){
 					if (cost > max) {max = cost};
 				}
 				if (max < 1) {max = 1;}
+				
+				var maxCons = 0;
+				for (var key in building.cons)
+				{
+					var cost = building.cons[key];
+					if (key !== "energy" && cost > maxCons) {maxCons = cost};
+				}
+				if (maxCons < 1) {maxCons = 1;}
+				
 				for (var key in building.cost)
 				{
 					newGoal[key] += goal[key] * building.cost[key] / max;
 				}
 				for (var key in building.cons)
 				{
-					newGoal[key] += goal[key] * 2 * building.cons[key] / max;
+					if (key !== "energy")
+					{
+						newGoal[key] += goal[key] * 2 * building.cons[key] / maxCons;
+					}
 				}
 				
 				if (resource === Script.data.producerColumn) {break;}
