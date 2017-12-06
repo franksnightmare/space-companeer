@@ -172,7 +172,7 @@ Script.decisions = (function(){
 		var canBuild = false;
 		for (var i = 0; i < Script.energyTier; i++)
 		{
-			var result = Script.scoreEntry(energyData[i]);
+			var result = Script.scoreEntry(Script.data.energyData[i]);
 			//if (result.problem)
 			//{
 			//	result.score -= 2;
