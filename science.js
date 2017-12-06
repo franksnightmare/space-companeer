@@ -39,7 +39,7 @@ Script.science = (function(){
 	
 	instance.purchaseTech = function(self)
 	{
-		for (key in self.techs; i++)
+		for (key in self.techs)
 		{
 			var tech = self.techs[key];
 			if (tech.available && !tech.done)
