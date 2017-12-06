@@ -36,7 +36,7 @@ Script.decisions = (function(){
 		
 		for (var i = 0; i < itterations; i++)
 		{
-			labda *= 0.5;
+			labda *= 0.8;
 			
 			var newGoal = {};
 			var total = 0;
