@@ -8,6 +8,7 @@ var Script = (function() {
 	instance.labTier = 1;
 	instance.energyTier = 0;
 	instance.fuelTier = 0;
+	instance.consumptionRemainder = 1;
 	
 	instance.spaceCompaneer = function()
 	{
