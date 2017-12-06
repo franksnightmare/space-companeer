@@ -32,8 +32,12 @@ Script.decisions = (function(){
 		//for (var key in goal) {resLine += goal[key]; if (key === Script.data.producerColumn) {break;} resLine += ", ";}
 		//console.log(resLine + ")");
 		
+		var labda = 1;
+		
 		for (var i = 0; i < itterations; i++)
 		{
+			labda *= 0.5;
+			
 			var newGoal = {};
 			var total = 0;
 			for (var key in self.producerFocus)
@@ -71,7 +75,7 @@ Script.decisions = (function(){
 			}
 			total = 0;
 			for (var key in self.producerFocus) {total += newGoal[key]; if (key === Script.data.producerColumn) {break;}}
-			for (var key in self.producerFocus) {goal[key] = newGoal[key] / total; if (key === Script.data.producerColumn) {break;}}
+			for (var key in self.producerFocus) {goal[key] += labda * newGoal[key] / total; if (key === Script.data.producerColumn) {break;}}
 		}
 		
 		var total2 = 0;
