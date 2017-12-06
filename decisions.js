@@ -73,13 +73,13 @@ Script.decisions = (function(){
 				
 				for (var key in building.cost)
 				{
-					newGoal[key] += goal[key] * building.cost[key] / max;
+					newGoal[key] += goal[resource] * building.cost[key] / max;
 				}
 				for (var key in building.cons)
 				{
 					if (key !== "energy")
 					{
-						newGoal[key] += goal[key] * 2 * building.cons[key] / maxCons;
+						newGoal[key] += goal[resource] * 2 * building.cons[key] / maxCons;
 					}
 				}
 				
