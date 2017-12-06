@@ -16,7 +16,7 @@ Script.goals = (function(){
 		{
 			var prod = getProduction(key);
 			if (prod < 1) {prod = 0.1;}
-			self.productionGoals[key] += self.balance["energy"] * energyBuilding.cost[key] / (1000*prod);
+			self.productionGoals[key] += self.balance["energy"] * energyBuilding.cost[key] / (100*prod);
 		}
 		for (key in energyBuilding.cons) {self.productionGoals[key] += self.balance["energy"] * energyBuilding.cons[key];}
 		
@@ -24,7 +24,7 @@ Script.goals = (function(){
 		for (key in labBuilding.cost) {
 			var prod = getProduction(key);
 			if (prod < 1) {prod = 0.1;}
-			self.productionGoals[key] += self.balance["science"] * labBuilding.cost[key] / (1000*prod);
+			self.productionGoals[key] += self.balance["science"] * labBuilding.cost[key] / (100*prod);
 		}
 		for (key in labBuilding.cons) {self.productionGoals[key] += self.balance["science"] * labBuilding.cons[key];}
 		
