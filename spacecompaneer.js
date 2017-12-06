@@ -28,7 +28,7 @@ var Script = (function() {
 		
 		Script.science.purchaseTech(Script.science);
 		
-		if (Script.goals.highestGoal(Scipt.goals) === "energy")
+		if (Script.goals.highestGoal(Script.goals) === "energy")
 		{
 			return;
 		}

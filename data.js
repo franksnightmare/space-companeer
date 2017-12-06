@@ -61,7 +61,7 @@ Script.data = (function(){
 		{
 			if (key !== "fuel")
 			{
-				var building = self.producerData[key][Script.machineTier];
+				var building = self.producerData[key][Script.machineTier - 1];
 				if ("energy" in building.cons)
 				{
 					var energy = building.cons["energy"];
