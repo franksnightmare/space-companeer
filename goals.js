@@ -12,14 +12,23 @@ Script.goals = (function(){
 	instance.updateProductionGoals = function(self)
 	{
 		var energyBuilding = Script.data.energyData[Script.decisions.energyFocus.id];
-		for (key in energyBuilding.cost) {self.productionGoals[key] += self.balance["energy"] * energyBuilding.cost[key];}
+		for (key in energyBuilding.cost)
+		{
+			var prod = getProduction(key);
+			if (prod < 1) {prod = 0.1;}
+			self.productionGoals[key] += self.balance["energy"] * energyBuilding.cost[key] / prod;
+		}
 		for (key in energyBuilding.cons) {self.productionGoals[key] += self.balance["energy"] * energyBuilding.cons[key];}
 		
 		var labBuilding = Script.data.labData[Script.decisions.labFocus.id];
-		for (key in labBuilding.cost) {self.productionGoals[key] += self.balance["science"] * labBuilding.cost[key];}
+		for (key in labBuilding.cost) {
+			var prod = getProduction(key);
+			if (prod < 1) {prod = 0.1;}
+			self.productionGoals[key] += self.balance["science"] * labBuilding.cost[key] / prod;
+		}
 		for (key in labBuilding.cons) {self.productionGoals[key] += self.balance["science"] * labBuilding.cons[key];}
 		
-		if (Script.phase == 1) {self.productionGoals["metal"] += 0.2; self.productionGoals["gem"] += 0.2;}
+		if (Script.phase == 1) {self.productionGoals["gem"] += 0.2;}
 		if (Script.phase == 2) {self.productionGoals["fuel"] += 0.1;}
 	};
 	
