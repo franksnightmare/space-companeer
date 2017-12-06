@@ -232,7 +232,7 @@ Script.decisions = (function(){
 		var focus = "null";
 		for (var i = 0; i < Script.labTier; i++)
 		{
-			var result = Script.scoreEntry(labData[i]);
+			var result = Script.scoreEntry(Script.data.labData[i]);
 			if (focus === "null" || result.score > score)
 			{
 				best = i;
