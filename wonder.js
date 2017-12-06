@@ -23,7 +23,7 @@ Script.wonders = (function(){
 		}
 	};
 	
-	instance.getAmount(resource)
+	instance.getAmount = function(resource)
 	{
 		if (resource === "gem") {return gem;}
 		if (resource === "gold") {return gold;}
