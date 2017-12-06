@@ -46,7 +46,7 @@ Script.decisions = (function(){
 			
 			resLine = "GoalStep (";
 			for (var key in self.producerFocus) {resLine += goal[key]; if (key === Script.data.producerColumn) {break;} resLine += ", ";}
-			//console.log(resLine + ")");
+			console.log(resLine + ")");
 			
 			for (resource in self.producerFocus)
 			{
