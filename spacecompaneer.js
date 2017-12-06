@@ -28,7 +28,7 @@ var Script = (function() {
 		Script.decisions.updateResourceFocus(Script.decisions, 3);
 		
 		Script.science.purchaseTech(Script.science);
-		if (fuelTier >= 1) {Script.space.explorePlace(Script.space);}
+		if (Script.fuelTier >= 1) {Script.space.explorePlace(Script.space);}
 		
 		if (Script.goals.highestGoal(Script.goals) === "energy")
 		{
