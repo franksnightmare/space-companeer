@@ -273,7 +273,21 @@ Script.decisions = (function(){
 	
 	instance.buildLabs = function(self)
 	{
-		Script.data.labData[self.labFocus.id].mk();
+		var lab = Script.data.labData[self.labFocus.id];
+		var max = 0;
+		var resource = "null";
+		for (key in lab.cost)
+		{
+			var prod = getProduction(key);
+			if (prod < 1) {prod = 0.1;}
+			var time = lab.cost(key) / prod;
+			if (time > max) {time = max; resource = key;}
+		}
+		
+		if (getResource(resource) > lab.cost[resource] * 2)
+		{
+			lab.mk();
+		}
 	};
 	
 	return instance;
