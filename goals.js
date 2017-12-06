@@ -80,7 +80,7 @@ Script.goals = (function(){
 		self.boostNode(self, "science", self.newTechs / (self.newTechs + 1));
 		self.boostNode(self, "production", 1);
 		
-		console.log("ESP Nodes: (" + self.nodes["energy"] + ", " + self.nodes["science"] + ", " + self.nodes["production"] + ")");
+		//console.log("ESP Nodes: (" + self.nodes["energy"] + ", " + self.nodes["science"] + ", " + self.nodes["production"] + ")");
 		
 		self.diminishNode(self, "production", 0.05 * self.nodes["energy"]);
 		self.diminishNode(self, "production", 0.05 * self.nodes["science"]);

@@ -156,9 +156,9 @@ Script.decisions = (function(){
 		line += ")";
 		line2 += ")";
 		line3 += ")";
-		console.log(line);
+		//console.log(line);
 		//console.log(line2);
-		console.log(line3);
+		//console.log(line3);
 		console.log("best: " + best + ", score: " + score + ", tier: " + self.producerFocus[best].tier);
 		
 		if (best != "null" && self.producerFocus[best].canBuild) {Script.data.producerData[best][self.producerFocus[best].tier].mk();}

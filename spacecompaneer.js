@@ -24,7 +24,7 @@ var Script = (function() {
 		Script.decisions.buildEnergyBuilding(Script.decisions);
 		
 		Script.goals.updateProductionGoals(Script.goals);
-		Script.decisions.updateResourceFocus(Script.decisions, 3);
+		Script.decisions.updateResourceFocus(Script.decisions, 1);
 		
 		Script.science.purchaseTech(Script.science);
 		
