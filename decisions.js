@@ -280,7 +280,7 @@ Script.decisions = (function(){
 		{
 			var prod = getProduction(key);
 			if (prod < 1) {prod = 0.1;}
-			var time = lab.cost(key) / prod;
+			var time = lab.cost[key] / prod;
 			if (time > max) {time = max; resource = key;}
 		}
 		
