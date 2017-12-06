@@ -47,7 +47,7 @@ Script.science = (function(){
 				purchaseTech(key);
 				if (Game.tech.isPurchased(key))
 				{
-					self.techs[i].done = true;
+					self.techs[key].done = true;
 					self.unlockTechs(self, tech.unlocks);
 					
 					Script.goals.newTechs -= 1;
