@@ -28,16 +28,19 @@ var Script = (function() {
 		Script.decisions.updateResourceFocus(Script.decisions, 3);
 		
 		Script.science.purchaseTech(Script.science);
+		if (fuelTier >= 1) {Script.space.explorePlace(Script.space);}
 		
 		if (Script.goals.highestGoal(Script.goals) === "energy")
 		{
 			return;
 		}
-		
-		Script.decisions.decideLabBuilding(Script.decisions);
-		Script.decisions.buildLabs(Script.decisions);
-		
-		Script.decisions.buildResourceBuildings(Script.decisions);
+		else
+		{
+			Script.decisions.decideLabBuilding(Script.decisions);
+			Script.decisions.buildLabs(Script.decisions);
+			
+			Script.decisions.buildResourceBuildings(Script.decisions);
+		}
 	};
 	
 	instance.boosterino = function()
@@ -49,7 +52,7 @@ var Script = (function() {
 		if (done) {
 			instance.phase = 1;
 			clearInterval(instance.boosterino_t);
-			setInterval(instance.spaceCompaneer, 1000);
+			setInterval(instance.spaceCompaneer, 2000);
 			Script.decisions.init(Script.decisions);
 			Script.goals.modifiers["science"] = 1;
 			console.log("Space Companeer: Phase 0 complete!");
@@ -71,6 +74,8 @@ var Script = (function() {
 		document.head.appendChild(document.createElement('script')).src = SC_base + 'goals.js';
 		document.head.appendChild(document.createElement('script')).src = SC_base + 'science.js';
 		document.head.appendChild(document.createElement('script')).src = SC_base + 'decisions.js';
+		document.head.appendChild(document.createElement('script')).src = SC_base + 'space.js';
+		document.head.appendChild(document.createElement('script')).src = SC_base + 'wonder.js';
 	};
 	
 	return instance;
