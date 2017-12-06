@@ -9,7 +9,7 @@ Script.scoreEntry = function(entry)
 	for (var key in entry.cost)
 	{
 		var prod = getProduction(key);
-		if (prod < 1) {prod = 1;}
+		if (prod < 1) {prod = 0.1;}
 		var time = entry.cost[key] / prod;
 		
 		if (max.res === "null" || time > max.time)

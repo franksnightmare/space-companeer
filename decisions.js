@@ -197,7 +197,7 @@ Script.decisions = (function(){
 		{
 			for (key in building.cons)
 			{
-				if (getProduction[key] < building.cons[key])
+				if (getProduction[key] < building.cons[key] && key in self.producerFocus)
 				{
 					var focus = self.producerFocus[key];
 					if (focus.canBuild)
