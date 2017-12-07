@@ -45,5 +45,11 @@ Script.upgradeStorage = function ()
 		upgradeWoodStorage();
 		upgradeCharcoalStorage();
 		upgradeOilStorage();
+		upgradeLunariteStorage();
+		upgradeMethaneStorage();
+		upgradeTitaniumStorage();
+		upgradeSiliconStorage();
+		upgradeGoldStorage();
+		upgradeSilverStorage();
 	}
 };
