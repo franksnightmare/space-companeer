@@ -9,15 +9,15 @@ Script.wonders = (function(){
 	instance.wonders["energetic1"] = {cost:{"wood":10000, "charcoal":5000, "uranium":200}, available:false, done:false, mk:achievePreciousWonder, unlocks:["energetic2"], consequences:function(){}};
 	instance.wonders["energetic2"] = {cost:{"wood":30000, "charcoal":15000, "uranium":500}, available:false, done:false, mk:activatePreciousWonder, unlocks:[], consequences:function(){}};
 	
-	instance.unlockPlaces = function(self, places)
+	instance.unlockWonder = function(self, wonders)
 	{
-		for (i = 0; i < places.length; i++)
+		for (id in wonders)
 		{
-			for (j = 0; j < self.milestones.length; j++)
+			for (key in self.wonders)
 			{
-				if (places[i] === self.milestones[j].name && !self.milestones[j].available)
+				if (wonders[id] === key && !self.milestones[key].available)
 				{
-					self.milestones[j].available = true;
+					self.milestones[key].available = true;
 				}
 			}
 		}
@@ -46,7 +46,7 @@ Script.wonders = (function(){
 				
 				if (canGo) {
 					self.milestones[i].done = true;
-					self.unlockPlaces(self, place.unlocks);
+					self.unlockWonder(self, wonder.unlocks);
 					
 					place.consequences();
 				}

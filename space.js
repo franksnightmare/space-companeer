@@ -19,11 +19,11 @@ Script.space = (function(){
 	
 	instance.unlockPlaces = function(self, places)
 	{
-		for (name in places)
+		for (id in places)
 		{
 			for (key in self.milestones)
 			{
-				if (name === key && !self.milestones[key].available)
+				if (places[id] === key && !self.milestones[key].available)
 				{
 					self.milestones[key].available = true;
 				}

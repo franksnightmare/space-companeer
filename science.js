@@ -24,11 +24,11 @@ Script.science = (function(){
 	
 	instance.unlockTechs = function(self, techList)
 	{
-		for (name in techList)
+		for (id in techList)
 		{
 			for (key in self.techs)
 			{
-				if (name === key && !self.techs[key].available)
+				if (techList[id] === key && !self.techs[key].available)
 				{
 					self.techs[key].available = true;
 					Script.goals.newTechs += 1;
