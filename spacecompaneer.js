@@ -30,11 +30,6 @@ var Script = (function() {
 		Script.science.purchaseTech(Script.science);
 		if (Script.fuelTier >= 1) {Script.space.explorePlace(Script.space);}
 		
-		if (Script.goals.balance["energy"] >= 0.5)
-		{
-			return;
-		}
-		
 		Script.decisions.buildResourceBuildings(Script.decisions);
 		
 		Script.decisions.decideLabBuilding(Script.decisions);
