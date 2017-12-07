@@ -35,10 +35,10 @@ var Script = (function() {
 			return;
 		}
 		
+		Script.decisions.buildResourceBuildings(Script.decisions);
+		
 		Script.decisions.decideLabBuilding(Script.decisions);
 		Script.decisions.buildLabs(Script.decisions);
-		
-		Script.decisions.buildResourceBuildings(Script.decisions);
 	};
 	
 	instance.boosterino = function()
