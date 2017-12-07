@@ -39,8 +39,8 @@ Script.space = (function(){
 			if (place.available && !place.done)
 			{
 				var canGo = false;
-				if (i == 0 && metal >= place.requirements["metal"] && gem >= place.requirements["gem"] && oil >= place.requirements["oil"]) {getRocket(); canGo = true;}
-				else if (i == 1 && fuel >= place.requirements["fuel"]) {launchRocket(); canGo = true;}
+				if (key === "rocket" && metal >= place.requirements["metal"] && gem >= place.requirements["gem"] && oil >= place.requirements["oil"]) {getRocket(); canGo = true;}
+				else if (key === "launch" && fuel >= place.requirements["fuel"]) {launchRocket(); canGo = true;}
 				else if (fuel >= place.requirements["fuel"]) {explore(key); canGo = true;}
 				
 				if (canGo) {
