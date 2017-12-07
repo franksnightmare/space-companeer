@@ -37,7 +37,7 @@ Script.goals = (function(){
 		for (key in labBuilding.cons) {self.productionGoals[key] += self.balance["science"] * labBuilding.cons[key];}
 		
 		if (Script.phase == 1) {self.productionGoals["gem"] += 0.2;}
-		if (Script.phase == 2) {self.productionGoals["gem"] += 0.4; if (getProduction("rocketFuel") < 1) {self.productionGoals["rocketFuel"] += 2;}}
+		if (Script.phase == 2) {self.productionGoals["gem"] += 0.4; if (getProduction("rocketFuel") < 1) {self.productionGoals["rocketFuel"] += 1;}}
 		if (Script.phase == 3) {if (getProduction("rocketFuel") < 5) {self.productionGoals["rocketFuel"] += 1;}}
 	};
 	
