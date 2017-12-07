@@ -221,6 +221,7 @@ Script.decisions = (function(){
 				if (getProduction[key] < building.cons[key] * (1 + Script.consumptionRemainder) && key in self.producerFocus)
 				{
 					var focus = self.producerFocus[key];
+					console.log(focus);
 					if (focus.canBuild)
 					{
 						Script.data.producerData[key][focus.tier].mk();
@@ -232,6 +233,7 @@ Script.decisions = (function(){
 							if (getProduction[key2] < focus.cons[key2] * (1 + Script.consumptionRemainder) && key2 in self.producerFocus)
 							{
 								var secondfocus = self.producerFocus[key2]
+								console.log(secondfocus);
 								if (secondFocus.canBuild)
 								{
 									Script.data.producerData[key2][secondfocus.tier].mk();
