@@ -122,7 +122,7 @@ Script.decisions = (function(){
 			for (var i = 0; i < Script.machineTier; i++)
 			{
 				var result = Script.scoreEntry(Script.data.producerData[key][i]);
-				if ("energy" in Script.data.producerData[key][i].cons) {result /= (Math.log10(Script.data.producerData[key][i].cons["energy"]) * Script.goals.balance["energy"]);}
+				if ("energy" in Script.data.producerData[key][i].cons) {result.score /= (Script.data.producerData[key][i].cons["energy"] / Script.data.maxEnergy) * Script.goals.balance["energy"]);}
 				//line1 += result.score;
 				if (result.score > score)
 				{
