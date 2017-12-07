@@ -162,7 +162,7 @@ Script.decisions = (function(){
 		{
 			var tier = self.producerFocus[key].tier;
 			var scale = (self.producerFocus[key].weight - self.producerFocus[key].current);
-			var mult = Math.pow(2, scale * 4);
+			var mult = Math.pow(2, scale * 8);
 			
 			if (key === "rocketFuel" && getProduction("rocketFuel" < 1)) {mult *= 4;}
 			
