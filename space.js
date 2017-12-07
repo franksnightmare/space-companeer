@@ -40,7 +40,7 @@ Script.space = (function(){
 			{
 				var canGo = false;
 				if (key === "rocket" && metal >= place.requirements["metal"] && gem >= place.requirements["gem"] && oil >= place.requirements["oil"]) {getRocket(); canGo = true;}
-				else if (key === "launch" && gerResource("rocketFuel") >= place.requirements["rocketFuel"]) {launchRocket(); canGo = true;}
+				else if (key === "launch" && getResource("rocketFuel") >= place.requirements["rocketFuel"]) {launchRocket(); canGo = true;}
 				else if (getResource("rocketFuel") >= place.requirements["rocketFuel"]) {explore(key); canGo = true;}
 				
 				if (canGo) {
