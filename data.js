@@ -94,6 +94,7 @@ Script.data = (function(){
 					if (energy > maxEnergy) {maxEnergy = energy;}
 				}
 			}
+			if (key === self.producerColumn) {break;}
 		}
 		self.maxEnergy = maxEnergy;
 	};
