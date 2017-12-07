@@ -30,7 +30,7 @@ var Script = (function() {
 		Script.science.purchaseTech(Script.science);
 		if (Script.fuelTier >= 1) {Script.space.explorePlace(Script.space);}
 		
-		if (Script.goals.highestGoal(Script.goals) === "energy" && Script.goals.balance["energy"] >= 0.5)
+		if (Script.goals.balance["energy"] >= 0.5)
 		{
 			return;
 		}

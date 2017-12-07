@@ -126,6 +126,11 @@ Script.decisions = (function(){
 			for (var i = 0; i < Script.machineTier; i++)
 			{
 				var result = Script.scoreEntry(Script.data.producerData[key][i]);
+				if (i > 0 && Script.goals.balance["energy"] >= 0.5 && key !== "rocketFuel")
+				{
+					result = 0;
+				}
+				
 				if ("energy" in Script.data.producerData[key][i].cons) {result.score /= ((Script.data.producerData[key][i].cons["energy"] / Script.data.maxEnergy) * Script.goals.balance["energy"]);}
 				//line1 += result.score;
 				if (result.score > score)
