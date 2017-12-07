@@ -122,6 +122,7 @@ Script.decisions = (function(){
 			for (var i = 0; i < Script.machineTier; i++)
 			{
 				var result = Script.scoreEntry(Script.data.producerData[key][i]);
+				if ("energy" in Script.data.producerData[key][i].cons) {result /= Math.sqrt(Script.data.producerData[key][i].cons["energy"]);}
 				//line1 += result.score;
 				if (result.score > score)
 				{
