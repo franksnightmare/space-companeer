@@ -15,6 +15,12 @@ Script.decisions = (function(){
 		self.producerFocus["charcoal"] = {weight:0, current:0, tier:0, canBuild:false}
 		self.producerFocus["oil"] = {weight:0, current:0, tier:0, canBuild:false}
 		self.producerFocus["rocketFuel"] = {weight:0, current:0, tier:0, canBuild:false}
+		self.producerFocus["lunarite"] = {weight:0, current:0, tier:0, canBuild:false}
+		self.producerFocus["methane"] = {weight:0, current:0, tier:0, canBuild:false}
+		self.producerFocus["titanium"] = {weight:0, current:0, tier:0, canBuild:false}
+		self.producerFocus["silicon"] = {weight:0, current:0, tier:0, canBuild:false}
+		self.producerFocus["gold"] = {weight:0, current:0, tier:0, canBuild:false}
+		self.producerFocus["silver"] = {weight:0, current:0, tier:0, canBuild:false}
 	};
 	
 	// TODO
