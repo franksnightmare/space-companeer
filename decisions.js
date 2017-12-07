@@ -164,6 +164,8 @@ Script.decisions = (function(){
 			var scale = (self.producerFocus[key].weight - self.producerFocus[key].current);
 			var mult = Math.pow(2, scale * 4);
 			
+			if (key === "rocketFuel" && getProduction("rocketFuel" < 1)) {mult *= 4;}
+			
 			var building = Script.data.producerData[key][tier];
 			var result = Script.scoreEntry(building);
 			
