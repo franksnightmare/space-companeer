@@ -30,17 +30,15 @@ var Script = (function() {
 		Script.science.purchaseTech(Script.science);
 		if (Script.fuelTier >= 1) {Script.space.explorePlace(Script.space);}
 		
-		if (Script.goals.highestGoal(Script.goals) === "energy")
-		{
-			return;
-		}
-		else
-		{
-			Script.decisions.decideLabBuilding(Script.decisions);
-			Script.decisions.buildLabs(Script.decisions);
-			
-			Script.decisions.buildResourceBuildings(Script.decisions);
-		}
+		//if (Script.goals.highestGoal(Script.goals) === "energy")
+		//{
+		//	return;
+		//}
+		
+		Script.decisions.decideLabBuilding(Script.decisions);
+		Script.decisions.buildLabs(Script.decisions);
+		
+		Script.decisions.buildResourceBuildings(Script.decisions);
 	};
 	
 	instance.boosterino = function()
