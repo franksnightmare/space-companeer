@@ -226,7 +226,7 @@ Script.decisions = (function(){
 			for (key in building.cons)
 			{
 				console.log("BEEP");
-				if (getProduction[key] < building.cons[key] * (1 + Script.consumptionRemainder) && key !== "energy")
+				if (getProduction(key) < building.cons[key] * (1 + Script.consumptionRemainder) && key !== "energy")
 				{
 					var focus = self.producerFocus[key];
 					if (focus.canBuild)
@@ -238,7 +238,7 @@ Script.decisions = (function(){
 						for (key2 in focus.cons)
 						{
 							console.log("BOOP");
-							if (getProduction[key2] < focus.cons[key2] * (1 + Script.consumptionRemainder) && key2 !== "energy")
+							if (getProduction(key2) < focus.cons[key2] * (1 + Script.consumptionRemainder) && key2 !== "energy")
 							{
 								var secondfocus = self.producerFocus[key2]
 								if (secondFocus.canBuild)
