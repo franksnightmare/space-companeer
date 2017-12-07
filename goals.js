@@ -7,7 +7,7 @@ Script.goals = (function(){
 	instance.modifiers = {"energy":0, "science":0, "production":1};
 	instance.balance = {"energy":1/3, "science":1/3, "production":1/3};
 	instance.newTechs = 2;
-	instance.productionGoals = {"metal":0, "wood":0, "gem":0, "charcoal":0, "oil":0, "rocketFuel":0};
+	instance.productionGoals = {"metal":0, "wood":0, "gem":0, "charcoal":0, "oil":0, "rocketFuel":0, "lunarite":0, "methane":0, "titanium":0, "silicon":0, "gold":0, "silver":0};
 	
 	instance.updateProductionGoals = function(self)
 	{
