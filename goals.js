@@ -7,7 +7,7 @@ Script.goals = (function(){
 	instance.modifiers = {"energy":0, "science":0, "production":1};
 	instance.balance = {"energy":1/3, "science":1/3, "production":1/3};
 	instance.newTechs = 2;
-	instance.productionGoals = {"metal":0, "wood":0, "gem":0, "charcoal":0, "oil":0, "fuel":0};
+	instance.productionGoals = {"metal":0, "wood":0, "gem":0, "charcoal":0, "oil":0, "rocketFuel":0};
 	
 	instance.updateProductionGoals = function(self)
 	{
@@ -29,8 +29,8 @@ Script.goals = (function(){
 		for (key in labBuilding.cons) {self.productionGoals[key] += self.balance["science"] * labBuilding.cons[key];}
 		
 		if (Script.phase == 1) {self.productionGoals["gem"] += 0.5;}
-		if (Script.phase == 2) {self.productionGoals["gem"] += 0.5; if (getProduction("fuel") < 1) {self.productionGoals["fuel"] += 1;}}
-		if (Script.phase == 3) {if (getProduction("fuel") < 5) {self.productionGoals["fuel"] += 0.75;}}
+		if (Script.phase == 2) {self.productionGoals["gem"] += 0.5; if (getProduction("rocketFuel") < 1) {self.productionGoals["rocketFuel"] += 1;}}
+		if (Script.phase == 3) {if (getProduction("rocketFuel") < 5) {self.productionGoals["rocketFuel"] += 0.75;}}
 	};
 	
 	instance.diminishNode = function(self, key, amount)

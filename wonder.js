@@ -23,17 +23,6 @@ Script.wonders = (function(){
 		}
 	};
 	
-	instance.getAmount = function(resource)
-	{
-		if (resource === "gem") {return gem;}
-		if (resource === "gold") {return gold;}
-		if (resource === "silver") {return silver;}
-		if (resource === "wood") {return wood;}
-		if (resource === "charcoal") {return charcoal;}
-		if (resource === "uranium") {return uranium;}
-		return 0;
-	};
-	
 	instance.getWonder = function(self)
 	{
 		for (key in self.wonders)
@@ -42,7 +31,7 @@ Script.wonders = (function(){
 			if (wonder.available && !wonder.done)
 			{
 				var canGo = true;
-				for (resource in wonder.cost) {if (self.getAmount(resource) < wonder.cost[key]) {canGo = false;}}
+				for (resource in wonder.cost) {if (getResource(resource) < wonder.cost[key]) {canGo = false;}}
 				
 				if (canGo) {
 					self.milestones[i].done = true;

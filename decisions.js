@@ -14,7 +14,7 @@ Script.decisions = (function(){
 		self.producerFocus["wood"] = {weight:1/3, current:0, tier:0, canBuild:false}
 		self.producerFocus["charcoal"] = {weight:0, current:0, tier:0, canBuild:false}
 		self.producerFocus["oil"] = {weight:0, current:0, tier:0, canBuild:false}
-		self.producerFocus["fuel"] = {weight:0, current:0, tier:0, canBuild:false}
+		self.producerFocus["rocketFuel"] = {weight:0, current:0, tier:0, canBuild:false}
 	};
 	
 	// TODO
@@ -124,7 +124,7 @@ Script.decisions = (function(){
 					canBuild = !result.problem;
 				}
 				
-				if (key === "fuel" && i == Script.fuelTier - 1) {break;}
+				if (key === "rocketFuel" && i == Script.fuelTier - 1) {break;}
 				
 				//if (i == Script.machineTier - 1) {break;}
 				//line1 += ", ";

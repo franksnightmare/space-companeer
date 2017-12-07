@@ -12,7 +12,7 @@ Script.data = (function(){
 	instance.producerData["gem"]  = [{}, {}];
 	instance.producerData["charcoal"]  = [{}, {}];
 	instance.producerData["oil"]  = [{}, {}];
-	instance.producerData["fuel"]  = [{}];
+	instance.producerData["rocketFuel"]  = [{}];
 	instance.producerData["lunarite"]  = [{}];
 	instance.producerData["methane"]  = [{}];
 	instance.producerData["titanium"]  = [{}];
@@ -61,8 +61,8 @@ Script.data = (function(){
 		self.producerData["oil"][0] = {cost:{"metal":pumpMetalCost, "gem":pumpGemCost}, prod:pumpOutput, cons:{}, mk:getPump};
 		self.producerData["oil"][1] = {cost:{"metal":pumpjackMetalCost, "gem":pumpjackGemCost, "oil":pumpjackOilCost}, prod:pumpjackOutput, cons:{"energy":pumpjackEnergyInput}, mk:getPumpjack};
 		
-		self.producerData["fuel"][0] = {cost:{"metal":chemicalPlantMetalCost, "gem":chemicalPlantGemCost, "oil":chemicalPlantOilCost}, prod:chemicalPlantOutput, cons:{"oil":chemicalPlantOilInput, "charcoal":chemicalPlantCharcoalInput}, mk:getChemicalPlant};
-		self.producerData["fuel"][1] = {cost:{"metal":oxidisationMetalCost, "gem":oxidisationGemCost, "oil":oxidisationOilCost}, prod:oxidisationOutput, cons:{"oil":oxidisationOilInput, "charcoal":oxidisationCharcoalInput}, mk:getOxidisation};
+		self.producerData["rocketFuel"][0] = {cost:{"metal":chemicalPlantMetalCost, "gem":chemicalPlantGemCost, "oil":chemicalPlantOilCost}, prod:chemicalPlantOutput, cons:{"oil":chemicalPlantOilInput, "charcoal":chemicalPlantCharcoalInput}, mk:getChemicalPlant};
+		self.producerData["rocketFuel"][1] = {cost:{"metal":oxidisationMetalCost, "gem":oxidisationGemCost, "oil":oxidisationOilCost}, prod:oxidisationOutput, cons:{"oil":oxidisationOilInput, "charcoal":oxidisationCharcoalInput}, mk:getOxidisation};
 		
 		self.producerData["lunarite"][0] = {cost:{"gem":moonWorkerGemCost}, prod:moonWorkerOutput, cons:{}, mk:getMoonWorker};
 		self.producerData["lunarite"][1] = {cost:{"metal":moonDrillMetalCost, "gem":moonDrillGemCost, "oil":moonDrillOilCost}, prod:moonDrillOutput, cons:{"energy":moonDrillEnergyInput}, mk:getMoonDrill};
@@ -85,7 +85,7 @@ Script.data = (function(){
 		var maxEnergy = 0;
 		for (key in self.producerData)
 		{
-			if (key !== "fuel")
+			if (key !== "rocketFuel")
 			{
 				var building = self.producerData[key][Script.machineTier - 1];
 				if ("energy" in building.cons)
