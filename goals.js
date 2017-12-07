@@ -11,14 +11,17 @@ Script.goals = (function(){
 	
 	instance.updateProductionGoals = function(self)
 	{
-		var energyBuilding = Script.data.energyData[Script.decisions.energyFocus.id];
-		for (key in energyBuilding.cost)
+		if (self.balance.energy != 0)
 		{
-			var prod = getProduction(key);
-			if (prod < 1) {prod = 0.1;}
-			self.productionGoals[key] += self.balance["energy"] * energyBuilding.cost[key] / (100*prod);
+		var energyBuilding = Script.data.energyData[Script.decisions.energyFocus.id];
+			for (key in energyBuilding.cost)
+			{
+				var prod = getProduction(key);
+				if (prod < 1) {prod = 0.1;}
+				self.productionGoals[key] += energyBuilding.cost[key] / (100*prod);
+			}
+			for (key in energyBuilding.cons) {self.productionGoals[key] += energyBuilding.cons[key];}
 		}
-		for (key in energyBuilding.cons) {self.productionGoals[key] += self.balance["energy"] * energyBuilding.cons[key];}
 		
 		var labBuilding = Script.data.labData[Script.decisions.labFocus.id];
 		for (key in labBuilding.cost) {
