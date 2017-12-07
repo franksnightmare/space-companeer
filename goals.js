@@ -65,7 +65,7 @@ Script.goals = (function(){
 	
 	instance.highestGoal = function(self)
 	{
-		var highest = 0;
+		var highest = -1;
 		var label = "null";
 		for (key in self.balance)
 		{
@@ -76,7 +76,7 @@ Script.goals = (function(){
 				label = key;
 			}
 		}
-		return key;
+		return label;
 	};
 	
 	instance.update = function(self)
