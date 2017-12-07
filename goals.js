@@ -13,14 +13,19 @@ Script.goals = (function(){
 	{
 		if (self.balance.energy != 0)
 		{
-		var energyBuilding = Script.data.energyData[Script.decisions.energyFocus.id];
-			for (key in energyBuilding.cost)
+			for (i = 0; i < Script.energyTier; i++)
 			{
-				var prod = getProduction(key);
-				if (prod < 1) {prod = 0.1;}
-				self.productionGoals[key] += energyBuilding.cost[key] / (100*prod);
+				var mod = 0.1;
+				if (i == Script.decisions.energyFocus.id) {mod = 1 - 0.1 * (Script.energyTier - 1);}
+				var energyBuilding = Script.data.energyData[i];
+				for (key in energyBuilding.cost)
+				{
+					var prod = getProduction(key);
+					if (prod < 1) {prod = 0.1;}
+					self.productionGoals[key] += mod * energyBuilding.cost[key] / (100*prod);
+				}
+				for (key in energyBuilding.cons) {self.productionGoals[key] += mod * energyBuilding.cons[key];}
 			}
-			for (key in energyBuilding.cons) {self.productionGoals[key] += energyBuilding.cons[key];}
 		}
 		
 		var labBuilding = Script.data.labData[Script.decisions.labFocus.id];
