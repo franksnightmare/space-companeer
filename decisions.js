@@ -43,7 +43,7 @@ Script.decisions = (function(){
 		
 		for (var i = 0; i < itterations; i++)
 		{
-			labda *= 0.8;
+			labda *= 0.6;
 			
 			var newGoal = {};
 			var total = 0;
@@ -169,7 +169,7 @@ Script.decisions = (function(){
 			var scale = (self.producerFocus[key].weight - self.producerFocus[key].current);
 			var mult = Math.pow(2, scale * 8);
 			
-			if (key === "rocketFuel" && getProduction("rocketFuel" < 1)) {mult *= 4;}
+			if (key === "rocketFuel" && getProduction("rocketFuel" < 1)) {mult *= 8;}
 			
 			var building = Script.data.producerData[key][tier];
 			var result = Script.scoreEntry(building);
