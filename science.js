@@ -18,7 +18,7 @@ Script.science = (function(){
 	instance.techs["upgradeSolarTech"] = {available:false, done:false, unlocks:["unlockBatteries"], consequences:function(){}};
 	instance.techs["unlockRocketFuelT2"] = {available:false, done:false, unlocks:["unlockRocketFuelT3"], consequences:function(){Script.fuelTier = 2;}};
 	instance.techs["unlockBatteries"] = {available:false, done:false, unlocks:[], consequences:function(){}};
-	instance.techs["efficiencyResearch"] = {available:false, done:false, unlocks:[], consequences:function(){Game.science.techs["efficiencyResearch"].done = false;}};
+	instance.techs["efficiencyResearch"] = {available:false, done:false, unlocks:[], consequences:function(){Script.science.techs["efficiencyResearch"].done = false;}};
 	instance.techs["unlockRocketFuelT3"] = {available:false, done:false, unlocks:[], consequences:function(){}};
 	instance.techs["unlockLabT4"] = {available:false, done:false, unlocks:[], consequences:function(){}};
 	

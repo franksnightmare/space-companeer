@@ -3,7 +3,7 @@ console.log("Space Companeer: Loading Goal Automata");
 Script.goals = (function(){
 	instance = {};
 	
-	instance.nodes = {"energy":0, "science":0, "production":0};
+	instance.nodes = {"energy":100, "science":0, "production":0};
 	instance.modifiers = {"energy":0, "science":0, "production":1};
 	instance.balance = {"energy":1/3, "science":1/3, "production":1/3};
 	instance.newTechs = 2;
