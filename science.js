@@ -3,6 +3,10 @@ console.log("Space Companeer: Loading SCIENCE");
 Script.science = (function(){
 	instance = {};
 	
+	instance.data = [{}, {}, {}];
+	instance.score = [{}, {}, {}];
+	instance.maxScore = 0;
+	
 	instance.techs = {};
 	instance.techs["unlockStorage"] = {available:true, done:false, unlocks:["unlockOil"], consequences:function(){}};
 	instance.techs["unlockBasicEnergy"] = {available:true, done:false, unlocks:["unlockSolar", "unlockMachines", "upgradeEngineTech"], consequences:function(){Script.data.producerColumn = "charcoal"; Script.energyTier = 1;}};
@@ -18,9 +22,73 @@ Script.science = (function(){
 	instance.techs["upgradeSolarTech"] = {available:false, done:false, unlocks:["unlockBatteries"], consequences:function(){}};
 	instance.techs["unlockRocketFuelT2"] = {available:false, done:false, unlocks:["unlockRocketFuelT3"], consequences:function(){Script.fuelTier = 2;}};
 	instance.techs["unlockBatteries"] = {available:false, done:false, unlocks:[], consequences:function(){}};
-	instance.techs["efficiencyResearch"] = {available:false, done:false, unlocks:[], consequences:function(){Script.science.techs["efficiencyResearch"].done = false;}};
-	instance.techs["unlockRocketFuelT3"] = {available:false, done:false, unlocks:[], consequences:function(){}};
+	instance.techs["efficiencyResearch"] = {available:false, done:false, unlocks:[], consequences:function(){Script.science.techs["efficiencyResearch"].done = false; Script.goals.newTehcs += 1;}};
+	instance.techs["unlockRocketFuelT3"] = {available:false, done:false, unlocks:[], consequences:function(){Script.fuelTier = 3;}};
 	instance.techs["unlockLabT4"] = {available:false, done:false, unlocks:[], consequences:function(){}};
+	
+	instance.labScore(building)
+	{
+		var result = {time:0, score:0, cost:{}};
+		for (key in building.cost)
+		{
+			var prod = getProduction(key);
+			if (prod < 1) {prod = 1;}
+			
+			// Cost is cost per science unit
+			var time = building.cost[key] / prod;
+			if (time > result.time) {result.time = time;}
+			result.cost[key] = building.cost[key] / building.prod;
+			
+			var score = building.prod / time;
+			if (score > result.score) {result.score = score;}
+		}
+		
+		return result;
+	};
+	
+	instance.update = function(self)
+	{
+		// Science Producers
+		self.data[0] = {cost:{"metal":labMetalCost, "gem":labGemCost, "wood":labWoodCost}, prod:labOutput, cons:{}, mk:getLab};
+		self.data[1] = {cost:{"metal":labT2MetalCost, "gem":labT2GemCost, "wood":labT2WoodCost}, prod:labT2Output, cons:{}, mk:getLabT2};
+		self.data[2] = {cost:{"metal":labT3MetalCost, "gem":labT3GemCost, "wood":labT3WoodCost}, prod:labT3Output, cons:{}, mk:getLabT3};
+		
+		self.maxScore = 0;
+		for (id in self.data)
+		{
+			var building = self.data[id];
+			var result = self.labScore(building);
+			self.score[id] = result;
+			if (result.score > self.maxScore) {self.maxScore = result.score;}
+		}
+		
+		for (id in self.data)
+		{
+			var building = self.data[id];
+			var result = self.score[id];
+			
+			for (key in building.cost) {Script.cost.addCost(Script.cost, key, self.energyPriority * self.max * (result.score / self.maxScore) * result.cost[key]);}
+			
+			if (id == Script.labTier) {break;}
+		}
+		
+		self.purchaseTech(self);
+	}
+	
+	instance.build = function(self)
+	{
+		var maxScore = 0;
+		var target = 0;
+		for (id in self.data)
+		{
+			var result = self.score[id];
+			if (result.score > maxScore) {maxScore = result.score; target = id;}
+			
+			if (id == Script.labTier) {break;}
+		}
+		
+		self.data[id].mk();
+	};
 	
 	instance.unlockTechs = function(self, techList)
 	{

@@ -51,5 +51,10 @@ Script.upgradeStorage = function ()
 		upgradeSiliconStorage();
 		upgradeGoldStorage();
 		upgradeSilverStorage();
+		upgradeHydrogenStorage();
+		upgradeHeliumStorage();
+		upgradeIceStorage();
+		upgradeUraniumStorage();
+		upgradeLavaStorage();
 	}
 };
