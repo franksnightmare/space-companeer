@@ -45,7 +45,7 @@ Script.data = (function(){
 	
 	instance.producerColumn = "wood";
 	
-	instance.build(self)
+	instance.build = function(self)
 	{
 		var maxScore = 0;
 		var resource = "null";
@@ -81,6 +81,8 @@ Script.data = (function(){
 			}
 		}
 		
+		var message = "Buildtarget: " + resource + "; tier: " + target + ".";
+		console.log(message);
 		self.producerData[resource][target].mk();
 	};
 	

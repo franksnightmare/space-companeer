@@ -9,7 +9,7 @@ Script.energy = (function(){
 	instance.data = [{}, {}, {}, {}, {}, {}];
 	instance.score = [{}, {}, {}, {}, {}, {}];
 	
-	instance.energyScore(building)
+	instance.energyScore = function(building)
 	{
 		var result = {time:0, score:0, cost:{}, canBuild:true};
 		for (key in building.cost)
@@ -58,6 +58,8 @@ Script.energy = (function(){
 			var result = self.energyScore(building);
 			self.score[id] = result;
 			if (result.score > self.maxScore) {self.maxScore = result.score;}
+			
+			if (id == Script.energyTier) {break;}
 		}
 		
 		for (id in self.data)

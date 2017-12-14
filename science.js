@@ -26,7 +26,7 @@ Script.science = (function(){
 	instance.techs["unlockRocketFuelT3"] = {available:false, done:false, unlocks:[], consequences:function(){Script.fuelTier = 3;}};
 	instance.techs["unlockLabT4"] = {available:false, done:false, unlocks:[], consequences:function(){}};
 	
-	instance.labScore(building)
+	instance.labScore = function(building)
 	{
 		var result = {time:0, score:0, cost:{}};
 		for (key in building.cost)
