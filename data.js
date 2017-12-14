@@ -86,7 +86,7 @@ Script.data = (function(){
 		self.producerData[resource][target].mk();
 	};
 	
-	instance.resourceScore(building)
+	instance.resourceScore = function(building)
 	{
 		var result = {time:0, score:0, cost:{}, canBuild:true};
 		for (key in building.cost)
