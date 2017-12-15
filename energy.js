@@ -69,7 +69,10 @@ Script.energy = (function(){
 			var result = self.score[id];
 			
 			for (key in building.cons) {Script.cons.addCons(Script.cons, key, building.cons[key] * 4);}
-			for (key in building.cost) {Script.cost.addCost(Script.cost, key, self.energyPriority * self.max * (result.score / self.maxScore) * result.cost[key]);}
+			var addition = self.energyPriority * self.max;
+			if (self.maxScore) {addition *= (result.score / self.maxScore)}
+			addition *= result.cost[key];
+			for (key in building.cost) {Script.cost.addCost(Script.cost, key, addition);}
 		}
 	};
 	

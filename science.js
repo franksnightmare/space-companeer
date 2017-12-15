@@ -12,7 +12,7 @@ Script.science = (function(){
 	instance.techs["unlockBasicEnergy"] = {available:true, done:false, unlocks:["unlockSolar", "unlockMachines", "upgradeEngineTech"], consequences:function(){Script.data.producerColumn = "charcoal"; Script.energyTier = 1;}};
 	instance.techs["unlockOil"] = {available:false, done:false, unlocks:[], consequences:function(){Script.data.producerColumn = "oil";}};
 	instance.techs["unlockSolar"] = {available:false, done:false, unlocks:["upgradeSolarTech"], consequences:function(){Script.energyTier = 2;}};
-	instance.techs["unlockMachines"] = {available:false, done:false, unlocks:["unlockDestruction", "unlockSolarSystem", "upgradeResourceTech"], consequences:function(){Script.machineTier = 2;}};
+	instance.techs["unlockMachines"] = {available:false, done:false, unlocks:["unlockDestruction", "unlockSolarSystem", "upgradeResourceTech"], consequences:function(){Script.machineTier = 2; Script.energy.energyPriority = 1;}};
 	instance.techs["unlockDestruction"] = {available:false, done:false, unlocks:[], consequences:function(){}};
 	instance.techs["unlockSolarSystem"] = {available:false, done:false, unlocks:["unlockLabT2", "unlockRocketFuelT2"], consequences:function(){Script.data.producerColumn = "rocketFuel"; Script.fuelTier = 1; Script.phase = 2;}};
 	instance.techs["upgradeResourceTech"] = {available:false, done:false, unlocks:[], consequences:function(){}};
@@ -67,7 +67,10 @@ Script.science = (function(){
 			var building = self.data[id];
 			var result = self.score[id];
 			
-			for (key in building.cost) {Script.cost.addCost(Script.cost, key, self.energyPriority * self.max * (result.score / self.maxScore) * result.cost[key]);}
+			var addition = 10;
+			if (self.maxScore) {addition *= (result.score / self.maxScore);}
+			addition *= result.cost[key];
+			for (key in building.cost) {Script.cost.addCost(Script.cost, key, addition);}
 		}
 		
 		self.purchaseTech(self);
