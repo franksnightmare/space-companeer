@@ -218,7 +218,7 @@ Script.data = (function(){
 		// Scores
 		for (var key in data.producerData)
 		{
-			console.log("Key: " + key);
+			//console.log("Key: " + key);
 			
 			var maxScore = 0;
 			for (id = 0; id < Script.machineTier; id++)
