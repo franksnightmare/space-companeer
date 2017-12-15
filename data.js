@@ -60,6 +60,9 @@ Script.data = (function(){
 			{
 				var result = data.producerScore[resource].result[id];
 				if (result.canBuild) {canBuild = true;}
+				
+				if (id == Script.machineTier) {break;}
+				if (key === "rocketFuel" && id == Script.fuelTier) {break;}
 			}
 			if (!canBuild) {score = 0;}
 			
