@@ -6,6 +6,23 @@ Script.data = (function(){
 	instance.labData = [{}, {}, {}];
 	
 	instance.producerData = {};
+	instance.producerData["metal"] = [{}, {}, {}];
+	instance.producerData["wood"] = [{}, {}, {}];
+	instance.producerData["gem"] = [{}, {}, {}];
+	instance.producerData["charcoal"]  = [{}, {}, {}];
+	instance.producerData["oil"] = [{}, {}, {}];
+	instance.producerData["rocketFuel"] = [{}, {}, {}];
+	instance.producerData["lunarite"] = [{}, {}, {}];
+	instance.producerData["methane"] = [{}, {}, {}];
+	instance.producerData["titanium"] = [{}, {}, {}];
+	instance.producerData["silicon"] = [{}, {}, {}];
+	instance.producerData["gold"] = [{}, {}, {}];
+	instance.producerData["silver"] = [{}, {}, {}];
+	instance.producerData["hydrogen"] = [{}, {}, {}];
+	instance.producerData["helium"] = [{}, {}, {}];
+	instance.producerData["ice"] = [{}, {}, {}];
+	instance.producerData["uranium"] = [{}, {}, {}];
+	instance.producerData["lava"] = [{}, {}, {}];
 	
 	instance.producerScore = {};
 	instance.producerScore["metal"] = {result:[{}, {}, {}], maxScore:0};
