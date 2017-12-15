@@ -14,7 +14,7 @@ Script.cost = (function(){
 	
 	instance.addCost = function(self, key, amount)
 	{
-		console.log(self.total + ", " + key + ", " + amount);
+		//console.log(self.total + ", " + key + ", " + amount);
 		self[key] += amount;
 		self.total += amount;
 		self.counter[key] += 1;
