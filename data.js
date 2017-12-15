@@ -6,23 +6,6 @@ Script.data = (function(){
 	instance.labData = [{}, {}, {}];
 	
 	instance.producerData = {};
-	instance.producerData["metal"] = [{}, {}, {}];
-	instance.producerData["wood"] = [{}, {}, {}];
-	instance.producerData["gem"] = [{}, {}, {}];
-	instance.producerData["charcoal"]  = [{}, {}, {}];
-	instance.producerData["oil"] = [{}, {}, {}];
-	instance.producerData["rocketFuel"] = [{}, {}, {}];
-	instance.producerData["lunarite"] = [{}, {}, {}];
-	instance.producerData["methane"] = [{}, {}, {}];
-	instance.producerData["titanium"] = [{}, {}, {}];
-	instance.producerData["silicon"] = [{}, {}, {}];
-	instance.producerData["gold"] = [{}, {}, {}];
-	instance.producerData["silver"] = [{}, {}, {}];
-	instance.producerData["hydrogen"] = [{}, {}, {}];
-	instance.producerData["helium"] = [{}, {}, {}];
-	instance.producerData["ice"] = [{}, {}, {}];
-	instance.producerData["uranium"] = [{}, {}, {}];
-	instance.producerData["lava"] = [{}, {}, {}];
 	
 	instance.producerScore = {};
 	instance.producerScore["metal"] = {result:[{}, {}, {}], maxScore:0};
@@ -201,15 +184,17 @@ Script.data = (function(){
 		data.producerData["lava"][2] = {cost:{"lunarite":extruderLunariteCost, "titanium":extruderTitaniumCost, "silicon":extruderSiliconCost}, prod:extruderOutput, cons:{"energy":extruderEnergyInput}, mk:getExtruder};
 		
 		// Scores
-		for (key in data.producerScore)
+		for (key in data.producerData)
 		{
 			var maxScore = 0;
-			for (id in data.producerScore[key])
+			for (id = 0; i < Script.machineTier; i++)
 			{
 				var building = data.producerData[key][id];
 				var result = data.resourceScore(building);
 				if (result.score > maxScore) {maxScore = result.score;}
 				data.producerScore[key].result[id] = result;
+				
+				if (key === "rocketFuel" && i == Script.fuelTier) {break;}
 			}
 			data.producerScore[key].maxScore = maxScore;
 			
