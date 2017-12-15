@@ -7,8 +7,8 @@ Script.data = (function(){
 	
 	instance.producerData = {};
 	instance.producerData["metal"] = [{}, {}, {}];
-	instance.producerData["wood"] = [{}, {}, {}];
 	instance.producerData["gem"] = [{}, {}, {}];
+	instance.producerData["wood"] = [{}, {}, {}];
 	instance.producerData["charcoal"]  = [{}, {}, {}];
 	instance.producerData["oil"] = [{}, {}, {}];
 	instance.producerData["rocketFuel"] = [{}, {}, {}];
@@ -26,8 +26,8 @@ Script.data = (function(){
 	
 	instance.producerScore = {};
 	instance.producerScore["metal"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScore["wood"] = {result:[{}, {}, {}], maxScore:0};
 	instance.producerScore["gem"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["wood"] = {result:[{}, {}, {}], maxScore:0};
 	instance.producerScore["charcoal"] = {result:[{}, {}, {}], maxScore:0};
 	instance.producerScore["oil"] = {result:[{}, {}, {}], maxScore:0};
 	instance.producerScore["rocketFuel"] = {result:[{}, {}, {}], maxScore:0};
