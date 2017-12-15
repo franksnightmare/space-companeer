@@ -240,7 +240,12 @@ Script.data = (function(){
 		for (var key in data.producerData)
 		{
 			data.maxProd += getProduction(key);
-			if (key !== "rocketFuel")
+			if (key === "rocketFuel")
+			{
+				var building = data.producerData[key][Script.fuelTier - 1];
+				for (resource in building.cons) {Script.cons.addCons(building.cons[resource] * 4);}
+			}
+			else
 			{
 				var building = data.producerData[key][Script.machineTier - 1];
 				for (resource in building.cons)
@@ -255,11 +260,6 @@ Script.data = (function(){
 						Script.cons.addCons(building.cons[resource] * 4);
 					}
 				}
-			}
-			else
-			{
-				var building = data.producerData[key][Script.fuelTier - 1];
-				for (resource in building.cons) {Script.cons.addCons(building.cons[resource] * 4);}
 			}
 			
 			if (key === data.producerColumn) {break;}
