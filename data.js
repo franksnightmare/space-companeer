@@ -104,7 +104,7 @@ Script.data = (function(){
 			if (score > result.score) {result.score = score;}
 		}
 		
-		for (key in building.cons) {if (getProduction(key) < building.cons[key] * 2) {result.canBuild = false;}}
+		for (key in building.cons) {if (getProduction(key) < building.cons[key] * 4) {result.canBuild = false;}}
 		return result;
 	};
 	
