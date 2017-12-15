@@ -53,7 +53,7 @@ Script.data = (function(){
 		{
 			var diff = (Script.goals[key].amount - getProduction(key)) / data.maxProd;
 			var score = Math.pow(2, diff);
-			if (diff >= 0 && Script.goals[key].type === "cons") {score *= 2;}
+			//if (diff >= 0 && Script.goals[key].type === "cons") {score *= 2;}
 			
 			var canBuild = false;
 			for (id in data.producerData[key])
@@ -119,7 +119,7 @@ Script.data = (function(){
 			if (score > result.score) {result.score = score;}
 		}
 		
-		for (key in building.cons) {if (getProduction(key) < building.cons[key] * 4) {result.canBuild = false;}}
+		for (key in building.cons) {if (getProduction(key) < building.cons[key] * 2) {result.canBuild = false;}}
 		return result;
 	};
 	
