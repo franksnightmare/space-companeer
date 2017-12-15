@@ -40,6 +40,8 @@ Script.goals = (function(){
 	
 	instance.setGoals = function(self)
 	{
+		if (Script.cost.total) {for (key in Script.data.producerData) {Script.cost.balance[key] = Script.cost[key] / Script.cost.total;}}
+		
 		var amount = 0;
 		for (key in Script.data.producerData)
 		{
