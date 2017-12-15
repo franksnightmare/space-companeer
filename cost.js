@@ -15,8 +15,8 @@ Script.cost = (function(){
 	instance.addCost = function(self, key, amount)
 	{
 		//console.log(self.total + ", " + key + ", " + amount);
-		self[key] += amount;
-		self.total += amount;
+		self[key] += amount / 1000;
+		self.total += amount / 1000;
 		self.counter[key] += 1;
 	};
 	
@@ -27,7 +27,7 @@ Script.cost = (function(){
 			var cons = Script.cons[key];
 			if (cons)
 			{
-				self.addCost(self, key, cons);
+				self.addCost(self, key, cons * 1000);
 			}
 			
 			if (key === Script.data.producerColumn) {break;}
