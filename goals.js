@@ -51,7 +51,7 @@ Script.goals = (function(){
 			
 			if (Script.cost.counter[key])
 			{
-				request = Script.data.maxProd * Script.cost[key] / Script.total;
+				request = Script.data.maxProd * Script.cost.balance[key];
 				if (request > self[key].amount) {self[key].amount = request; self[key].type = "cost";}
 			}
 		}
