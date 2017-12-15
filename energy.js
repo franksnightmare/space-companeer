@@ -37,6 +37,7 @@ Script.energy = (function(){
 		for (id in self.score)
 		{
 			if (self.score[id].score > highest && self.score[id].canBuild) {highest = self.score[id]; highId = id;}
+			if (id == Script.energyTier) {break;}
 		}
 		if (self.score[highId].canBuild)
 		{
