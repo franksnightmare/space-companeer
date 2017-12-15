@@ -14,6 +14,7 @@ Script.cost = (function(){
 	
 	instance.addCost = function(self, key, amount)
 	{
+		console.log(amount);
 		self[key] += amount;
 		self.total += amount;
 		self.counter[key] += 1;
@@ -49,7 +50,6 @@ Script.cost = (function(){
 					{
 						var addition = 0;
 						addition = self.balance[target];
-						console.log(scores.maxScore);
 						if (scores.maxScore) {addition *= (scores.result[id].score / scores.maxScore);}
 						addition *= scores.result[id].cost[key];
 						self.addCost(self, key, addition);
