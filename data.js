@@ -161,7 +161,7 @@ Script.data = (function(){
 		
 		self.producerData["silicon"][0] = {cost:{"lunarite":blowtorchLunariteCost, "titanium":blowtorchTitaniumCost}, prod:blowtorchOutput, cons:{}, mk:getBlowtorch};
 		self.producerData["silicon"][1] = {cost:{"lunarite":scorcherLunariteCost, "gem":scorcherGemCost, "oil":scorcherOilCost}, prod:scorcherOutput, cons:{"energy":scorcherEnergyInput}, mk:getScorcher};
-		self.producerData["silicon"][2] = {cost:{"lunarite":annihilatorLunariteCost, "gem":annihilatorGemCost, "silver":annihilatorSiliconCost}, prod:annihilatorOutput, cons:{"energy":annihilatorEnergyInput}, mk:getAnnihilator};
+		self.producerData["silicon"][2] = {cost:{"lunarite":annihilatorLunariteCost, "gem":annihilatorGemCost, "silver":annihilatorSilverCost}, prod:annihilatorOutput, cons:{"energy":annihilatorEnergyInput}, mk:getAnnihilator};
 		
 		self.producerData["gold"][0] = {cost:{"lunarite":droidLunariteCost, "methane":droidMethaneCost}, prod:droidOutput, cons:{}, mk:getDroid};
 		self.producerData["gold"][1] = {cost:{"lunarite":destroyerLunariteCost, "gem":destroyerGemCost, "oil":destroyerOilCost}, prod:destroyerOutput, cons:{"energy":destroyerEnergyInput}, mk:getDestroyer};
