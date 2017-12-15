@@ -34,10 +34,9 @@ Script.energy = (function(){
 	{
 		var highest = 0;
 		var highId = 0;
-		for (id in self.score)
+		for (id = 0; id < Script.energyTier; id++)
 		{
 			if (self.score[id].score > highest && self.score[id].canBuild) {highest = self.score[id]; highId = id;}
-			if (id == Script.energyTier) {break;}
 		}
 		if (self.score[highId].canBuild)
 		{
@@ -56,25 +55,21 @@ Script.energy = (function(){
 		self.data[5] = {cost:{"lunarite":magmaticLunariteCost, "gem":magmaticGemCost, "silver":magmaticSilverCost}, prod:magmaticOutput, cons:{"lava":magmaticLavaInput}, mk:getMagmatic};
 		
 		self.maxScore = 0;
-		for (id in self.data)
+		for (id = 0; id < Script.energyTier; id++)
 		{
 			var building = self.data[id];
 			var result = self.energyScore(building);
 			self.score[id] = result;
 			if (result.score > self.maxScore) {self.maxScore = result.score;}
-			
-			if (id == Script.energyTier) {break;}
 		}
 		
-		for (id in self.data)
+		for (id = 0; id < Script.energyTier; id++)
 		{
 			var building = self.data[id];
 			var result = self.score[id];
 			
 			for (key in building.cons) {Script.cons.addCons(Script.cons, key, building.cons[key] * 4);}
 			for (key in building.cost) {Script.cost.addCost(Script.cost, key, self.energyPriority * self.max * (result.score / self.maxScore) * result.cost[key]);}
-			
-			if (id == Script.energyTier) {break;}
 		}
 	};
 	
