@@ -9,7 +9,7 @@ Script.cost = (function(){
 	instance.resetCost = function(self)
 	{
 		self.total = 0;
-		for (key in Script.data.producerData) {self[key] = 0; console.log(self[key]); self.balance[key] = 0; self.counter[key] = 0;}
+		for (key in Script.data.producerData) {self[key] = 0; self.balance[key] = 0; self.counter[key] = 0;}
 	};
 	
 	instance.addCost = function(self, key, amount)
