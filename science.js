@@ -9,7 +9,7 @@ Script.science = (function(){
 	
 	instance.techs = {};
 	instance.techs["unlockStorage"] = {available:true, done:false, unlocks:["unlockOil"], consequences:function(){}};
-	instance.techs["unlockBasicEnergy"] = {available:true, done:false, unlocks:["unlockSolar", "unlockMachines", "upgradeEngineTech"], consequences:function(){Script.data.producerColumn = "charcoal"; Script.energyTier = 1;}};
+	instance.techs["unlockBasicEnergy"] = {available:true, done:false, unlocks:["unlockSolar", "unlockMachines", "upgradeEngineTech"], consequences:function(){Script.data.producerColumn = "charcoal"; /*Script.energyTier = 1;*/}};
 	instance.techs["unlockOil"] = {available:false, done:false, unlocks:[], consequences:function(){Script.data.producerColumn = "oil";}};
 	instance.techs["unlockSolar"] = {available:false, done:false, unlocks:["upgradeSolarTech"], consequences:function(){Script.energyTier = 2;}};
 	instance.techs["unlockMachines"] = {available:false, done:false, unlocks:["unlockDestruction", "unlockSolarSystem", "upgradeResourceTech"], consequences:function(){Script.machineTier = 2; Script.energy.energyPriority = 1;}};
