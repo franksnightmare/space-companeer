@@ -28,7 +28,7 @@ Script.science = (function(){
 	
 	instance.labScore = function(building)
 	{
-		var result = {time:0, score:0, cost:{}};
+		var result = {time:0, score:0, cost:{}, canBuild:true};
 		for (key in building.cost)
 		{
 			var prod = getProduction(key);
@@ -41,6 +41,8 @@ Script.science = (function(){
 			
 			var score = building.prod / time;
 			if (score > result.score) {result.score = score;}
+			
+			if (getResource(key) < building.cost[key] * 2) {result.canBuild = false;}
 		}
 		
 		return result;
@@ -79,15 +81,16 @@ Script.science = (function(){
 	{
 		var maxScore = 0;
 		var target = 0;
-		for (id in self.data)
+		for (id = 0; id < Script.labTier; id++)
 		{
 			var result = self.score[id];
-			if (result.score > maxScore) {maxScore = result.score; target = id;}
-			
-			if (id == Script.labTier) {break;}
+			if (result.score > maxScore && result.canBuild) {maxScore = result.score; target = id;}
 		}
 		
-		self.data[target].mk();
+		if (self.score[target].canBuild)
+		{
+			self.data[target].mk();
+		}
 	};
 	
 	instance.unlockTechs = function(self, techList)
