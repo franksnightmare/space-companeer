@@ -209,6 +209,7 @@ Script.data = (function(){
 				var building = data.producerData[key][id];
 				var result = data.resourceScore(building);
 				if (result.score > maxScore) {maxScore = result.score;}
+				if (data.producerScore[key] === undefined) {console.log(key); console.log(data.producerScore);}
 				data.producerScore[key].result[id] = result;
 				
 				if (key === "rocketFuel" && id == Script.fuelTier) {break;}
