@@ -47,7 +47,12 @@ Script.cost = (function(){
 				{
 					for (key in scores.result[id].cost)
 					{
-						self.addCost(self, key, self.balance[target] * (scores.result[id].score / scores.maxScore) * scores.result[id].cost[key]);
+						var addition = 0;
+						addition = self.balance[target];
+						console.log(scores.maxScore);
+						if (scores.maxScore) {addition *= (scores.result[id].score / scores.maxScore);}
+						addition *= scores.result[id].cost[key];
+						self.addCost(self, key, addition);
 					}
 					
 					if (target === "rocketFuel") {if (id >= Script.fuelTier) {break;}}
