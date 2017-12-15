@@ -56,12 +56,10 @@ Script.data = (function(){
 			if (diff >= 0 && Script.goals[key]["type"] === "cons") {score *= 2;}
 			
 			var canBuild = false;
-			for (id in data.producerData[resource])
+			for (id in data.producerData[key])
 			{
-				var result = data.producerScore[resource].result[id];
+				var result = data.producerScore[key].result[id];
 				if (result.canBuild) {canBuild = true;}
-				
-				console.log(result);
 				
 				if (id == Script.machineTier) {break;}
 				if (key === "rocketFuel" && id == Script.fuelTier) {break;}
