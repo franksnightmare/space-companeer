@@ -51,9 +51,9 @@ Script.data = (function(){
 		var resource = "null";
 		for (key in data.producerData)
 		{
-			var diff = (Script.goals[key]["amount"] - getProduction(key)) / data.maxProd;
+			var diff = (Script.goals[key].amount - getProduction(key)) / data.maxProd;
 			var score = Math.pow(2, diff);
-			if (diff >= 0 && Script.goals[key]["type"] === "cons") {score *= 2;}
+			if (diff >= 0 && Script.goals[key].type === "cons") {score *= 2;}
 			
 			var canBuild = false;
 			for (id in data.producerData[key])

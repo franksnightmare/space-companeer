@@ -42,18 +42,17 @@ Script.goals = (function(){
 	{
 		if (Script.cost.total) {for (key in Script.data.producerData) {Script.cost.balance[key] = Script.cost[key] / Script.cost.total;}}
 		
-		var amount = 0;
 		for (key in Script.data.producerData)
 		{
-			self[key] = {"amount":0, "type":"null"};
+			self[key] = {amount:0, type:"null"};
 			
-			amount = Script.cons[key];
-			if (amount > self[key]["amount"]) {self[key]["amount"] = amount; self[key]["type"] = "cons";}
+			var request = Script.cons[key];
+			if (request > self[key].amount) {self[key].amount = request; self[key].type = "cons";}
 			
 			if (Script.cost.counter[key])
 			{
-				amount = Script.data.maxProd * Script.cost[key] / Script.total;
-				if (amount > self[key]["amount"]) {self[key]["amount"] = amount; self[key]["type"] = "cost";}
+				request = Script.data.maxProd * Script.cost[key] / Script.total;
+				if (request > self[key].amount) {self[key].amount = request; self[key].type = "cost";}
 			}
 		}
 	};
