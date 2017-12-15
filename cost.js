@@ -15,22 +15,33 @@ Script.cost = (function(){
 	instance.addCost = function(self, key, amount)
 	{
 		//console.log(self.total + ", " + key + ", " + amount);
-		self[key] += amount / 1000;
-		self.total += amount / 1000;
+		self[key] += amount;
+		self.total += amount;
 		self.counter[key] += 1;
 	};
 	
 	instance.addCons = function(self)
 	{
-		for (key in Script.data.producerData)
+		for (target in Script.data.producerData)
 		{
-			var cons = Script.cons[key];
+			var cons = Script.cons[target];
 			if (cons)
 			{
-				self.addCost(self, key, cons * 1000);
+				var group = Script.data.producerData[target];
+				var scores = Script.data.producerScore[target];
+				for (id = 0; id < Script.machineTier; id++)
+				{
+					if (target === "rocketFuel" && id == Script.fuelTier) {break;}
+					
+					for (key in scores.result[id].cost)
+					{
+						var addition = cons / Script.cons.max;
+						if (scores.maxScore) {addition *= (scores.result[id].score / scores.maxScore);}
+						addition *= scores.result[id].cost[key];
+						self.addCost(self, key, addition);
+					}
+				}
 			}
-			
-			if (key === Script.data.producerColumn) {break;}
 		}
 	};
 	
@@ -50,8 +61,7 @@ Script.cost = (function(){
 					
 					for (key in scores.result[id].cost)
 					{
-						var addition = 0;
-						addition = self.balance[target];
+						var addition = self.balance[target];
 						if (scores.maxScore) {addition *= (scores.result[id].score / scores.maxScore);}
 						addition *= scores.result[id].cost[key];
 						self.addCost(self, key, addition);
