@@ -19,6 +19,20 @@ Script.cost = (function(){
 		self.counter[key] += 1;
 	};
 	
+	instance.addCons = function(self)
+	{
+		for (key in Script.data.producerData)
+		{
+			var cons = Script.cons[key];
+			if (cons)
+			{
+				self.addCost(self, key, cons);
+			}
+			
+			if (key === Script.data.producerColumn) {break;}
+		}
+	};
+	
 	instance.itterate = function(self)
 	{
 		for (key in Script.data.producerData) {self.balance[key] = self[key] / total;}

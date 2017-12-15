@@ -23,6 +23,12 @@ var Script = (function() {
 		Script.energy.update(Script.energy);
 		Script.science.update(Script.science);
 		
+		Script.cost.addCons(Script.cost);
+		
+		Script.cost.itterate(Script.cost);
+		Script.cost.itterate(Script.cost);
+		Script.cost.itterate(Script.cost);
+		
 		Script.goals.setGoals(Script.goals)
 		
 		Script.goals.build();
