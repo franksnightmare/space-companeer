@@ -201,10 +201,10 @@ Script.data = (function(){
 		data.producerData["lava"][2] = {cost:{"lunarite":extruderLunariteCost, "titanium":extruderTitaniumCost, "silicon":extruderSiliconCost}, prod:extruderOutput, cons:{"energy":extruderEnergyInput}, mk:getExtruder};
 		
 		// Scores
-		for (key in data.producerData)
+		for (key in data.producerScore)
 		{
 			var maxScore = 0;
-			for (id in data.producerData[key])
+			for (id in data.producerScore[key])
 			{
 				var building = data.producerData[key][id];
 				var result = data.resourceScore(building);
