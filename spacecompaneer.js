@@ -21,6 +21,9 @@ var Script = (function() {
 		if (Script.phase >= 2) {Script.cons.addCons(Script.cons, "oil", 5);}
 		if (Script.phase >= 4) {Script.cons.addCons(Script.cons, "rocketFuel", 10);}
 		if (Script.phase >= 5) {Script.wonders.update(Script.wonders);}
+		if (Script.data.producerColumn === "lunarite") {Script.cons.addCons(Script.cons, "lunarite", 10);}
+		if (Script.data.producerColumn === "methane") {Script.cons.addCons(Script.cons, "lunarite", 10);}
+		if (Script.data.producerColumn === "silicon") {Script.cons.addCons(Script.cons, "lunarite", 10);}
 		
 		Script.data.update(Script.data);
 		Script.energy.update(Script.energy);
