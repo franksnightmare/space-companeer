@@ -204,7 +204,7 @@ Script.data = (function(){
 		for (key in data.producerData)
 		{
 			var maxScore = 0;
-			for (id = 0; i < Script.machineTier; i++)
+			for (id = 0; id < Script.machineTier; id++)
 			{
 				var building = data.producerData[key][id];
 				var result = data.resourceScore(building);
