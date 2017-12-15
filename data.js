@@ -243,7 +243,7 @@ Script.data = (function(){
 			if (key === "rocketFuel")
 			{
 				var building = data.producerData[key][Script.fuelTier - 1];
-				for (resource in building.cons) {Script.cons.addCons(building.cons[resource] * 4);}
+				for (resource in building.cons) {Script.cons.addCons(Script.cons, resource, building.cons[resource] * 4);}
 			}
 			else
 			{
@@ -257,7 +257,7 @@ Script.data = (function(){
 					}
 					else
 					{
-						Script.cons.addCons(building.cons[resource] * 4);
+						Script.cons.addCons(Script.cons, resource, building.cons[resource] * 4);
 					}
 				}
 			}
