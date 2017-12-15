@@ -216,30 +216,28 @@ Script.data = (function(){
 		data.producerData["lava"][2] = {cost:{"lunarite":extruderLunariteCost, "titanium":extruderTitaniumCost, "silicon":extruderSiliconCost}, prod:extruderOutput, cons:{"energy":extruderEnergyInput}, mk:getExtruder};
 		
 		// Scores
-		for (key in data.producerData)
+		for (var key in data.producerData)
 		{
-			if (!(key in data.producerScore)) {console.log("Something went very wrong??? Key: " + key);}
-			else {
-				var maxScore = 0;
-				for (id = 0; id < Script.machineTier; id++)
-				{
-					var building = data.producerData[key][id];
-					var result = data.resourceScore(building);
-					if (result.score > maxScore) {maxScore = result.score;}
-					if (data.producerScore[key] === undefined) {console.log(key); console.log(data.producerScore);}
-					data.producerScore[key].result[id] = result;
-					
-					if (key === "rocketFuel" && id == Script.fuelTier) {break;}
-				}
-				data.producerScore[key].maxScore = maxScore;
+			console.log("Key: " + key);
+			
+			var maxScore = 0;
+			for (id = 0; id < Script.machineTier; id++)
+			{
+				var building = data.producerData[key][id];
+				var result = data.resourceScore(building);
+				if (result.score > maxScore) {maxScore = result.score;}
+				data.producerScore[key].result[id] = result;
 				
-				if (key === data.producerColumn) {break;}
+				if (key === "rocketFuel" && id == Script.fuelTier) {break;}
 			}
+			data.producerScore[key].maxScore = maxScore;
+			
+			if (key === data.producerColumn) {break;}
 		}
 		
 		data.maxProd = 0;
 		var maxEnergy = 0;
-		for (key in data.producerData)
+		for (var key in data.producerData)
 		{
 			data.maxProd += getProduction(key);
 			if (key !== "rocketFuel")

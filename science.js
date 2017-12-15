@@ -54,7 +54,7 @@ Script.science = (function(){
 		self.data[2] = {cost:{"metal":labT3MetalCost, "gem":labT3GemCost, "wood":labT3WoodCost}, prod:labT3Output, cons:{}, mk:getLabT3};
 		
 		self.maxScore = 0;
-		for (id in self.data)
+		for (id = 0; id < Script.labTier; id++)
 		{
 			var building = self.data[id];
 			var result = self.labScore(building);
@@ -62,14 +62,12 @@ Script.science = (function(){
 			if (result.score > self.maxScore) {self.maxScore = result.score;}
 		}
 		
-		for (id in self.data)
+		for (id = 0; id < Script.labTier; id++)
 		{
 			var building = self.data[id];
 			var result = self.score[id];
 			
 			for (key in building.cost) {Script.cost.addCost(Script.cost, key, self.energyPriority * self.max * (result.score / self.maxScore) * result.cost[key]);}
-			
-			if (id == Script.labTier) {break;}
 		}
 		
 		self.purchaseTech(self);
