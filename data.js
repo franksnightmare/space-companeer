@@ -200,7 +200,7 @@ Script.data = (function(){
 				var building = self.producerData[key][id];
 				var result = self.resourceScore(building);
 				if (result.score > maxScore) {maxScore = result.score;}
-				self.producerScores[key].result[id] = result;
+				Script.data.producerScores[key].result[id] = result;
 			}
 			self.producerScore[key].maxScore = maxScore;
 			
