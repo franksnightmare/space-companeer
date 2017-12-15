@@ -218,7 +218,7 @@ Script.data = (function(){
 		// Scores
 		for (key in data.producerData)
 		{
-			if (key === energy) {console.log("Something went very wrong???");}
+			if (key === "energy") {console.log("Something went very wrong???");}
 			else {
 				var maxScore = 0;
 				for (id = 0; id < Script.machineTier; id++)
