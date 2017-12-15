@@ -108,7 +108,7 @@ Script.data = (function(){
 		return result;
 	};
 	
-	instance.update = function(data)
+	instance.init = function(data)
 	{
 		data.producerScore = {};
 		for (key in data.producerData)
