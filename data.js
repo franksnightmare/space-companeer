@@ -51,22 +51,25 @@ Script.data = (function(){
 		var resource = "null";
 		for (key in data.producerData)
 		{
-			var diff = (Script.goals[key].amount - getProduction(key)) / data.maxProd;
-			var score = Math.pow(2, diff);
-			//if (diff >= 0 && Script.goals[key].type === "cons") {score *= 2;}
-			
-			var canBuild = false;
-			for (id in data.producerData[key])
+			if (Script.goals[key].amount)
 			{
-				var result = data.producerScore[key].result[id];
-				if (result.canBuild) {canBuild = true;}
+				var diff = (Script.goals[key].amount - getProduction(key)) / Script.goals[key].amount;
+				var score = Math.pow(2, diff);
+				//if (diff >= 0 && Script.goals[key].type === "cons") {score *= 2;}
 				
-				if (id == Script.machineTier) {break;}
-				if (key === "rocketFuel" && id == Script.fuelTier) {break;}
+				var canBuild = false;
+				for (id in data.producerData[key])
+				{
+					var result = data.producerScore[key].result[id];
+					if (result.canBuild) {canBuild = true;}
+					
+					if (id == Script.machineTier) {break;}
+					if (key === "rocketFuel" && id == Script.fuelTier) {break;}
+				}
+				if (!canBuild) {score = 0;}
+				
+				if (score > maxScore) {maxScore = score; resource = key;}
 			}
-			if (!canBuild) {score = 0;}
-			
-			if (score > maxScore) {maxScore = score; resource = key;}
 			
 			if (key === data.producerColumn) {break;}
 		}
