@@ -59,7 +59,7 @@ Script.data = (function(){
 			for (id in data.producerData[resource])
 			{
 				var result = data.producerScore[resource].result[id];
-				if (!result.canBuild) {canBuild = true;}
+				if (result.canBuild) {canBuild = true;}
 			}
 			if (!canBuild) {score = 0;}
 			
