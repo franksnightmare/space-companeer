@@ -28,7 +28,7 @@ Script.cost = (function(){
 			if (self.counter[target])
 			{
 				var group = Script.data.producerData[target];
-				var scores = Script.data.producerScores[target];
+				var scores = Script.data.producerScore[target];
 				for (id in group)
 				{
 					for (key in scores.result[id].cost)

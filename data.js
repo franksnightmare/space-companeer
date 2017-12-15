@@ -24,24 +24,24 @@ Script.data = (function(){
 	instance.producerData["uranium"] = [{}, {}, {}];
 	instance.producerData["lava"] = [{}, {}, {}];
 	
-	instance.producerScores = {};
-	instance.producerScores["metal"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["wood"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["gem"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["charcoal"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["oil"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["rocketFuel"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["lunarite"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["methane"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["titanium"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["silicon"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["gold"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["silver"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["hydrogen"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["helium"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["ice"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["uranium"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScores["lava"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore = {};
+	instance.producerScore["metal"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["wood"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["gem"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["charcoal"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["oil"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["rocketFuel"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["lunarite"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["methane"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["titanium"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["silicon"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["gold"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["silver"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["hydrogen"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["helium"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["ice"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["uranium"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["lava"] = {result:[{}, {}, {}], maxScore:0};
 	
 	instance.producerColumn = "wood";
 	
@@ -64,7 +64,7 @@ Script.data = (function(){
 		{
 			for (id in self.producerData[resource])
 			{
-				var result = self.producerScores[resource].result[id];
+				var result = self.producerScore[resource].result[id];
 				if (result.score > maxScore && result.canBuild) {maxScore = result.score; target = id;}
 				
 				if (id == Script.machineTier) {break;}
@@ -74,7 +74,7 @@ Script.data = (function(){
 		{
 			for (id in self.producerData[resource])
 			{
-				var result = self.producerScores[resource].result[id];
+				var result = self.producerScore[resource].result[id];
 				if (result.score > maxScore && result.canBuild) {maxScore = result.score; target = id;}
 				
 				if (id == Script.fuelTier) {break;}
@@ -200,7 +200,7 @@ Script.data = (function(){
 				var building = self.producerData[key][id];
 				var result = self.resourceScore(building);
 				if (result.score > maxScore) {maxScore = result.score;}
-				Script.data.producerScores[key].result[id] = result;
+				self.producerScore[key].result[id] = result;
 			}
 			self.producerScore[key].maxScore = maxScore;
 			
