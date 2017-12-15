@@ -9,12 +9,11 @@ Script.cost = (function(){
 	instance.resetCost = function(self)
 	{
 		self.total = 0;
-		for (key in Script.data.producerData) {self[key] = 0; self.balance[key] = 0; self.counter[key] = 0;}
+		for (key in Script.data.producerData) {self[key] = 0; console.log(self[key]); self.balance[key] = 0; self.counter[key] = 0;}
 	};
 	
 	instance.addCost = function(self, key, amount)
 	{
-		console.log(amount);
 		self[key] += amount;
 		self.total += amount;
 		self.counter[key] += 1;
@@ -36,6 +35,7 @@ Script.cost = (function(){
 	
 	instance.itterate = function(self)
 	{
+		console.log("Total: " + self.total);
 		if (self.total) {for (key in Script.data.producerData) {self.balance[key] = self[key] / self.total;}}
 		
 		for (target in Script.data.producerData)
@@ -44,8 +44,10 @@ Script.cost = (function(){
 			{
 				var group = Script.data.producerData[target];
 				var scores = Script.data.producerScore[target];
-				for (id in group)
+				for (id = 0; id < Script.machineTier; id++)
 				{
+					if (target === "rocketFuel" && id == Script.fuelTier) {break;}
+					
 					for (key in scores.result[id].cost)
 					{
 						var addition = 0;
@@ -54,9 +56,6 @@ Script.cost = (function(){
 						addition *= scores.result[id].cost[key];
 						self.addCost(self, key, addition);
 					}
-					
-					if (target === "rocketFuel") {if (id >= Script.fuelTier) {break;}}
-					else {if (id >= Script.machineTier) {break;}}
 				}
 			}
 		}
