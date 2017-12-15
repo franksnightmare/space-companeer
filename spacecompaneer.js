@@ -15,8 +15,9 @@ var Script = (function() {
 		Script.cons.resetCons(Script.cons);
 		Script.cost.resetCost(Script.cost);
 		
-		if (Script.fuelTier >= 1) {Script.space.explorePlace(Script.space);}
-		if (Script.phase >= 3) {Script.wonders.update(Script.wonders);}
+		if (Script.fuelTier >= 1) {Script.space.explorePlace(Script.space); Script.cons.addCons(Script.cons, "rocketFuel", 2);}
+		if (Script.phase >= 3) {Script.cons.addCons(Script.cons, "rocketFuel", 10);}
+		if (Script.phase >= 4) {Script.wonders.update(Script.wonders);}
 		
 		Script.data.update(Script.data);
 		Script.energy.update(Script.energy);

@@ -87,7 +87,7 @@ Script.science = (function(){
 			if (id == Script.labTier) {break;}
 		}
 		
-		self.data[id].mk();
+		self.data[target].mk();
 	};
 	
 	instance.unlockTechs = function(self, techList)
