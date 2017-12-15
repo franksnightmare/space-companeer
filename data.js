@@ -111,6 +111,7 @@ Script.data = (function(){
 	instance.update = function(self)
 	{
 		// Production
+		/*
 		var total = 0;
 		for (var key in Script.decisions.producerFocus)
 		{
@@ -119,6 +120,7 @@ Script.data = (function(){
 			Script.decisions.producerFocus[key].current = prod;
 		}
 		if (total) {for (var key in Script.decisions.producerFocus) {Script.decisions.producerFocus[key].current /= total;}}
+		*/
 		
 		// Resource Producers
 		self.producerData["metal"][0] = {cost:{"metal":minerMetalCost, "wood":minerWoodCost}, prod:minerOutput, cons:{}, mk:getMiner};
