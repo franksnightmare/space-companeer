@@ -48,7 +48,7 @@ Script.goals = (function(){
 			amount = Script.cons[key];
 			if (amount > self[key]["amount"]) {self[key]["amount"] = amount; self[key]["type"] = "cons";}
 			
-			if (Script.cost.count[key])
+			if (Script.cost.counter[key])
 			{
 				amount = Script.data.maxProd * Script.cost[key] / Script.total;
 				if (amount > self[key]["amount"]) {self[key]["amount"] = amount; self[key]["type"] = "cost";}
