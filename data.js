@@ -6,42 +6,42 @@ Script.data = (function(){
 	instance.labData = [{}, {}, {}];
 	
 	instance.producerData = {};
-	instance.producerData["metal"]  = [{}, {}, {}];
-	instance.producerData["wood"]  = [{}, {}, {}];
-	instance.producerData["gem"]  = [{}, {}, {}];
+	instance.producerData["metal"] = [{}, {}, {}];
+	instance.producerData["wood"] = [{}, {}, {}];
+	instance.producerData["gem"] = [{}, {}, {}];
 	instance.producerData["charcoal"]  = [{}, {}, {}];
-	instance.producerData["oil"]  = [{}, {}, {}];
-	instance.producerData["rocketFuel"]  = [{}, {}, {}];
-	instance.producerData["lunarite"]  = [{}, {}, {}];
-	instance.producerData["methane"]  = [{}, {}, {}];
-	instance.producerData["titanium"]  = [{}, {}, {}];
-	instance.producerData["silicon"]  = [{}, {}, {}];
-	instance.producerData["gold"]  = [{}, {}, {}];
-	instance.producerData["silver"]  = [{}, {}, {}];
-	instance.producerData["hydrogen"]  = [{}, {}, {}];
-	instance.producerData["helium"]  = [{}, {}, {}];
-	instance.producerData["ice"]  = [{}, {}, {}];
-	instance.producerData["uranium"]  = [{}, {}, {}];
-	instance.producerData["lava"]  = [{}, {}, {}];
+	instance.producerData["oil"] = [{}, {}, {}];
+	instance.producerData["rocketFuel"] = [{}, {}, {}];
+	instance.producerData["lunarite"] = [{}, {}, {}];
+	instance.producerData["methane"] = [{}, {}, {}];
+	instance.producerData["titanium"] = [{}, {}, {}];
+	instance.producerData["silicon"] = [{}, {}, {}];
+	instance.producerData["gold"] = [{}, {}, {}];
+	instance.producerData["silver"] = [{}, {}, {}];
+	instance.producerData["hydrogen"] = [{}, {}, {}];
+	instance.producerData["helium"] = [{}, {}, {}];
+	instance.producerData["ice"] = [{}, {}, {}];
+	instance.producerData["uranium"] = [{}, {}, {}];
+	instance.producerData["lava"] = [{}, {}, {}];
 	
 	instance.producerScores = {};
-	instance.producerScores["metal"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["wood"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["gem"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["charcoal"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["oil"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["rocketFuel"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["lunarite"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["methane"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["titanium"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["silicon"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["gold"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["silver"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["hydrogen"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["helium"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["ice"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["uranium"] = {result:[{}, {}, {}], maxScore:0}
-	instance.producerScores["lava"] = {result:[{}, {}, {}], maxScore:0}
+	instance.producerScores["metal"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["wood"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["gem"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["charcoal"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["oil"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["rocketFuel"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["lunarite"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["methane"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["titanium"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["silicon"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["gold"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["silver"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["hydrogen"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["helium"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["ice"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["uranium"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScores["lava"] = {result:[{}, {}, {}], maxScore:0};
 	
 	instance.producerColumn = "wood";
 	
@@ -194,7 +194,6 @@ Script.data = (function(){
 		// Scores
 		for (key in self.producerData)
 		{
-			console.log(key);
 			var maxScore = 0;
 			for (id in self.producerData[key])
 			{
