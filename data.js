@@ -54,6 +54,15 @@ Script.data = (function(){
 			var diff = (Script.goals[key]["amount"] - getProduction(key)) / data.maxProd;
 			var score = Math.pow(2, diff);
 			if (diff >= 0 && Script.goals[key]["type"] === "cons") {score *= 2;}
+			
+			var canBuild = false;
+			for (id in data.producerData[resource])
+			{
+				var result = data.producerScore[resource].result[id];
+				if (!result.canBuild) {canBuild = true;}
+			}
+			if (!canBuild) {score = 0;}
+			
 			if (score > maxScore) {maxScore = score; resource = key;}
 			
 			if (key === data.producerColumn) {break;}
@@ -83,7 +92,10 @@ Script.data = (function(){
 		
 		var message = "Buildtarget: " + resource + "; tier: " + target + ".";
 		console.log(message);
-		data.producerData[resource][target].mk();
+		if (data.producerScore[resource].result[target].canBuild)
+		{
+			data.producerData[resource][target].mk();
+		}
 	};
 	
 	instance.resourceScore = function(building)
