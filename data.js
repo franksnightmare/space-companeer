@@ -110,6 +110,15 @@ Script.data = (function(){
 	
 	instance.update = function(data)
 	{
+		data.producerScore = {};
+		for (key in data.producerData)
+		{
+			data.producerScore[key] = {result:[{}, {}, {}], maxScore:0};
+		}
+	};
+	
+	instance.update = function(data)
+	{
 		// Production
 		/*
 		var total = 0;
@@ -195,7 +204,6 @@ Script.data = (function(){
 		for (key in data.producerData)
 		{
 			var maxScore = 0;
-			data.producerScore[key] = {result:[{}, {}, {}], maxScore:0};
 			for (id in data.producerData[key])
 			{
 				var building = data.producerData[key][id];
