@@ -22,7 +22,7 @@ var Script = (function() {
 		Script.energy.update(Script.energy);
 		Script.science.update(Script.science);
 		
-		Script.setGoals(Script.goals)
+		Script.goals.setGoals(Script.goals)
 		
 		Script.goals.build();
 		
