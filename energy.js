@@ -38,7 +38,10 @@ Script.energy = (function(){
 		{
 			if (self.score[id].score > highest && self.score[id].canBuild) {highest = self.score[id]; highId = id;}
 		}
-		self.data[highId].mk();
+		if (self.score[highId].canBuild)
+		{
+			self.data[highId].mk();
+		}
 	};
 	
 	instance.update = function(self)
