@@ -58,9 +58,9 @@ Script.goals = (function(){
 	
 	instance.build = function()
 	{
-		Script.energy.build();
-		Script.data.build();
-		Script.science.build();
+		Script.energy.build(Script.energy);
+		Script.data.build(Script.data);
+		Script.science.build(Script.science);
 	};
 	
 	return instance;
