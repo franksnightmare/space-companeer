@@ -211,7 +211,7 @@ Script.data = (function(){
 				if (result.score > maxScore) {maxScore = result.score;}
 				data.producerScore[key].result[id] = result;
 				
-				if (key === "rocketFuel" && i == Script.fuelTier) {break;}
+				if (key === "rocketFuel" && id == Script.fuelTier) {break;}
 			}
 			data.producerScore[key].maxScore = maxScore;
 			
