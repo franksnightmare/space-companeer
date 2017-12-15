@@ -35,7 +35,7 @@ Script.cost = (function(){
 	
 	instance.itterate = function(self)
 	{
-		for (key in Script.data.producerData) {self.balance[key] = self[key] / total;}
+		for (key in Script.data.producerData) {self.balance[key] = self[key] / self.total;}
 		
 		for (target in Script.data.producerData)
 		{
