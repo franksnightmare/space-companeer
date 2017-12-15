@@ -195,6 +195,7 @@ Script.data = (function(){
 		for (key in self.producerData)
 		{
 			var maxScore = 0;
+			self.producerScore[key] = {result:[{}, {}, {}], maxScore:0};
 			for (id in self.producerData[key])
 			{
 				var building = self.producerData[key][id];
