@@ -194,6 +194,7 @@ Script.data = (function(){
 		// Scores
 		for (key in self.producerData)
 		{
+			console.log(key);
 			var maxScore = 0;
 			for (id in self.producerData[key])
 			{
@@ -203,6 +204,8 @@ Script.data = (function(){
 				self.producerScores[key].result[id] = result;
 			}
 			self.producerScore[key].maxScore = maxScore;
+			
+			if (key === self.producerColumn) {break;}
 		}
 		
 		self.maxProd = 0;
