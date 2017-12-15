@@ -215,20 +215,23 @@ Script.data = (function(){
 		// Scores
 		for (key in data.producerData)
 		{
-			var maxScore = 0;
-			for (id = 0; id < Script.machineTier; id++)
-			{
-				var building = data.producerData[key][id];
-				var result = data.resourceScore(building);
-				if (result.score > maxScore) {maxScore = result.score;}
-				if (data.producerScore[key] === undefined) {console.log(key); console.log(data.producerScore);}
-				data.producerScore[key].result[id] = result;
+			if (key === energy) {console.log("Something went very wrong???");}
+			else {
+				var maxScore = 0;
+				for (id = 0; id < Script.machineTier; id++)
+				{
+					var building = data.producerData[key][id];
+					var result = data.resourceScore(building);
+					if (result.score > maxScore) {maxScore = result.score;}
+					if (data.producerScore[key] === undefined) {console.log(key); console.log(data.producerScore);}
+					data.producerScore[key].result[id] = result;
+					
+					if (key === "rocketFuel" && id == Script.fuelTier) {break;}
+				}
+				data.producerScore[key].maxScore = maxScore;
 				
-				if (key === "rocketFuel" && id == Script.fuelTier) {break;}
+				if (key === data.producerColumn) {break;}
 			}
-			data.producerScore[key].maxScore = maxScore;
-			
-			if (key === data.producerColumn) {break;}
 		}
 		
 		data.maxProd = 0;
