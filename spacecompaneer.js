@@ -12,6 +12,8 @@ var Script = (function() {
 	
 	instance.spaceCompaneer = function()
 	{
+		Script.upgradeStorage();
+		
 		Script.cons.resetCons(Script.cons);
 		Script.cost.resetCost(Script.cost);
 		
