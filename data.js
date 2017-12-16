@@ -60,8 +60,13 @@ Script.data = (function(){
 				var canBuild = false;
 				for (id in data.producerData[key])
 				{
+					var building = data.producerData[key][id];
 					var result = data.producerScore[key].result[id];
-					if (result.canBuild) {canBuild = true;}
+					var buildStep = false;
+					if (result.canBuild) {buildStep = true;}
+					
+					for (resource in building.cost) {if (getStorage(resource) < building.cost[resource]) {buildStep = false;}}
+					if (buildStep) {canBuild = true;)
 					
 					if (id == Script.machineTier) {break;}
 					if (key === "rocketFuel" && id == Script.fuelTier) {break;}
@@ -121,6 +126,8 @@ Script.data = (function(){
 			if ("energy" in building.cons) {score /= building.cons["energy"];}
 			else {score /= 8;}
 			if (score > result.score) {result.score = score;}
+			
+			if (getStorage(key) < building.cost[key]) {result.canBuild = false;}
 		}
 		
 		for (key in building.cons) {if (getProduction(key) < building.cons[key] * 2) {result.canBuild = false;}}
