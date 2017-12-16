@@ -112,9 +112,19 @@ Script.data = (function(){
 		}
 	};
 	
-	instance.resourceScore = function(building)
+	instance.resourceScore = function(building, target)
 	{
 		var result = {time:0, score:0, cost:{}, canBuild:true};
+		
+		for (key in building.cons) {if (getProduction(key) < building.cons[key] * 2) {result.canBuild = false;}}
+		
+		if (Script.goals[target] === "urgent")
+		{
+			var consOk = true;
+			for (key in building.cons) {if (getProduction(key) < 0) {consOk = false;}}
+			if (consOk) {result.canBuild = true;}
+		}
+		
 		for (key in building.cost)
 		{
 			var prod = getProduction(key);
@@ -126,14 +136,15 @@ Script.data = (function(){
 			result.cost[key] = building.cost[key] / building.prod;
 			
 			var score = building.prod / time;
-			if ("energy" in building.cons) {score /= building.cons["energy"];}
+			if ("energy" in building.cons) {
+				score /= building.cons["energy"];
+			}
 			else {score /= 8;}
 			if (score > result.score) {result.score = score;}
 			
 			if (getStorage(key) < building.cost[key]) {result.canBuild = false;}
 		}
 		
-		for (key in building.cons) {if (getProduction(key) < building.cons[key] * 2) {result.canBuild = false;}}
 		return result;
 	};
 	
@@ -238,7 +249,7 @@ Script.data = (function(){
 			for (id = 0; id < Script.machineTier; id++)
 			{
 				var building = data.producerData[key][id];
-				var result = data.resourceScore(building);
+				var result = data.resourceScore(building, key);
 				if (result.score > maxScore) {maxScore = result.score;}
 				data.producerScore[key].result[id] = result;
 				
