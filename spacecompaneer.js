@@ -23,6 +23,7 @@ var Script = (function() {
 		if (Script.data.producerColumn === "lunarite") {Script.cons.addCons(Script.cons, "lunarite", 10);}
 		if (Script.data.producerColumn === "methane") {Script.cons.addCons(Script.cons, "lunarite", 20);}
 		if (Script.data.producerColumn === "silicon") {Script.cons.addCons(Script.cons, "lunarite", 50); Script.cons.addCons(Script.cons, "titanium", 10);}
+		if (Script.energyTier >= 4) {Script.cons.addCons(Script.cons, "rocketFuel", 5);}
 		
 		Script.data.update(Script.data);
 		Script.energy.update(Script.energy);
