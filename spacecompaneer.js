@@ -40,6 +40,8 @@ var Script = (function() {
 		
 		Script.goals.setGoals(Script.goals)
 		
+		if (Script.phase >= 3) {Script.goals["methane"].type = "urgent"; Script.goals["uranium"].type = "urgent"; Script.goals["lava"].type = "urgent"; Script.goals["hydrogen"].type = "urgent"; Script.goals["helium"].type = "urgent";}
+		
 		Script.goals.build();
 		
 		//Script.goals.update(Script.goals);
