@@ -34,9 +34,9 @@ Script.wonders = (function(){
 		{
 			for (key in self.wonders)
 			{
-				if (wonders[id] === key && !self.milestones[key].available)
+				if (wonders[id] === key && !self.wonders[key].available)
 				{
-					self.milestones[key].available = true;
+					self.wonders[key].available = true;
 				}
 			}
 		}
@@ -55,7 +55,7 @@ Script.wonders = (function(){
 				if (canGo) {
 					wonder.mk();
 					
-					self.milestones[key].done = true;
+					self.wonders[key].done = true;
 					self.unlockWonder(self, wonder.unlocks);
 					
 					place.consequences();
