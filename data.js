@@ -66,7 +66,7 @@ Script.data = (function(){
 					if (result.canBuild) {buildStep = true;}
 					
 					for (resource in building.cost) {if (getStorage(resource) < building.cost[resource]) {buildStep = false;}}
-					if (buildStep) {canBuild = true;)
+					if (buildStep) {canBuild = true;}
 					
 					if (id == Script.machineTier) {break;}
 					if (key === "rocketFuel" && id == Script.fuelTier) {break;}
