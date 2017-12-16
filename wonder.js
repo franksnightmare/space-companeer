@@ -50,7 +50,7 @@ Script.wonders = (function(){
 			if (wonder.available && !wonder.done)
 			{
 				var canGo = true;
-				for (resource in wonder.cost) {if (getResource(resource) < wonder.cost[key]) {canGo = false;}}
+				for (resource in wonder.cost) {if (getResource(resource) > wonder.cost[key]) {canGo = false;}}
 				
 				if (canGo) {
 					wonder.mk();
