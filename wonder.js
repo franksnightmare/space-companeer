@@ -58,7 +58,7 @@ Script.wonders = (function(){
 					self.wonders[key].done = true;
 					self.unlockWonder(self, wonder.unlocks);
 					
-					place.consequences();
+					wonder.consequences();
 				}
 			}
 		}
