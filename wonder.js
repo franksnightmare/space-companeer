@@ -22,7 +22,7 @@ Script.wonders = (function(){
 			{
 				for (key in wonder.cost)
 				{
-					Script.cons.addCons(Script.cons, key, wonder.cost[key] / 100);
+					Script.cons.addCons(Script.cons, key, wonder.cost[key] / (100 * (1 + Math.log10(wonder.cost[key] / 2))));
 				}
 			}
 		}
