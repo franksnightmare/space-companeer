@@ -101,6 +101,8 @@ Script.data = (function(){
 			}
 		}
 		
+		if (!(resource in data.producerScore)) {return;}
+		
 		var message = "Buildtarget: " + resource + "; tier: " + target + ".";
 		console.log(message);
 		if (data.producerScore[resource].result[target].canBuild)
