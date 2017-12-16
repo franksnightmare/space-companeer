@@ -18,7 +18,7 @@ Script.wonders = (function(){
 		for (id in self.wonders)
 		{
 			var wonder = self.wonders[id]
-			if (self.wonder.available)
+			if (wonder.available)
 			{
 				for (key in wonder.cost)
 				{
