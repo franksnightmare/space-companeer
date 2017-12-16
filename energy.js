@@ -24,6 +24,8 @@ Script.energy = (function(){
 			
 			var score = building.prod / time;
 			if (score > result.score) {result.score = score;}
+			
+			if (getStorage(key) < building.cost[key]) {result.canBuild = false;}
 		}
 		for (key in building.cons) {if (getProduction(key) < 2 * building.cons[key]) {result.canBuild = false;}}
 		
