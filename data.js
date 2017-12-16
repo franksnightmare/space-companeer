@@ -18,11 +18,11 @@ Script.data = (function(){
 	instance.producerData["silicon"] = [{}, {}, {}];
 	instance.producerData["gold"] = [{}, {}, {}];
 	instance.producerData["silver"] = [{}, {}, {}];
+	instance.producerData["uranium"] = [{}, {}, {}];
+	instance.producerData["lava"] = [{}, {}, {}];
 	instance.producerData["hydrogen"] = [{}, {}, {}];
 	instance.producerData["helium"] = [{}, {}, {}];
 	instance.producerData["ice"] = [{}, {}, {}];
-	instance.producerData["uranium"] = [{}, {}, {}];
-	instance.producerData["lava"] = [{}, {}, {}];
 	
 	instance.producerScore = {};
 	instance.producerScore["metal"] = {result:[{}, {}, {}], maxScore:0};
@@ -37,11 +37,11 @@ Script.data = (function(){
 	instance.producerScore["silicon"] = {result:[{}, {}, {}], maxScore:0};
 	instance.producerScore["gold"] = {result:[{}, {}, {}], maxScore:0};
 	instance.producerScore["silver"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["uranium"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["lava"] = {result:[{}, {}, {}], maxScore:0};
 	instance.producerScore["hydrogen"] = {result:[{}, {}, {}], maxScore:0};
 	instance.producerScore["helium"] = {result:[{}, {}, {}], maxScore:0};
 	instance.producerScore["ice"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScore["uranium"] = {result:[{}, {}, {}], maxScore:0};
-	instance.producerScore["lava"] = {result:[{}, {}, {}], maxScore:0};
 	
 	instance.producerColumn = "wood";
 	

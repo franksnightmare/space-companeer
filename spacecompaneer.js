@@ -19,8 +19,7 @@ var Script = (function() {
 		
 		if (Script.fuelTier >= 1) {Script.space.explorePlace(Script.space); Script.cons.addCons(Script.cons, "rocketFuel", 2);}
 		if (Script.phase >= 2) {Script.cons.addCons(Script.cons, "oil", 5);}
-		if (Script.phase >= 4) {Script.cons.addCons(Script.cons, "rocketFuel", 5);}
-		if (Script.phase >= 5) {Script.wonders.update(Script.wonders);}
+		if (Script.phase >= 4) {Script.cons.addCons(Script.cons, "rocketFuel", 5); Script.wonders.update(Script.wonders);}
 		if (Script.data.producerColumn === "lunarite") {Script.cons.addCons(Script.cons, "lunarite", 10);}
 		if (Script.data.producerColumn === "methane") {Script.cons.addCons(Script.cons, "lunarite", 10);}
 		if (Script.data.producerColumn === "silicon") {Script.cons.addCons(Script.cons, "lunarite", 10);}
