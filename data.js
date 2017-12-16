@@ -119,6 +119,7 @@ Script.data = (function(){
 			
 			var score = building.prod / time;
 			if ("energy" in building.cons) {score /= building.cons["energy"];}
+			else {score /= 4;}
 			if (score > result.score) {result.score = score;}
 		}
 		
