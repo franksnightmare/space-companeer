@@ -65,7 +65,7 @@ Script.data = (function(){
 					var buildStep = false;
 					if (result.canBuild) {buildStep = true;}
 					
-					for (resource in building.cost) {if (getStorage(resource) < building.cost[resource]) {buildStep = false;}}
+					for (key2 in building.cost) {if (getStorage(key2) < building.cost[key2]) {buildStep = false;}}
 					if (buildStep) {canBuild = true;}
 					
 					if (id == Script.machineTier) {break;}
