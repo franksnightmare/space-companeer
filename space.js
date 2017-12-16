@@ -12,7 +12,7 @@ Script.space = (function(){
 	instance.milestones["AsteroidBelt"] = {requirements:{"rocketFuel":200}, available:false, done:false, unlocks:["WonderStation", "Jupiter", "Saturn", "Pluto", "KuiperBelt"], consequences:function(){Script.data.producerColumn = "silver"; Script.phase = 4;}};
 	instance.milestones["WonderStation"] = {requirements:{"rocketFuel":500}, available:false, done:false, unlocks:[], consequences:function(){Script.wonders.unlockWonderSet(Script.wonders, 1)}};
 	instance.milestones["Jupiter"] = {requirements:{"rocketFuel":1000}, available:false, done:false, unlocks:[], consequences:function(){Script.data.producerColumn = "hydrogen";}};
-	instance.milestones["Saturn"] = {requirements:{"rocketFuel":2000}, available:false, done:false, unlocks:[], consequences:function(){Script.data.producerColumn = "helium"; Script.energyTier = 6;}};
+	instance.milestones["Saturn"] = {requirements:{"rocketFuel":2000}, available:false, done:false, unlocks:[], consequences:function(){Script.data.producerColumn = "helium"; Script.energyTier = 4;}};
 	instance.milestones["Pluto"] = {requirements:{"rocketFuel":5000}, available:false, done:false, unlocks:[], consequences:function(){Script.data.producerColumn = "ice";}};
 	instance.milestones["KuiperBelt"] = {requirements:{"rocketFuel":6000}, available:false, done:false, unlocks:["SolCenter"], consequences:function(){}};
 	instance.milestones["SolCenter"] = {requirements:{"rocketFuel":7000}, available:false, done:false, unlocks:[], consequences:function(){Script.phase = 5; Script.science.techs["efficiencyResearch"].available = true;}};

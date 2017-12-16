@@ -51,9 +51,9 @@ Script.energy = (function(){
 		self.data[0] = {cost:{"metal":charcoalEngineMetalCost, "gem":charcoalEngineGemCost}, prod:charcoalEngineOutput, cons:{"charcoal":charcoalEngineCharcoalInput}, mk:getCharcoalEngine};
 		self.data[1] = {cost:{"metal":solarPanelMetalCost, "gem":solarPanelGemCost}, prod:solarPanelOutput, cons:{}, mk:getSolarPanel};
 		self.data[2] = {cost:{"lunarite":methaneStationLunariteCost, "titanium":methaneStationTitaniumCost}, prod:methaneStationOutput, cons:{"methane":methaneStationMethaneInput}, mk:getMethaneStation};
-		self.data[3] = {cost:{"lunarite":nuclearStationLunariteCost, "titanium":nuclearStationTitaniumCost}, prod:nuclearStationOutput, cons:{"methane":nuclearStationUraniumInput}, mk:getNuclearStation};
-		self.data[4] = {cost:{"lunarite":magmaticLunariteCost, "gem":magmaticGemCost, "silver":magmaticSilverCost}, prod:magmaticOutput, cons:{"lava":magmaticLavaInput}, mk:getMagmatic};
-		self.data[5] = {cost:{"lunarite":fusionReactorLunariteCost, "titanium":fusionReactorTitaniumCost, "silicon":fusionReactorSiliconCost}, prod:fusionReactorOutput, cons:{"hydrogen":fusionReactorHydrogenInput, "helium":fusionReactorHeliumInput}, mk:getFusionReactor};
+		self.data[3] = {cost:{"lunarite":fusionReactorLunariteCost, "titanium":fusionReactorTitaniumCost, "silicon":fusionReactorSiliconCost}, prod:fusionReactorOutput, cons:{"hydrogen":fusionReactorHydrogenInput, "helium":fusionReactorHeliumInput}, mk:getFusionReactor};
+		self.data[4] = {cost:{"lunarite":nuclearStationLunariteCost, "titanium":nuclearStationTitaniumCost}, prod:nuclearStationOutput, cons:{"methane":nuclearStationUraniumInput}, mk:getNuclearStation};
+		self.data[5] = {cost:{"lunarite":magmaticLunariteCost, "gem":magmaticGemCost, "silver":magmaticSilverCost}, prod:magmaticOutput, cons:{"lava":magmaticLavaInput}, mk:getMagmatic};
 		
 		self.maxScore = 0;
 		for (id = 0; id < Script.energyTier; id++)

@@ -5,9 +5,9 @@ Script.wonders = (function(){
 	
 	instance.wonders = {};
 	instance.wonders["precious1"] = {cost:{"gem":10000, "gold":5000, "silver":7500}, available:false, done:false, mk:achievePreciousWonder, unlocks:["precious2"], consequences:function(){}};
-	instance.wonders["precious2"] = {cost:{"gem":30000, "gold":10000, "silver":20000}, available:false, done:false, mk:activatePreciousWonder, unlocks:[], consequences:function(){Script.wonders.wonders["energetic1"].available = true; Script.data.producerColumn = "uranium"; Script.energyTier = 4;}};
+	instance.wonders["precious2"] = {cost:{"gem":30000, "gold":10000, "silver":20000}, available:false, done:false, mk:activatePreciousWonder, unlocks:[], consequences:function(){Script.wonders.wonders["energetic1"].available = true; Script.data.producerColumn = "uranium"; Script.energyTier = 5;}};
 	instance.wonders["energetic1"] = {cost:{"wood":10000, "charcoal":5000, "uranium":200}, available:false, done:false, mk:achievePreciousWonder, unlocks:["energetic2"], consequences:function(){}};
-	instance.wonders["energetic2"] = {cost:{"wood":30000, "charcoal":15000, "uranium":500}, available:false, done:false, mk:activatePreciousWonder, unlocks:[], consequences:function(){Script.data.producerColumn = "lava"; Script.energyTier = 5;}};
+	instance.wonders["energetic2"] = {cost:{"wood":30000, "charcoal":15000, "uranium":500}, available:false, done:false, mk:activatePreciousWonder, unlocks:[], consequences:function(){Script.data.producerColumn = "lava"; Script.energyTier = 6;}};
 	instance.wonders["tech1"] = {cost:{"gem":40000, "silicon":30000, "gold":18000}, available:false, done:false, mk:achieveTechWonder, unlocks:["tech2"], consequences:function(){}};
 	instance.wonders["tech2"] = {cost:{"gem":60000, "silicon":50000, "gold":30000}, available:false, done:false, mk:activateTechWonder, unlocks:[], consequences:function(){Script.machineTier = 3;}};
 	
