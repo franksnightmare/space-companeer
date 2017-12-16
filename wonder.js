@@ -55,7 +55,7 @@ Script.wonders = (function(){
 				if (canGo) {
 					wonder.mk();
 					
-					self.milestones[i].done = true;
+					self.milestones[key].done = true;
 					self.unlockWonder(self, wonder.unlocks);
 					
 					place.consequences();
