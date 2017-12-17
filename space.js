@@ -33,12 +33,19 @@ Script.space = (function(){
 	
 	instance.explorePlace = function(self)
 	{
+		var counter = 0;
 		for (key in self.milestones)
 		{
 			var place = self.milestones[key];
 			if (place.available && !place.done)
 			{
 				var canGo = false;
+				if (key !== "rocket" && key !== "launch")
+				{
+					if (Game.statistics.entries.placesExplored.value > counter) {canGo = true;}
+				}
+				else {counter = 0;}
+				
 				if (key === "rocket" && metal >= place.requirements["metal"] && gem >= place.requirements["gem"] && oil >= place.requirements["oil"]) {getRocket(); canGo = true;}
 				else if (key === "launch" && getResource("rocketFuel") >= place.requirements["rocketFuel"]) {launchRocket(); canGo = true;}
 				else if (getResource("rocketFuel") >= place.requirements["rocketFuel"]) {explore(key); canGo = true;}
@@ -50,6 +57,7 @@ Script.space = (function(){
 					place.consequences();
 				}
 			}
+			counter++;
 		}
 	};
 	
