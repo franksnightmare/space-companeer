@@ -31,7 +31,7 @@ Script.cost = (function(){
 				var scores = Script.data.producerScore[target];
 				for (id = 0; id < Script.machineTier; id++)
 				{
-					if (target === "rocketFuel" && id == Script.fuelTier) {break;}
+					if (target in Script.tier && id == Script.tier[target]) {break;}
 					
 					for (key in scores.result[id].cost)
 					{
@@ -57,7 +57,7 @@ Script.cost = (function(){
 				var scores = Script.data.producerScore[target];
 				for (id = 0; id < Script.machineTier; id++)
 				{
-					if (target === "rocketFuel" && id == Script.fuelTier) {break;}
+					if (target in Script.tier && id == Script.tier[target]) {break;}
 					
 					for (key in scores.result[id].cost)
 					{

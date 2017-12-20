@@ -3,8 +3,8 @@ console.log("Space Companeer: Loading SCIENCE");
 Script.science = (function(){
 	instance = {};
 	
-	instance.data = [{}, {}, {}];
-	instance.score = [{}, {}, {}];
+	instance.data = [{}, {}, {}, {}];
+	instance.score = [{}, {}, {}, {}];
 	instance.maxScore = 0;
 	
 	instance.techs = {};
@@ -14,17 +14,23 @@ Script.science = (function(){
 	instance.techs["unlockSolar"] = {available:false, done:false, unlocks:["upgradeSolarTech"], consequences:function(){Script.energyTier = 2;}};
 	instance.techs["unlockMachines"] = {available:false, done:false, unlocks:["unlockDestruction", "unlockSolarSystem", "upgradeResourceTech"], consequences:function(){Script.machineTier = 2; Script.energy.energyPriority = 1;}};
 	instance.techs["unlockDestruction"] = {available:false, done:false, unlocks:[], consequences:function(){}};
-	instance.techs["unlockSolarSystem"] = {available:false, done:false, unlocks:["unlockLabT2", "unlockRocketFuelT2"], consequences:function(){Script.data.producerColumn = "rocketFuel"; Script.fuelTier = 1; Script.phase = 3;}};
+	instance.techs["unlockSolarSystem"] = {available:false, done:false, unlocks:["unlockLabT2", "unlockRocketFuelT2"], consequences:function(){Script.data.producerColumn = "rocketFuel"; Script.tier["rocketFuel"] = 1; Script.phase = 3;}};
 	instance.techs["upgradeResourceTech"] = {available:false, done:false, unlocks:[], consequences:function(){}};
 	instance.techs["unlockLabT2"] = {available:false, done:false, unlocks:["unlockLabT3"], consequences:function(){Script.labTier = 2;}};
 	instance.techs["upgradeEngineTech"] = {available:false, done:false, unlocks:[], consequences:function(){}};
 	instance.techs["unlockLabT3"] = {available:false, done:false, unlocks:["unlockLabT4"], consequences:function(){Script.labTier = 3;}};
 	instance.techs["upgradeSolarTech"] = {available:false, done:false, unlocks:["unlockBatteries"], consequences:function(){}};
-	instance.techs["unlockRocketFuelT2"] = {available:false, done:false, unlocks:["unlockRocketFuelT3"], consequences:function(){Script.fuelTier = 2;}};
+	instance.techs["unlockRocketFuelT2"] = {available:false, done:false, unlocks:["unlockRocketFuelT3"], consequences:function(){Script.tier["rocketFuel"] = 2;}};
 	instance.techs["unlockBatteries"] = {available:false, done:false, unlocks:[], consequences:function(){}};
+	instance.techs["unlockPlasma"] = {available:false, done:false, unlocks:["unlockPlasmaTier2"], consequences:function(){Script.data.producerColumn = "plasma"; Script.tier["plasma"] = 1;}};
+	instance.techs["unlockPlasmaTier2"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["plasma"] = 2;}};
+	instance.techs["unlockEmc"] = {available:false, done:false, unlocks:["unlockMeteorite"], consequences:function(){}};
+	instance.techs["unlockMeteorite"] = {available:false, done:false, unlocks:["unlockMeteoriteTier1"], consequences:function(){}};
+	instance.techs["unlockMeteoriteTier1"] = {available:false, done:false, unlocks:["unlockMeteoriteTier2"], consequences:function(){Script.data.producerColumn = "meteorite"; Script.wonders.wonders["meteorite1"].available = true; Script.tier["meteorite"] = 1;}};
+	instance.techs["unlockMeteoriteTier2"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["meteorite"] = 2;}};
 	instance.techs["efficiencyResearch"] = {available:false, done:false, unlocks:[], consequences:function(){Script.science.techs["efficiencyResearch"].done = false; Script.goals.newTechs += 1;}};
-	instance.techs["unlockRocketFuelT3"] = {available:false, done:false, unlocks:[], consequences:function(){Script.fuelTier = 3;}};
-	instance.techs["unlockLabT4"] = {available:false, done:false, unlocks:[], consequences:function(){}};
+	instance.techs["unlockRocketFuelT3"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["rocketFuel"] = 3;}};
+	instance.techs["unlockLabT4"] = {available:false, done:false, unlocks:[], consequences:function(){Script.labTier = 4;}};
 	
 	instance.labScore = function(building)
 	{
@@ -54,6 +60,7 @@ Script.science = (function(){
 		self.data[0] = {cost:{"metal":labMetalCost, "gem":labGemCost, "wood":labWoodCost}, prod:labOutput, cons:{}, mk:getLab};
 		self.data[1] = {cost:{"metal":labT2MetalCost, "gem":labT2GemCost, "wood":labT2WoodCost}, prod:labT2Output, cons:{}, mk:getLabT2};
 		self.data[2] = {cost:{"metal":labT3MetalCost, "gem":labT3GemCost, "wood":labT3WoodCost}, prod:labT3Output, cons:{}, mk:getLabT3};
+		self.data[3] = {cost:{"metal":labT4MetalCost, "gem":labT4GemCost, "wood":labT4WoodCost}, prod:labT4Output, cons:{}, mk:getLabT4};
 		
 		self.maxScore = 0;
 		for (id = 0; id < Script.labTier; id++)

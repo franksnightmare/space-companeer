@@ -27,7 +27,11 @@ Script.energy = (function(){
 			
 			if (getStorage(key) < building.cost[key]) {result.canBuild = false;}
 		}
-		for (key in building.cons) {if (getProduction(key) < 2 * building.cons[key]) {result.canBuild = false;}}
+		for (key in building.cons)
+		{
+			var drain = building.cons[resource] / 1000 + result.time / 2400;
+			if (getProduction(key) < building.cons[key] * (1.1 + 1.4 * Math.pow(2, -drain)) {result.canBuild = false;}
+		}
 		
 		return result;
 	};

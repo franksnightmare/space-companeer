@@ -7,8 +7,11 @@ var Script = (function() {
 	instance.machineTier = 1;
 	instance.labTier = 1;
 	instance.energyTier = 0;
-	instance.fuelTier = 0;
-	instance.consumptionRemainder = 1;
+	
+	instance.tier = {};
+	instance.tier["rocketFuel"] = 0;
+	instance.tier["plasma"] = 0;
+	instance.tier["meteorite"] = 0;
 	
 	instance.spaceCompaneer = function()
 	{
@@ -17,7 +20,7 @@ var Script = (function() {
 		Script.cons.resetCons(Script.cons);
 		Script.cost.resetCost(Script.cost);
 		
-		if (Script.fuelTier >= 1) {Script.space.explorePlace(Script.space); Script.cons.addCons(Script.cons, "rocketFuel", 2);}
+		if (Script.tier["rocketFuel"] >= 1) {Script.space.explorePlace(Script.space); Script.cons.addCons(Script.cons, "rocketFuel", 2);}
 		if (Script.phase >= 2) {Script.cons.addCons(Script.cons, "oil", 5); Script.cons.addCons(Script.cons, "wood", 100);}
 		if (Script.phase >= 3) {Script.cons.addCons(Script.cons, "methane", 50);}
 		if (Script.phase >= 4) {Script.wonders.update(Script.wonders); Script.cons.addCons(Script.cons, "lunarite", 100); Script.cons.addCons(Script.cons, "titanium", 100);}
@@ -25,6 +28,7 @@ var Script = (function() {
 		if (Script.data.producerColumn === "methane") {Script.cons.addCons(Script.cons, "lunarite", 20);}
 		if (Script.data.producerColumn === "silicon") {Script.cons.addCons(Script.cons, "lunarite", 50); Script.cons.addCons(Script.cons, "titanium", 50);}
 		if (Script.energyTier >= 4) {Script.cons.addCons(Script.cons, "rocketFuel", 5);}
+		if (Script.tier["plasma"] >= 1) {Script.cons.addCons(Script.cons, "plasma", 1);}
 		
 		Script.data.update(Script.data);
 		Script.energy.update(Script.energy);
@@ -43,27 +47,6 @@ var Script = (function() {
 		if (Script.phase >= 3) {Script.goals["methane"].type = "urgent"; Script.goals["uranium"].type = "urgent"; Script.goals["lava"].type = "urgent"; Script.goals["hydrogen"].type = "urgent"; Script.goals["helium"].type = "urgent";}
 		
 		Script.goals.build();
-		
-		//Script.goals.update(Script.goals);
-		//Script.goals.print(Script.goals);
-		
-		//Script.upgradeStorage();
-		
-		//Script.decisions.decideResourceBuildings(Script.decisions);
-		
-		//Script.decisions.decideEnergyBuilding(Script.decisions);
-		//Script.decisions.buildEnergyBuilding(Script.decisions);
-		
-		//Script.goals.updateProductionGoals(Script.goals);
-		//Script.decisions.updateResourceFocus(Script.decisions, 3);
-		
-		//Script.science.purchaseTech(Script.science);
-		//if (Script.fuelTier >= 1) {Script.space.explorePlace(Script.space);}
-		
-		//Script.decisions.buildResourceBuildings(Script.decisions);
-		
-		//Script.decisions.decideLabBuilding(Script.decisions);
-		//Script.decisions.buildLabs(Script.decisions);
 	};
 	
 	instance.boosterino = function()

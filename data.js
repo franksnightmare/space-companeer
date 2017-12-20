@@ -23,6 +23,7 @@ Script.data = (function(){
 	instance.producerData["uranium"] = [{}, {}, {}];
 	instance.producerData["lava"] = [{}, {}, {}];
 	instance.producerData["ice"] = [{}, {}, {}];
+	instance.producerData["meteorite"] = [{}, {}, {}];
 	
 	instance.producerScore = {};
 	instance.producerScore["metal"] = {result:[{}, {}, {}], maxScore:0};
@@ -42,6 +43,8 @@ Script.data = (function(){
 	instance.producerScore["uranium"] = {result:[{}, {}, {}], maxScore:0};
 	instance.producerScore["lava"] = {result:[{}, {}, {}], maxScore:0};
 	instance.producerScore["ice"] = {result:[{}, {}, {}], maxScore:0};
+	instance.producerScore["plasma"] = {result:[{}, {}], maxScore:0};
+	instance.producerScore["meteorite"] = {result:[{}, {}], maxScore:0};
 	
 	instance.producerColumn = "wood";
 	
@@ -70,7 +73,7 @@ Script.data = (function(){
 					if (buildStep) {canBuild = true;}
 					
 					if (id == Script.machineTier) {break;}
-					if (key === "rocketFuel" && id == Script.fuelTier) {break;}
+					if (key in Script.tier && id == Script.tier[key]) {break;}
 				}
 				if (!canBuild) {score = 0;}
 				
@@ -81,24 +84,25 @@ Script.data = (function(){
 		}
 		maxScore = 0;
 		var target = 0;
-		if (resource !== "rocketFuel")
+		if (resource in Script.tier)
 		{
 			for (id in data.producerData[resource])
 			{
 				var result = data.producerScore[resource].result[id];
 				if (result.score > maxScore && result.canBuild) {maxScore = result.score; target = id;}
 				
-				if (id == Script.machineTier) {break;}
+				
 			}
 		}
 		else
 		{
-			for (id in data.producerData[resource])
+			
+			for (id = 0; id < Script.machineTier; id++)
 			{
+				if (id in Script.tier && id == Script.tier[resource]) {break;}
+				
 				var result = data.producerScore[resource].result[id];
 				if (result.score > maxScore && result.canBuild) {maxScore = result.score; target = id;}
-				
-				if (id == Script.fuelTier) {break;}
 			}
 		}
 		
@@ -115,15 +119,7 @@ Script.data = (function(){
 	instance.resourceScore = function(building, target)
 	{
 		var result = {time:0, score:0, cost:{}, canBuild:true};
-		
-		for (key in building.cons) {if (getProduction(key) < building.cons[key] * 2) {result.canBuild = false;}}
-		
-		if (Script.goals[target] === "urgent")
-		{
-			var consOk = true;
-			for (key in building.cons) {if (getProduction(key) < 0) {consOk = false;}}
-			if (consOk) {result.canBuild = true;}
-		}
+		var lackingStorage = false;
 		
 		for (key in building.cost)
 		{
@@ -142,8 +138,22 @@ Script.data = (function(){
 			else {score /= 8;}
 			if (score > result.score) {result.score = score;}
 			
-			if (getStorage(key) < building.cost[key]) {result.canBuild = false;}
+			if (getStorage(key) < building.cost[key]) {lackingStorage = true;}
 		}
+		
+		for (key in building.cons) {
+			var drain = building.cons[resource] / 1000 + result.time / 2400;
+			if (getProduction(key) < building.cons[key] * (1.1 + 1.4 * Math.pow(2, -drain)) {result.canBuild = false;}
+		}
+		
+		if (Script.goals[target] === "urgent")
+		{
+			var consOk = true;
+			for (key in building.cons) {if (getProduction(key) < 0) {consOk = false;}}
+			if (consOk) {result.canBuild = true;}
+		}
+		
+		if (lackingStorage) {result.canBuild = false;}
 		
 		return result;
 	};
@@ -159,18 +169,6 @@ Script.data = (function(){
 	
 	instance.update = function(data)
 	{
-		// Production
-		/*
-		var total = 0;
-		for (var key in Script.decisions.producerFocus)
-		{
-			var prod = getProduction(key);
-			total += prod;
-			Script.decisions.producerFocus[key].current = prod;
-		}
-		if (total) {for (var key in Script.decisions.producerFocus) {Script.decisions.producerFocus[key].current /= total;}}
-		*/
-		
 		// Resource Producers
 		data.producerData["metal"][0] = {cost:{"metal":minerMetalCost, "wood":minerWoodCost}, prod:minerOutput, cons:{}, mk:getMiner};
 		data.producerData["metal"][1] = {cost:{"metal":heavyDrillMetalCost, "gem":heavyDrillGemCost, "oil":heavyDrillOilCost}, prod:heavyDrillOutput, cons:{"energy":heavyDrillEnergyInput}, mk:getHeavyDrill};
@@ -228,10 +226,6 @@ Script.data = (function(){
 		data.producerData["helium"][1] = {cost:{"lunarite":tankerLunariteCost, "titanium":tankerTitaniumCost, "silicon":tankerSiliconCost}, prod:tankerOutput, cons:{"energy":tankerEnergyInput}, mk:getTanker};
 		data.producerData["helium"][2] = {cost:{"lunarite":compressorLunariteCost, "titanium":compressorTitaniumCost, "silicon":compressorSiliconCost}, prod:compressorOutput, cons:{"energy":compressorEnergyInput}, mk:getCompressor};
 		
-		data.producerData["ice"][0] = {cost:{"lunarite":icePickLunariteCost, "gem":icePickGemCost}, prod:icePickOutput, cons:{}, mk:getIcePick};
-		data.producerData["ice"][1] = {cost:{"lunarite":iceDrillLunariteCost, "titanium":iceDrillTitaniumCost, "silicon":iceDrillSiliconCost}, prod:iceDrillOutput, cons:{"energy":iceDrillEnergyInput}, mk:getIceDrill};
-		data.producerData["ice"][2] = {cost:{"lunarite":freezerLunariteCost, "titanium":freezerTitaniumCost, "silicon":freezerSiliconCost}, prod:freezerOutput, cons:{"energy":freezerEnergyInput}, mk:getFreezer};
-		
 		data.producerData["uranium"][0] = {cost:{"lunarite":grinderLunariteCost, "titanium":grinderTitaniumCost, "gold":grinderGoldCost}, prod:grinderOutput, cons:{}, mk:getGrinder};
 		data.producerData["uranium"][1] = {cost:{"oil":cubicOilCost, "lunarite":cubicLunariteCost, "uranium":cubicUraniumCost}, prod:cubicOutput, cons:{"energy":cubicEnergyInput}, mk:getCubic};
 		data.producerData["uranium"][2] = {cost:{"lunarite":enricherLunariteCost, "titanium":enricherTitaniumCost, "silicon":enricherSiliconCost}, prod:enricherOutput, cons:{"energy":enricherEnergyInput}, mk:getEnricher};
@@ -239,6 +233,16 @@ Script.data = (function(){
 		data.producerData["lava"][0] = {cost:{"lunarite":crucibleLunariteCost, "gem":crucibleGemCost}, prod:crucibleOutput, cons:{}, mk:getCrucible};
 		data.producerData["lava"][1] = {cost:{"lunarite":extractorLunariteCost, "titanium":extractorTitaniumCost, "silicon":extractorSiliconCost}, prod:extractorOutput, cons:{"energy":extractorEnergyInput}, mk:getExtractor};
 		data.producerData["lava"][2] = {cost:{"lunarite":extruderLunariteCost, "titanium":extruderTitaniumCost, "silicon":extruderSiliconCost}, prod:extruderOutput, cons:{"energy":extruderEnergyInput}, mk:getExtruder};
+		
+		data.producerData["ice"][0] = {cost:{"lunarite":icePickLunariteCost, "gem":icePickGemCost}, prod:icePickOutput, cons:{}, mk:getIcePick};
+		data.producerData["ice"][1] = {cost:{"lunarite":iceDrillLunariteCost, "titanium":iceDrillTitaniumCost, "silicon":iceDrillSiliconCost}, prod:iceDrillOutput, cons:{"energy":iceDrillEnergyInput}, mk:getIceDrill};
+		data.producerData["ice"][2] = {cost:{"lunarite":freezerLunariteCost, "titanium":freezerTitaniumCost, "silicon":freezerSiliconCost}, prod:freezerOutput, cons:{"energy":freezerEnergyInput}, mk:getFreezer};
+		
+		data.producerData["plasma"][0] = {cost:{"lunarite":heaterLunariteCost, "gem":heaterGemCost, "silicon":heaterSiliconCost}, prod:heaterOutput, cons:{"energy":heaterEnergyInput, "hydrogen":heaterHydrogenInput}, mk:getHeater};
+		data.producerData["plasma"][1] = {cost:{"lunarite":plasmaticLunariteCost "silicon":plasmaticSiliconCost, "meteorite":plasmaticMeteoriteCost}, prod:plasmaticOutput, cons:{"energy":plasmaticEnergyInput, "helium":plasmaticHeliumInput}, mk:getPlasmatic};
+		
+		data.producerData["meteorite"][0] = {cost:{"lunarite":printerLunariteCost, "silicon":printerSiliconCost}, prod:printerOutput, cons:{"plasma":printerPlasmaInput}, mk:getPrinter};
+		data.producerData["meteorite"][1] = {cost:{"lunarite":webLunariteCost "silicon":webSiliconCost, "uranium":webUraniumCost}, prod:webOutput, cons:{"plasma":webPlasmaInput}, mk:getWeb};
 		
 		// Scores
 		for (var key in data.producerData)
@@ -248,12 +252,12 @@ Script.data = (function(){
 			var maxScore = 0;
 			for (id = 0; id < Script.machineTier; id++)
 			{
+				if (key in Script.tier && id == Script.tier[key]) {break;}
+				
 				var building = data.producerData[key][id];
 				var result = data.resourceScore(building, key);
 				if (result.score > maxScore) {maxScore = result.score;}
 				data.producerScore[key].result[id] = result;
-				
-				if (key === "rocketFuel" && id == Script.fuelTier) {break;}
 			}
 			data.producerScore[key].maxScore = maxScore;
 			
@@ -265,14 +269,11 @@ Script.data = (function(){
 		for (var key in data.producerData)
 		{
 			data.maxProd += getProduction(key);
-			if (key === "rocketFuel")
+			for (id = 0; id < Script.machineTier; id++)
 			{
-				var building = data.producerData[key][Script.fuelTier - 1];
-				for (resource in building.cons) {Script.cons.addCons(Script.cons, resource, building.cons[resource] * 4);}
-			}
-			else
-			{
-				var building = data.producerData[key][Script.machineTier - 1];
+				if (key in Script.tier && id == Script.tier[key]) {break;}
+				
+				var building = data.producerData[key][id];
 				for (resource in building.cons)
 				{
 					if (resource === "energy")
@@ -282,7 +283,9 @@ Script.data = (function(){
 					}
 					else
 					{
-						Script.cons.addCons(Script.cons, resource, building.cons[resource] * 4);
+						var drain = building.cons[resource] / 1000 + data.producerScore[key][id].time / 2400;
+						var bCons = building.cons[resource] * (1.2 + 2.8 * Math.pow(2, -drain);
+						Script.cons.addCons(Script.cons, resource, bCons);
 					}
 				}
 			}
