@@ -239,7 +239,7 @@ Script.data = (function(){
 		data.producerData["ice"][2] = {cost:{"lunarite":freezerLunariteCost, "titanium":freezerTitaniumCost, "silicon":freezerSiliconCost}, prod:freezerOutput, cons:{"energy":freezerEnergyInput}, mk:getFreezer};
 		
 		data.producerData["plasma"][0] = {cost:{"lunarite":heaterLunariteCost, "gem":heaterGemCost, "silicon":heaterSiliconCost}, prod:heaterOutput, cons:{"energy":heaterEnergyInput, "hydrogen":heaterHydrogenInput}, mk:getHeater};
-		data.producerData["plasma"][1] = {cost:{"lunarite":plasmaticLunariteCost "silicon":plasmaticSiliconCost, "meteorite":plasmaticMeteoriteCost}, prod:plasmaticOutput, cons:{"energy":plasmaticEnergyInput, "helium":plasmaticHeliumInput}, mk:getPlasmatic};
+		data.producerData["plasma"][1] = {cost:{"lunarite":plasmaticLunariteCost, "silicon":plasmaticSiliconCost, "meteorite":plasmaticMeteoriteCost}, prod:plasmaticOutput, cons:{"energy":plasmaticEnergyInput, "helium":plasmaticHeliumInput}, mk:getPlasmatic};
 		
 		data.producerData["meteorite"][0] = {cost:{"lunarite":printerLunariteCost, "silicon":printerSiliconCost}, prod:printerOutput, cons:{"plasma":printerPlasmaInput}, mk:getPrinter};
 		data.producerData["meteorite"][1] = {cost:{"lunarite":webLunariteCost "silicon":webSiliconCost, "uranium":webUraniumCost}, prod:webOutput, cons:{"plasma":webPlasmaInput}, mk:getWeb};
