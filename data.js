@@ -23,7 +23,8 @@ Script.data = (function(){
 	instance.producerData["uranium"] = [{}, {}, {}];
 	instance.producerData["lava"] = [{}, {}, {}];
 	instance.producerData["ice"] = [{}, {}, {}];
-	instance.producerData["meteorite"] = [{}, {}, {}];
+	instance.producerData["plasma"] = [{}, {}];
+	instance.producerData["meteorite"] = [{}, {}];
 	
 	instance.producerScore = {};
 	instance.producerScore["metal"] = {result:[{}, {}, {}], maxScore:0};
