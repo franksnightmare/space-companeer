@@ -284,9 +284,17 @@ Script.data = (function(){
 					}
 					else
 					{
-						var drain = building.cons[resource] / 1000 + data.producerScore[key][id].time / 2400;
-						var bCons = building.cons[resource] * (1.2 + 2.8 * Math.pow(2, -drain));
-						Script.cons.addCons(Script.cons, resource, bCons);
+						if (data.producerScore[key][id])
+						{
+							var drain = building.cons[resource] / 1000 + data.producerScore[key][id].time / 2400;
+							var bCons = building.cons[resource] * (1.2 + 2.8 * Math.pow(2, -drain));
+							Script.cons.addCons(Script.cons, resource, bCons);
+						}
+						else
+						{
+							var bCons = building.cons[resource] * (1.2 + 2.8 * Math.pow(2, -building.cons[resource] / 500));
+							Script.cons.addCons(Script.cons, resource, bCons);
+						}
 					}
 				}
 			}
