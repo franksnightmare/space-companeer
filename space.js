@@ -46,11 +46,15 @@ Script.space = (function(){
 				}
 				else {counter = 0;}
 				
-				if (key === "rocket" && metal >= place.requirements["metal"] && gem >= place.requirements["gem"] && oil >= place.requirements["oil"]) {getRocket(); canGo = true;}
-				else if (key === "launch" && getResource("rocketFuel") >= place.requirements["rocketFuel"]) {launchRocket(); canGo = true;}
-				else if (getResource("rocketFuel") >= place.requirements["rocketFuel"]) {explore(key); canGo = true;}
+				if (!cango)
+				{
+					if (key === "rocket" && metal >= place.requirements["metal"] && gem >= place.requirements["gem"] && oil >= place.requirements["oil"]) {getRocket(); canGo = true;}
+					else if (key === "launch" && getResource("rocketFuel") >= place.requirements["rocketFuel"]) {launchRocket(); canGo = true;}
+					else if (getResource("rocketFuel") >= place.requirements["rocketFuel"]) {explore(key); canGo = true;}
+				}
 				
-				if (canGo) {
+				if (canGo)
+				{
 					self.milestones[key].done = true;
 					self.unlockPlaces(self, place.unlocks);
 					
