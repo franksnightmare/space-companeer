@@ -310,8 +310,8 @@ Script.data = (function(){
 		
 		if (!Script.plasmaOn)
 		{
-			for (id = 0; id < Script.tier["plasma"]) {data.producerScore["plasma"].result[id].canBuild = false;}
-			for (id = 0; id < Script.tier["meteorite"]) {data.producerScore["meteorite"].result[id].canBuild = false;}
+			for (id = 0; id < Script.tier["plasma"]; id++) {data.producerScore["plasma"].result[id].canBuild = false;}
+			for (id = 0; id < Script.tier["meteorite"]; id++) {data.producerScore["meteorite"].result[id].canBuild = false;}
 		}
 	};
 	
