@@ -284,7 +284,7 @@ Script.data = (function(){
 					else
 					{
 						var drain = building.cons[resource] / 1000 + data.producerScore[key][id].time / 2400;
-						var bCons = building.cons[resource] * (1.2 + 2.8 * Math.pow(2, -drain);
+						var bCons = building.cons[resource] * (1.2 + 2.8 * Math.pow(2, -drain));
 						Script.cons.addCons(Script.cons, resource, bCons);
 					}
 				}
