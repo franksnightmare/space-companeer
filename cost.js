@@ -43,6 +43,17 @@ Script.cost = (function(){
 				}
 			}
 		}
+		
+		if (self.counter["metal"] && self.counter["lunarite"])
+		{
+			var c1 = self.counter["metal"];
+			var c2 = self.counter["lunarite"];
+			if (self["metal"] / c1 < self["lunarite"] / c2)
+			{
+				self.addCost(self, "metal", self["lunarite"]);
+				self.counter["metal"] = 1;
+			}
+		}
 	};
 	
 	instance.itterate = function(self)

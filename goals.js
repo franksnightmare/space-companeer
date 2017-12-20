@@ -55,8 +55,6 @@ Script.goals = (function(){
 				if (request > self[key].amount) {self[key].amount = request; self[key].type = "cost";}
 			}
 		}
-		
-		if (self["lunarite"] > self["metal"]) {self["metal"] = self["lunarite"];}
 	};
 	
 	instance.build = function()
