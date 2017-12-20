@@ -46,7 +46,7 @@ Script.space = (function(){
 				}
 				else {counter = 0;}
 				
-				if (!cango)
+				if (!canGo)
 				{
 					if (key === "rocket" && metal >= place.requirements["metal"] && gem >= place.requirements["gem"] && oil >= place.requirements["oil"]) {getRocket(); canGo = true;}
 					else if (key === "launch" && getResource("rocketFuel") >= place.requirements["rocketFuel"]) {launchRocket(); canGo = true;}
