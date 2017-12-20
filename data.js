@@ -242,7 +242,7 @@ Script.data = (function(){
 		data.producerData["plasma"][1] = {cost:{"lunarite":plasmaticLunariteCost, "silicon":plasmaticSiliconCost, "meteorite":plasmaticMeteoriteCost}, prod:plasmaticOutput, cons:{"energy":plasmaticEnergyInput, "helium":plasmaticHeliumInput}, mk:getPlasmatic};
 		
 		data.producerData["meteorite"][0] = {cost:{"lunarite":printerLunariteCost, "silicon":printerSiliconCost}, prod:printerOutput, cons:{"plasma":printerPlasmaInput}, mk:getPrinter};
-		data.producerData["meteorite"][1] = {cost:{"lunarite":webLunariteCost "silicon":webSiliconCost, "uranium":webUraniumCost}, prod:webOutput, cons:{"plasma":webPlasmaInput}, mk:getWeb};
+		data.producerData["meteorite"][1] = {cost:{"lunarite":webLunariteCost, "silicon":webSiliconCost, "uranium":webUraniumCost}, prod:webOutput, cons:{"plasma":webPlasmaInput}, mk:getWeb};
 		
 		// Scores
 		for (var key in data.producerData)
