@@ -85,26 +85,12 @@ Script.data = (function(){
 		}
 		maxScore = 0;
 		var target = 0;
-		if (resource in Script.tier)
+		for (id = 0; id < Script.machineTier; id++)
 		{
-			for (id in data.producerData[resource])
-			{
-				var result = data.producerScore[resource].result[id];
-				if (result.score > maxScore && result.canBuild) {maxScore = result.score; target = id;}
-				
-				
-			}
-		}
-		else
-		{
+			if (id in Script.tier && id == Script.tier[resource]) {break;}
 			
-			for (id = 0; id < Script.machineTier; id++)
-			{
-				if (id in Script.tier && id == Script.tier[resource]) {break;}
-				
-				var result = data.producerScore[resource].result[id];
-				if (result.score > maxScore && result.canBuild) {maxScore = result.score; target = id;}
-			}
+			var result = data.producerScore[resource].result[id];
+			if (result.score > maxScore && result.canBuild) {maxScore = result.score; target = id;}
 		}
 		
 		if (!(resource in data.producerScore)) {return;}
