@@ -80,7 +80,6 @@ Script.cost = (function(){
 				}
 			}
 		}
-		// TODO, add resource thing and loop over all producing buildings, add to cost
 	}
 	
 	return instance;
