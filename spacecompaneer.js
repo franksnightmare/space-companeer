@@ -14,6 +14,8 @@ var Script = (function() {
 	instance.tier["meteorite"] = 0;
 	instance.tier["battery"] = 0;
 	
+	instance.plasmaOn = false;
+	
 	instance.spaceCompaneer = function()
 	{
 		Script.upgradeStorage();

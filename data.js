@@ -150,7 +150,7 @@ Script.data = (function(){
 		if (Script.goals[target] === "urgent")
 		{
 			var consOk = true;
-			for (key in building.cons) {if (getProduction(key) < 0) {consOk = false;}}
+			for (key in building.cons) {if (getProduction(key) <= 0) {consOk = false;}}
 			if (consOk) {result.canBuild = true;}
 		}
 		
@@ -302,6 +302,17 @@ Script.data = (function(){
 			if (key === data.producerColumn) {break;}
 		}
 		Script.energy.max = maxEnergy;
+		
+		if ((heater + plasmatic) && getProduction("plasma") <= 0 && Script.plasmaOn)
+		{
+			Script.plasmaOn = false;
+		}
+		
+		if (!Script.plasmaOn)
+		{
+			for (id = 0; id < Script.tier["plasma"]) {data.producerScore["plasma"].result[id].canBuild = false;}
+			for (id = 0; id < Script.tier["meteorite"]) {data.producerScore["meteorite"].result[id].canBuild = false;}
+		}
 	};
 	
 	return instance;
