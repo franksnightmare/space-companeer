@@ -307,6 +307,10 @@ Script.data = (function(){
 		{
 			Script.plasmaOn = false;
 		}
+		if ((printer + web) && getProduction("meteorite") <= 0 && Script.plasmaOn)
+		{
+			Script.plasmaOn = false;
+		}
 		
 		if (!Script.plasmaOn)
 		{
