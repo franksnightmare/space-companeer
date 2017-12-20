@@ -10,10 +10,10 @@ Script.wonders = (function(){
 	instance.wonders["energetic2"] = {cost:{"wood":30000, "charcoal":15000, "uranium":500}, available:false, done:false, mk:activateEnergeticWonder, unlocks:[], consequences:function(){Script.data.producerColumn = "lava"; Script.energyTier = 6;}, skip:function(){return Game.statistics.entries.wondersActivated.value >= 3;}};
 	instance.wonders["tech1"] = {cost:{"gem":40000, "silicon":30000, "gold":18000}, available:true, done:false, mk:achieveTechWonder, unlocks:["tech2"], consequences:function(){}, skip:function(){return Game.statistics.entries.wondersBuilt.value >= 3;}};
 	instance.wonders["tech2"] = {cost:{"gem":60000, "silicon":50000, "gold":30000}, available:false, done:false, mk:activateTechWonder, unlocks:[], consequences:function(){Script.machineTier = 3;}, skip:function(){return Game.statistics.entries.wondersActivated.value >= 3;}};
-	instance.wonders["plasma"] = {cost:{"hydrogen":1500, "uranium":1500, "oil":15000, "wood":15000}, available:false, done:false, mk:unlockPlasmaResearch(), unlocks:[], consequences:function(){}, skip:function(){return false;}};
-	instance.wonders["emc"] = {cost:{"energy":75000, "plasma":100}, available:false, done:false, mk:unlockPlasmaResearch(), unlocks:[], consequences:function(){Script.science.techs["unlockEmc"].available = true;}, skip:function(){return false;}};
-	instance.wonders["meteorite1"] = {cost:{"meteorite":5000, "ice":600000, "silicon":1200000}, available:true, done:false, mk:achieveTechWonder, unlocks:["meteorite2"], consequences:function(){}, skip:function(){return Game.statistics.entries.wondersBuilt.value >= 4;}};
-	instance.wonders["meteorite2"] = {cost:{"meteorite":10000, "ice":2000000, "silicon":4000000}, available:false, done:false, mk:activateTechWonder, unlocks:[], consequences:function(){}, skip:function(){return Game.statistics.entries.wondersActivated.value >= 4;}};
+	instance.wonders["plasma"] = {cost:{"hydrogen":1500, "uranium":1500, "oil":15000, "wood":15000}, available:false, done:false, mk:unlockPlasmaResearch, unlocks:[], consequences:function(){}, skip:function(){return false;}};
+	instance.wonders["emc"] = {cost:{"energy":75000, "plasma":100}, available:false, done:false, mk:unlockEmcResearch, unlocks:[], consequences:function(){Script.science.techs["unlockEmc"].available = true;}, skip:function(){return false;}};
+	instance.wonders["meteorite1"] = {cost:{"meteorite":5000, "ice":600000, "silicon":1200000}, available:true, done:false, mk:achieveMeteoriteWonder, unlocks:["meteorite2"], consequences:function(){}, skip:function(){return Game.statistics.entries.wondersBuilt.value >= 4;}};
+	instance.wonders["meteorite2"] = {cost:{"meteorite":10000, "ice":2000000, "silicon":4000000}, available:false, done:false, mk:activateMeteoriteWonder, unlocks:[], consequences:function(){}, skip:function(){return Game.statistics.entries.wondersActivated.value >= 4;}};
 	
 	instance.update = function(self)
 	{

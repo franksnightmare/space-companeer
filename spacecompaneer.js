@@ -12,6 +12,7 @@ var Script = (function() {
 	instance.tier["rocketFuel"] = 0;
 	instance.tier["plasma"] = 0;
 	instance.tier["meteorite"] = 0;
+	instance.tier["battery"] = 0;
 	
 	instance.spaceCompaneer = function()
 	{
