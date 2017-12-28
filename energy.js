@@ -38,7 +38,7 @@ Script.energy = (function(){
 	
 	instance.build = function(self)
 	{
-		if (Game.tech.isUnlocked("unlockDyson") && Game.statistics.entries.wondersActivated.value >= 4) {self.dyson.build();}
+		if (Game.tech.isUnlocked("unlockDyson") && Game.statistics.entries.wondersActivated.value >= 4) {self.dyson.build(self.dyson);}
 		
 		var highest = 0;
 		var highId = 0;
