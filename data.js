@@ -271,7 +271,7 @@ Script.data = (function(){
 		data.producerData["lava"][0] = {cost:{"lunarite":crucibleLunariteCost, "gem":crucibleGemCost}, prod:crucibleOutput, cons:{}, mk:getCrucible};
 		data.producerData["lava"][1] = {cost:{"lunarite":extractorLunariteCost, "titanium":extractorTitaniumCost, "silicon":extractorSiliconCost}, prod:extractorOutput, cons:{"energy":extractorEnergyInput}, mk:getExtractor};
 		data.producerData["lava"][2] = {cost:{"lunarite":extruderLunariteCost, "titanium":extruderTitaniumCost, "silicon":extruderSiliconCost}, prod:extruderOutput, cons:{"energy":extruderEnergyInput}, mk:getExtruder};
-		data.producerData["lava"][3] = {cost:{"lunarite":veluptuatorLunariteCost, "gold":veluptuatorGoldCost, "meteorite":veluptuatorMeteoriteCostCost}, prod:veluptuatorOutput, cons:{"energy":veluptuatorEnergyInput}, mk:getVeluptuator};
+		data.producerData["lava"][3] = {cost:{"lunarite":veluptuatorLunariteCost, "gold":veluptuatorGoldCost, "meteorite":veluptuatorMeteoriteCost}, prod:veluptuatorOutput, cons:{"energy":veluptuatorEnergyInput}, mk:getVeluptuator};
 		
 		data.producerData["ice"][0] = {cost:{"lunarite":icePickLunariteCost, "gem":icePickGemCost}, prod:icePickOutput, cons:{}, mk:getIcePick};
 		data.producerData["ice"][1] = {cost:{"lunarite":iceDrillLunariteCost, "titanium":iceDrillTitaniumCost, "silicon":iceDrillSiliconCost}, prod:iceDrillOutput, cons:{"energy":iceDrillEnergyInput}, mk:getIceDrill};
