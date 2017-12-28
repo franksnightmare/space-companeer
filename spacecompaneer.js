@@ -45,9 +45,9 @@ var Script = (function() {
 		
 		Script.cost.itterate(Script.cost);
 		Script.cost.itterate(Script.cost);
-		//Script.cost.itterate(Script.cost);
-		//Script.cost.itterate(Script.cost);
-		//Script.cost.itterate(Script.cost);
+		Script.cost.itterate(Script.cost);
+		Script.cost.itterate(Script.cost);
+		Script.cost.itterate(Script.cost);
 		
 		Script.goals.setGoals(Script.goals)
 		
