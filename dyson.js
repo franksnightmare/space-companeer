@@ -74,12 +74,15 @@ Script.energy.dyson = (function(){
 	
 	instance.build = function(self)
 	{
-		buildDysonTo(250);
-		building = self.data[self.target];
-		if (dyson >= building.cost["part"] && getResource("rocketFuel") > building.cost.rocketFuel)
+		if (target >= 0)
 		{
-			building.mk();
-			self.setTarget(self);
+			buildDysonTo(250);
+			building = self.data[self.target];
+			if (dyson >= building.cost["part"] && getResource("rocketFuel") > building.cost.rocketFuel)
+			{
+				building.mk();
+				self.setTarget(self);
+			}
 		}
 	};
 	
