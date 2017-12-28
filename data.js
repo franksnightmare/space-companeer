@@ -187,7 +187,7 @@ Script.data = (function(){
 		data.producerScore = {};
 		for (key in data.producerData)
 		{
-			data.producerScore[key] = {result:[{}, {}, {}], maxScore:0};
+			data.producerScore[key] = {result:[{}, {}, {}, {}], maxScore:0};
 		}
 	};
 	
