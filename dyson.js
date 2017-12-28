@@ -47,7 +47,7 @@ Script.energy.dyson = (function(){
 			for (key in cost)
 			{
 				//Script.cons.addCons(Script.cons, key, Script.energy.max * self.score[id].score * cost[key] / (3600 * Script.energy.maxScore));
-				Script.cost.addCost(Script.cost, key, Script.energy.max * self.score[id].score * cost[key] / Script.energy.maxScore);
+				Script.cost.addCost(Script.cost, key, 3600 * Script.energy.max * self.score[id].score * cost[key] / Script.energy.maxScore);
 			} 
 		}
 	};
