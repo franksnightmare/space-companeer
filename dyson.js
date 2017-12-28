@@ -37,7 +37,7 @@ Script.energy.dyson = (function(){
 		self.data[1] = {cost:{"part":100, "rocketFuel":250000}, prod:swarmOutput, mk:buildSwarm};
 		self.data[2] = {cost:{"part":250, "rocketFuel":1000000}, prod:sphereOutput, mk:buildSphere};
 		
-		if (self.maxScore = 0) {self.setTarget(self);}
+		if (self.maxScore == 0) {self.setTarget(self);}
 		
 		for (id = 0; id < 3; id++)
 		{
