@@ -35,10 +35,10 @@ var Script = (function() {
 		if (Script.data.producerColumn === "silicon") {Script.cons.addCons(Script.cons, "lunarite", 50); Script.cons.addCons(Script.cons, "titanium", 50);}
 		if (Script.energyTier >= 4) {Script.cons.addCons(Script.cons, "rocketFuel", 5);}
 		//if (Script.tier["plasma"] >= 1) {Script.cons.addCons(Script.cons, "plasma", 6);}
-		if (Script.tier["meteorite"] >= 1) {Script.energy.dyson.update(Script.energy.dyson);}
 		
-		Script.data.update(Script.data);
 		Script.energy.update(Script.energy);
+		if (Script.tier["meteorite"] >= 1) {Script.energy.dyson.update(Script.energy.dyson);}
+		Script.data.update(Script.data);
 		Script.science.update(Script.science);
 		
 		Script.cost.addCons(Script.cost);

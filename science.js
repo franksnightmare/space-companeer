@@ -31,7 +31,8 @@ Script.science = (function(){
 	instance.techs["unlockMeteorite"] = {available:false, done:false, unlocks:["unlockMeteoriteTier1"], consequences:function(){}};
 	instance.techs["unlockMeteoriteTier1"] = {available:false, done:false, unlocks:["unlockMeteoriteTier2"], consequences:function(){Script.data.unlockResource(Script.data, "meteorite"); Script.wonders.wonders["meteorite1"].available = true; Script.tier["meteorite"] = 1;}};
 	instance.techs["unlockMeteoriteTier2"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["meteorite"] = 2;}};
-	instance.techs["unlockDyson"] = {available:false, done:false, unlocks:[], consequences:function(){}};
+	instance.techs["unlockDyson"] = {available:false, done:false, unlocks:["unlockDysonSphere"], consequences:function(){}};
+	instance.techs["unlockDysonSphere"] = {available:false, done:false, unlocks:[], consequences:function(){}};
 	instance.techs["unlockRocketFuelT3"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["rocketFuel"] = 3;}};
 	instance.techs["unlockLabT4"] = {available:false, done:false, unlocks:[], consequences:function(){Script.labTier = 4;}};
 	instance.techs["unlockPSU"] = {available:false, done:false, unlocks:["unlockPSUT2"], consequences:function(){Script.tier["plasmaStorage"] = 1;}};
