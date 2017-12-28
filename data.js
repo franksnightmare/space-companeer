@@ -57,7 +57,20 @@ Script.data = (function(){
 		{
 			if (Script.goals[key].amount)
 			{
-				var diff = (Script.goals[key].amount - getProduction(key)) / Script.goals[key].amount;
+				var production = 0;
+				if (key === plasma)
+				{
+					var mult = (1 + Game.tech.getTechData('efficiencyResearch').current * 0.01);
+					production = heater * heaterOutput * mult;
+					production += plasmatic * plasmaticOutput * mult;
+					production -= printer * printerPlasmaInput;
+					production -= web * webPlasmaInput;
+				}
+				else
+				{
+					production = getProduction(key);
+				}
+				var diff = (Script.goals[key].amount - production) / Script.goals[key].amount;
 				var score = Math.pow(2, diff);
 				if (diff >= 0 && Script.goals[key].type === "cons") {score *= 1.1;}
 				if (diff >= 0 && Script.goals[key].type === "urgent") {score *= 1.4;}
