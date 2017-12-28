@@ -157,7 +157,7 @@ Script.data = (function(){
 		return result;
 	};
 	
-	instance.unlockResource(data, resource)
+	instance.unlockResource = function(data, resource)
 	{
 		var counter = 0;
 		var previous = 0;
