@@ -11,8 +11,8 @@ Script.energy.dyson = (function(){
 	instance.getScore = function(self, dysonPart)
 	{
 		var result = {time:0, score:0, cost:{}, canBuild:true};
-		var cost = self.cost(dysonPart.cost.part);
-		cost["rocketFuel"] = dysonPart.cost.rocketFuel;
+		var cost = self.cost(dysonPart.cost["part"]);
+		cost["rocketFuel"] = dysonPart.cost["rocketFuel"];
 		
 		for (key in cost)
 		{
@@ -41,8 +41,7 @@ Script.energy.dyson = (function(){
 		
 		for (id = 0; id < 3; id++)
 		{
-			var cost = self.data[id].cost;
-			cost["rocketFuel"] = self.data[id].cost.rocketFuel;
+			var cost = self.score[id].cost;
 			for (key in cost)
 			{
 				Script.cost.addCost(Script.cost, key, Script.energy.max * self.score[id].score * cost[key] / self.maxScore);

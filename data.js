@@ -266,7 +266,7 @@ Script.data = (function(){
 		data.producerData["uranium"][0] = {cost:{"lunarite":grinderLunariteCost, "titanium":grinderTitaniumCost, "gold":grinderGoldCost}, prod:grinderOutput, cons:{}, mk:getGrinder};
 		data.producerData["uranium"][1] = {cost:{"oil":cubicOilCost, "lunarite":cubicLunariteCost, "uranium":cubicUraniumCost}, prod:cubicOutput, cons:{"energy":cubicEnergyInput}, mk:getCubic};
 		data.producerData["uranium"][2] = {cost:{"lunarite":enricherLunariteCost, "titanium":enricherTitaniumCost, "silicon":enricherSiliconCost}, prod:enricherOutput, cons:{"energy":enricherEnergyInput}, mk:getEnricher};
-		data.producerData["uranium"][3] = {cost:{"lunarite":recyclerLunariteCost, "methane":recyclerMethaneCost, "meteprote":recyclerMeteoriteCost}, prod:recyclerOutput, cons:{"energy":recyclerEnergyInput}, mk:getRecycler};
+		data.producerData["uranium"][3] = {cost:{"lunarite":recyclerLunariteCost, "methane":recyclerMethaneCost, "meteorite":recyclerMeteoriteCost}, prod:recyclerOutput, cons:{"energy":recyclerEnergyInput}, mk:getRecycler};
 		
 		data.producerData["lava"][0] = {cost:{"lunarite":crucibleLunariteCost, "gem":crucibleGemCost}, prod:crucibleOutput, cons:{}, mk:getCrucible};
 		data.producerData["lava"][1] = {cost:{"lunarite":extractorLunariteCost, "titanium":extractorTitaniumCost, "silicon":extractorSiliconCost}, prod:extractorOutput, cons:{"energy":extractorEnergyInput}, mk:getExtractor};

@@ -73,15 +73,22 @@ var Script = (function() {
 		}
 	};
 	
-	instance.waitMore = function()
+	instance.waitEvenMore = function()
 	{
 		instance.boosterino_t = setInterval(instance.boosterino, 1000);
+	};
+	
+	instance.waitMore = function()
+	{
+		setTimeout(instance.waitEvenMore, 1000);
+		
+		document.head.appendChild(document.createElement('script')).src = SC_base + 'dyson.js';
 	};
 	
 	instance.init = function()
 	{
 		console.log("Space Companeer: Starting Space Companeer...");
-		setTimeout(instance.waitMore, 2000);
+		setTimeout(instance.waitMore, 1000);
 		
 		document.head.appendChild(document.createElement('script')).src = SC_base + 'energy.js';
 		document.head.appendChild(document.createElement('script')).src = SC_base + 'utils.js';
@@ -93,7 +100,6 @@ var Script = (function() {
 		document.head.appendChild(document.createElement('script')).src = SC_base + 'wonder.js';
 		document.head.appendChild(document.createElement('script')).src = SC_base + 'cost.js';
 		document.head.appendChild(document.createElement('script')).src = SC_base + 'consumption.js';
-		document.head.appendChild(document.createElement('script')).src = SC_base + 'dyson.js';
 	};
 	
 	return instance;
