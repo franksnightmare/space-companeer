@@ -1,4 +1,4 @@
-console.log("Space Companeer: Loading Energy Handler");
+console.log("Space Companeer: Loading Dyson Handler");
 
 Script.energy.dyson = (function(){
 	instance = {};
@@ -8,7 +8,7 @@ Script.energy.dyson = (function(){
 	instance.data = [{}, {}, {}];
 	instance.score = [{}, {}, {}];
 	
-	instance.getScore(self, dysonPart)
+	instance.getScore = function(self, dysonPart)
 	{
 		var result = {time:0, score:0, cost:{}, canBuild:true};
 		var cost = self.cost(dysonPart.cost.part);
@@ -31,7 +31,7 @@ Script.energy.dyson = (function(){
 		return result;
 	};
 	
-	instance.update(self)
+	instance.update = function(self)
 	{
 		self.data[0] = {cost:{"part":50, "rocketFuel":50000}, prod:ringOutput, mk:buildRing};
 		self.data[1] = {cost:{"part":100, "rocketFuel":250000}, prod:swarmOutput, mk:buildSwarm};
@@ -50,7 +50,7 @@ Script.energy.dyson = (function(){
 		}
 	};
 	
-	instance.setTarget(self)
+	instance.setTarget = function(self)
 	{
 		self.maxScore = 0;
 		
