@@ -58,7 +58,7 @@ Script.data = (function(){
 			if (Script.goals[key].amount)
 			{
 				var production = 0;
-				if (key === plasma)
+				if (key === "plasma")
 				{
 					var mult = (1 + Game.tech.getTechData('efficiencyResearch').current * 0.01);
 					production = heater * heaterOutput * mult;
