@@ -93,6 +93,7 @@ var Script = (function() {
 		document.head.appendChild(document.createElement('script')).src = SC_base + 'cost.js';
 		document.head.appendChild(document.createElement('script')).src = SC_base + 'consumption.js';
 		document.head.appendChild(document.createElement('script')).src = SC_base + 'energy.js';
+		document.head.appendChild(document.createElement('script')).src = SC_base + 'dyson.js';
 	};
 	
 	return instance;
