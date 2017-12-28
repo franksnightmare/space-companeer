@@ -276,7 +276,7 @@ Script.data = (function(){
 		data.producerData["ice"][0] = {cost:{"lunarite":icePickLunariteCost, "gem":icePickGemCost}, prod:icePickOutput, cons:{}, mk:getIcePick};
 		data.producerData["ice"][1] = {cost:{"lunarite":iceDrillLunariteCost, "titanium":iceDrillTitaniumCost, "silicon":iceDrillSiliconCost}, prod:iceDrillOutput, cons:{"energy":iceDrillEnergyInput}, mk:getIceDrill};
 		data.producerData["ice"][2] = {cost:{"lunarite":freezerLunariteCost, "titanium":freezerTitaniumCost, "silicon":freezerSiliconCost}, prod:freezerOutput, cons:{"energy":freezerEnergyInput}, mk:getFreezer};
-		data.producerData["ice"][3] = {cost:{"wood":mrFreezeWoodCost, "helium":mrFreezeHeliumCost, "meteorite":mrFreezeMeteoriteCost}, prod:mrFreezeOutput, cons:{"energy":mrFreezeEnergyInput}, mk:getmrFreeze};
+		data.producerData["ice"][3] = {cost:{"wood":mrFreezeWoodCost, "helium":mrFreezeHeliumCost, "meteorite":mrFreezeMeteoriteCost}, prod:mrFreezeOutput, cons:{"energy":mrFreezeEnergyInput}, mk:getMrFreeze};
 		
 		data.producerData["plasma"][0] = {cost:{"lunarite":heaterLunariteCost, "gem":heaterGemCost, "silicon":heaterSiliconCost}, prod:heaterOutput, cons:{"energy":heaterEnergyInput, "hydrogen":heaterHydrogenInput}, mk:getHeater};
 		data.producerData["plasma"][1] = {cost:{"lunarite":plasmaticLunariteCost, "silicon":plasmaticSiliconCost, "meteorite":plasmaticMeteoriteCost}, prod:plasmaticOutput, cons:{"energy":plasmaticEnergyInput, "helium":plasmaticHeliumInput}, mk:getPlasmatic};
