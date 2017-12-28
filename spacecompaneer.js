@@ -11,6 +11,7 @@ var Script = (function() {
 	instance.tier = {};
 	instance.tier["rocketFuel"] = 0;
 	instance.tier["plasma"] = 0;
+	instance.tier["plasmaStorage"] = 0;
 	instance.tier["meteorite"] = 0;
 	instance.tier["battery"] = 0;
 	
@@ -18,6 +19,8 @@ var Script = (function() {
 	
 	instance.spaceCompaneer = function()
 	{
+		Script.plasmaOn = true;
+		
 		Script.upgradeStorage();
 		
 		Script.cons.resetCons(Script.cons);
@@ -31,7 +34,8 @@ var Script = (function() {
 		if (Script.data.producerColumn === "methane") {Script.cons.addCons(Script.cons, "lunarite", 20);}
 		if (Script.data.producerColumn === "silicon") {Script.cons.addCons(Script.cons, "lunarite", 50); Script.cons.addCons(Script.cons, "titanium", 50);}
 		if (Script.energyTier >= 4) {Script.cons.addCons(Script.cons, "rocketFuel", 5);}
-		if (Script.tier["plasma"] >= 1) {Script.cons.addCons(Script.cons, "plasma", 6);}
+		//if (Script.tier["plasma"] >= 1) {Script.cons.addCons(Script.cons, "plasma", 6);}
+		if (Script.tier["meteorite"] >= 1) {Script.energy.dyson.update();}
 		
 		Script.data.update(Script.data);
 		Script.energy.update(Script.energy);

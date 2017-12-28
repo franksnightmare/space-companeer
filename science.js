@@ -9,12 +9,12 @@ Script.science = (function(){
 	
 	instance.techs = {};
 	instance.techs["unlockStorage"] = {available:true, done:false, unlocks:["unlockOil"], consequences:function(){}};
-	instance.techs["unlockBasicEnergy"] = {available:true, done:false, unlocks:["unlockSolar", "unlockMachines", "upgradeEngineTech"], consequences:function(){Script.data.producerColumn = "charcoal"; Script.energyTier = 1;}};
-	instance.techs["unlockOil"] = {available:false, done:false, unlocks:[], consequences:function(){Script.data.producerColumn = "oil"; Script.phase = 2;}};
+	instance.techs["unlockBasicEnergy"] = {available:true, done:false, unlocks:["unlockSolar", "unlockMachines", "upgradeEngineTech"], consequences:function(){Script.data.unlockResource(Script.data, "charcoal"); Script.energyTier = 1;}};
+	instance.techs["unlockOil"] = {available:false, done:false, unlocks:[], consequences:function(){Script.data.unlockResource(Script.data, "oil"); Script.phase = 2;}};
 	instance.techs["unlockSolar"] = {available:false, done:false, unlocks:["upgradeSolarTech"], consequences:function(){Script.energyTier = 2;}};
 	instance.techs["unlockMachines"] = {available:false, done:false, unlocks:["unlockDestruction", "unlockSolarSystem", "upgradeResourceTech"], consequences:function(){Script.machineTier = 2; Script.energy.energyPriority = 1;}};
 	instance.techs["unlockDestruction"] = {available:false, done:false, unlocks:[], consequences:function(){}};
-	instance.techs["unlockSolarSystem"] = {available:false, done:false, unlocks:["unlockLabT2", "unlockRocketFuelT2"], consequences:function(){Script.data.producerColumn = "rocketFuel"; Script.tier["rocketFuel"] = 1; Script.phase = 3;}};
+	instance.techs["unlockSolarSystem"] = {available:false, done:false, unlocks:["unlockLabT2", "unlockRocketFuelT2"], consequences:function(){Script.data.unlockResource(Script.data, "rocketFuel"); Script.tier["rocketFuel"] = 1; Script.phase = 3;}};
 	instance.techs["upgradeResourceTech"] = {available:false, done:false, unlocks:[], consequences:function(){}};
 	instance.techs["unlockLabT2"] = {available:false, done:false, unlocks:["unlockLabT3"], consequences:function(){Script.labTier = 2;}};
 	instance.techs["upgradeEngineTech"] = {available:false, done:false, unlocks:[], consequences:function(){}};
@@ -25,16 +25,19 @@ Script.science = (function(){
 	instance.techs["unlockBatteriesT2"] = {available:false, done:false, unlocks:["unlockBatteriesT3"], consequences:function(){Script.tier["battery"] = 2;}};
 	instance.techs["unlockBatteriesT3"] = {available:false, done:false, unlocks:["unlockBatteriesT4"], consequences:function(){Script.tier["battery"] = 3;}};
 	instance.techs["unlockBatteriesT4"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["battery"] = 4;}};
-	instance.techs["unlockPlasma"] = {available:false, done:false, unlocks:["unlockPlasmaTier2", "energyEfficiencyResearch"], consequences:function(){Script.data.producerColumn = "plasma"; Script.tier["plasma"] = 1;}};
+	instance.techs["unlockPlasma"] = {available:false, done:false, unlocks:["unlockPlasmaTier2", "unlockPSU"], consequences:function(){Script.data.unlockResource(Script.data, "plasma"); Script.wonders.wonders["emc"].available = true; Script.wonders.wonders["dyson"].available = true; Script.tier["plasma"] = 1;}};
 	instance.techs["unlockPlasmaTier2"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["plasma"] = 2;}};
-	instance.techs["unlockEmc"] = {available:false, done:false, unlocks:["unlockMeteorite"], consequences:function(){}};
+	instance.techs["unlockEmc"] = {available:false, done:false, unlocks:["unlockMeteorite", "energyEfficiencyResearch", "scienceEfficiencyResearch"], consequences:function(){}};
 	instance.techs["unlockMeteorite"] = {available:false, done:false, unlocks:["unlockMeteoriteTier1"], consequences:function(){}};
-	instance.techs["unlockMeteoriteTier1"] = {available:false, done:false, unlocks:["unlockMeteoriteTier2"], consequences:function(){Script.data.producerColumn = "meteorite"; Script.wonders.wonders["meteorite1"].available = true; Script.tier["meteorite"] = 1;}};
+	instance.techs["unlockMeteoriteTier1"] = {available:false, done:false, unlocks:["unlockMeteoriteTier2"], consequences:function(){Script.data.unlockResource(Script.data, "meteorite"); Script.wonders.wonders["meteorite1"].available = true; Script.tier["meteorite"] = 1;}};
 	instance.techs["unlockMeteoriteTier2"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["meteorite"] = 2;}};
+	instance.techs["unlockDyson"] = {available:false, done:false, unlocks:[], consequences:function(){}};
 	instance.techs["unlockRocketFuelT3"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["rocketFuel"] = 3;}};
-	instance.techs["unlockLabT4"] = {available:false, done:false, unlocks:["scienceEfficiencyResearch"], consequences:function(){Script.labTier = 4;}};
-	instance.techs["efficiencyResearch"] = {available:false, done:false, unlocks:[], consequences:function(){Script.science.techs["efficiencyResearch"].done = false; Script.goals.newTechs += 1;}};
+	instance.techs["unlockLabT4"] = {available:false, done:false, unlocks:[], consequences:function(){Script.labTier = 4;}};
+	instance.techs["unlockPSU"] = {available:false, done:false, unlocks:["unlockPSUT2"], consequences:function(){Script.tier["plasmaStorage"] = 1;}};
+	instance.techs["unlockPSUT2"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["plasmaStorage"] = 2;}};
 	instance.techs["energyEfficiencyResearch"] = {available:false, done:false, unlocks:[], consequences:function(){Script.science.techs["energyEfficiencyResearch"].done = false; Script.goals.newTechs += 1;}};
+	instance.techs["efficiencyResearch"] = {available:false, done:false, unlocks:[], consequences:function(){Script.science.techs["efficiencyResearch"].done = false; Script.goals.newTechs += 1;}};
 	instance.techs["scienceEfficiencyResearch"] = {available:false, done:false, unlocks:[], consequences:function(){Script.science.techs["scienceEfficiencyResearch"].done = false; Script.goals.newTechs += 1;}};
 	
 	instance.labScore = function(building)
@@ -53,7 +56,7 @@ Script.science = (function(){
 			var score = building.prod / time;
 			if (score > result.score) {result.score = score;}
 			
-			if (getResource(key) < building.cost[key] * 2) {result.canBuild = false;}
+			//if (getResource(key) < building.cost[key] * 2) {result.canBuild = false;}
 		}
 		
 		return result;

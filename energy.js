@@ -38,6 +38,8 @@ Script.energy = (function(){
 	
 	instance.build = function(self)
 	{
+		if (Game.tech.isUnlocked("unlockDyson") && Game.statistics.entries.wondersActivated.value >= 4) {self.dyson.build();}
+		
 		var highest = 0;
 		var highId = 0;
 		for (id = 0; id < Script.energyTier; id++)
