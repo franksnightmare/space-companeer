@@ -4,7 +4,7 @@ Script.energy.dyson = (function(){
 	instance = {};
 	
 	instance.maxScore = 0;
-	instance.target = 0;
+	instance.target = -1;
 	instance.data = [{}, {}, {}];
 	instance.score = [{}, {}, {}];
 	
@@ -24,7 +24,7 @@ Script.energy.dyson = (function(){
 			if (time > result.time) {result.time = time;}
 			result.cost[key] = cost[key] / dysonPart.prod;
 			
-			var score = dysonPart.prod / (time * time);
+			var score = dysonPart.prod / Math.pow(time, 1.1);
 			if (score < result.score || result.score == 0) {result.score = score;}
 		}
 		
@@ -37,22 +37,23 @@ Script.energy.dyson = (function(){
 		self.data[1] = {cost:{"part":100, "rocketFuel":250000}, prod:swarmOutput, mk:buildSwarm};
 		self.data[2] = {cost:{"part":250, "rocketFuel":1000000}, prod:sphereOutput, mk:buildSphere};
 		
-		if (self.maxScore == 0) {self.setTarget(self);}
+		if (self.target == -1) {self.setTarget(self);}
+		
+		for (id = 0; id < 3; id++) {var score = self.score[id].score; if (score > Script.energy.maxScore && self.score[id].canBuild) {Script.energy.maxScore = score; self.target = id;}}
 		
 		for (id = 0; id < 3; id++)
 		{
 			var cost = self.score[id].cost;
 			for (key in cost)
 			{
-				Script.cons.addCons(Script.cons, key, Script.energy.max * self.score[id].score * cost[key] / (3600 * self.maxScore));
+				//Script.cons.addCons(Script.cons, key, Script.energy.max * self.score[id].score * cost[key] / (3600 * Script.energy.maxScore));
+				Script.cost.addCost(Script.cost, key, Script.energy.max * self.score[id].score * cost[key] / Script.energy.maxScore);
 			} 
 		}
 	};
 	
 	instance.setTarget = function(self)
 	{
-		self.maxScore = 0;
-		
 		self.score[0] = self.getScore(self, self.data[0]);
 		self.score[1] = self.getScore(self, self.data[1]);
 		
@@ -62,7 +63,7 @@ Script.energy.dyson = (function(){
 		}
 		else {self.score[2] = {time:0, score:0, cost:{}, canBuild:false};}
 		
-		for (id = 0; id < 3; id++) {var score = self.score[id].score; if (score > self.maxScore && self.score[id].canBuild) {self.maxScore = score; self.target = id;}}
+		for (id = 0; id < 3; id++) {var score = self.score[id].score; if (score > Script.energy.maxScore && self.score[id].canBuild) {Script.energy.maxScore = score; self.target = id;}}
 	};
 	
 	instance.cost = function(parts)

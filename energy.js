@@ -23,7 +23,7 @@ Script.energy = (function(){
 			result.cost[key] = building.cost[key] / building.prod;
 			
 			var score = building.prod / time;
-			if (score > result.score) {result.score = score;}
+			if (score < result.score || result.score == 0) {result.score = score;}
 			
 			if (getStorage(key) < building.cost[key]) {result.canBuild = false;}
 		}
