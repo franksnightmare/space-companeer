@@ -137,7 +137,7 @@ Script.data = (function(){
 				var production = heater * heaterOutput * mult;
 				production += plasmatic * plasmaticOutput * mult;
 				production -= printer * printerPlasmaInput;
-				production -= web ( webPlasmaInput;
+				production -= web * webPlasmaInput;
 				if (production < building.cons[key] * (1.1 + 1.4 * Math.pow(2, -drain))) {result.canBuild = false;}
 			}
 			else {
