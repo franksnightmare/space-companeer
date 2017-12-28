@@ -32,9 +32,10 @@ Script.wonders = (function(){
 					
 					if (key === "plasma") {mult /= 4;}
 					if (key === "meteorite") {mult /= 16;}
-					if (key === "energy") {break;}
-					
-					Script.cons.addCons(Script.cons, key, Math.ceil(amount * mult));
+					if (key !== "energy")
+					{
+						Script.cons.addCons(Script.cons, key, Math.ceil(amount * mult));
+					}
 				}
 			}
 		}
