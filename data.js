@@ -207,7 +207,7 @@ Script.data = (function(){
 		data.producerData["wood"][0] = {cost:{"metal":woodcutterMetalCost, "wood":woodcutterWoodCost}, prod:woodcutterOutput, cons:{}, mk:getWoodcutter};
 		data.producerData["wood"][1] = {cost:{"metal":laserCutterMetalCost, "gem":laserCutterGemCost, "oil":laserCutterOilCost}, prod:laserCutterOutput, cons:{"energy":laserCutterEnergyInput}, mk:getLaserCutter};
 		data.producerData["wood"][2] = {cost:{"lunarite":deforesterLunariteCost, "titanium":deforesterTitaniumCost, "silicon":deforesterSiliconCost}, prod:deforesterOutput, cons:{"energy":deforesterEnergyInput}, mk:getDeforester};
-		data.producerData["wood"][3] = {cost:{"lunarite":infuserLunariteCost, "oil":infuserOilCost, "meteorite":infuserSiliconCost}, prod:infuserOutput, cons:{"energy":infuserEnergyInput}, mk:getInfuser};
+		data.producerData["wood"][3] = {cost:{"lunarite":infuserLunariteCost, "oil":infuserOilCost, "meteorite":infuserMeteoriteCost}, prod:infuserOutput, cons:{"energy":infuserEnergyInput}, mk:getInfuser};
 		
 		data.producerData["charcoal"][0] = {cost:{"metal":woodburnerMetalCost, "wood":woodburnerWoodCost}, prod:woodburnerOutput, cons:{"wood":woodburnerWoodInput}, mk:getWoodburner};
 		data.producerData["charcoal"][1] = {cost:{"metal":furnaceMetalCost, "wood":furnaceWoodCost, "oil":furnaceOilCost}, prod:furnaceOutput, cons:{"energy":furnaceEnergyInput, "wood":furnaceWoodInput}, mk:getFurnace};
