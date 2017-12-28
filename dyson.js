@@ -22,9 +22,9 @@ Script.energy.dyson = (function(){
 			// Cost is cost per energy unit
 			var time = cost[key] / prod;
 			if (time > result.time) {result.time = time;}
-			result.cost[key] = cost[key] / building.prod;
+			result.cost[key] = cost[key] / dysonPart.prod;
 			
-			var score = building.prod / (time * time);
+			var score = dysonPart.prod / (time * time);
 			if (score < result.score || result.score == 0) {result.score = score;}
 		}
 		
