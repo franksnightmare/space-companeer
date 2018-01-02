@@ -65,6 +65,7 @@ Script.wonders = (function(){
 			{
 				var canGo = true;
 				for (resource in wonder.cost) {if (getResource(resource) < wonder.cost[resource]) {canGo = false;}}
+				if (wonder.skip()) {canGo = true;}
 				
 				if (canGo) {
 					if (!wonder.skip()) {wonder.mk();}
