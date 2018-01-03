@@ -32,7 +32,7 @@ var Script = (function() {
 		if (Script.phase >= 4) {Script.wonders.update(Script.wonders); Script.cons.addCons(Script.cons, "lunarite", 100); Script.cons.addCons(Script.cons, "titanium", 100);}
 		if (Script.data.producerColumn === "lunarite") {Script.cons.addCons(Script.cons, "lunarite", 10);}
 		if (Script.data.producerColumn === "methane") {Script.cons.addCons(Script.cons, "lunarite", 20);}
-		if (Script.data.producerColumn === "silicon") {Script.cons.addCons(Script.cons, "lunarite", 50); Script.cons.addCons(Script.cons, "titanium", 50);}
+		if (Script.data.producerColumn === "silicon" || Script.data.producerColumn === "silver" || Script.data.producerColumn === "hydrogen" || Script.data.producerColumn === "helium") {Script.cons.addCons(Script.cons, "lunarite", 50); Script.cons.addCons(Script.cons, "titanium", 50);}
 		if (Script.energyTier >= 4) {Script.cons.addCons(Script.cons, "rocketFuel", 5);}
 		//if (Script.tier["plasma"] >= 1) {Script.cons.addCons(Script.cons, "plasma", 6);}
 		
