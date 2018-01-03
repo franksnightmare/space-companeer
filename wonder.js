@@ -41,7 +41,7 @@ Script.wonders = (function(){
 					var production = getProduction(key);
 					var cost = wonder.cost[key];
 					if (production <= 0) {rush = false;}
-					if (production < cost / 600) {rush = false;}
+					if (production * 600 > (cost - getResource(resource))) {rush = false;}
 				}
 				if (rush) {Script.goals.lockEverything(Script.goals);}
 			}
