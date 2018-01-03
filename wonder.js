@@ -43,7 +43,11 @@ Script.wonders = (function(){
 					if (production <= 0) {rush = false;}
 					if (production * 600 < (cost - getResource(resource))) {rush = false;}
 				}
-				if (rush) {Script.goals.lockEverything(Script.goals);}
+				if (rush)
+				{
+					Script.goals.lockEverything(Script.goals);
+					console.log("Wonder Rush in effect: " + id);
+				}
 			}
 		}
 	};
