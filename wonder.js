@@ -42,7 +42,7 @@ Script.wonders = (function(){
 					var cost = wonder.cost[key];
 					if (production <= 0) {rush = false;}
 					if (production * 240 < (cost - getResource(resource))) {rush = false;}
-					if (cost < getStorage(resource)) {rush = false;}
+					if (cost > getStorage(resource)) {rush = false;}
 				}
 				if (rush)
 				{
