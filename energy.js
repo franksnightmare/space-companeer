@@ -82,6 +82,12 @@ Script.energy = (function(){
 			if (self.maxScore) {addition *= (result.score / self.maxScore);}
 			for (key in building.cost) {Script.cost.addCost(Script.cost, key, addition * building.cost[key]);}
 		}
+		
+		var production = getProduction("energy");
+		if (production > 0) {
+			self.energyPriority = 2 * self.max / (2 * self.max + production);
+		}
+		else {self.energyPriority = 1;}
 	};
 	
 	return instance;

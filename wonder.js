@@ -25,6 +25,7 @@ Script.wonders = (function(){
 			var wonder = self.wonders[id]
 			if (wonder.available && !wonder.done)
 			{
+				var rush = true;
 				for (key in wonder.cost)
 				{
 					var mult = 1;
@@ -36,7 +37,13 @@ Script.wonders = (function(){
 					{
 						Script.cons.addCons(Script.cons, key, Math.ceil(amount * mult));
 					}
+					
+					var production = getProduction(key);
+					var cost = wonder.cost[key];
+					if (production <= 0) {rush = false;}
+					if (production < cost / 600) {rush = false;}
 				}
+				if (rush) {Script.goals.lockEverything(Script.goals);}
 			}
 		}
 	};

@@ -5,38 +5,17 @@ Script.goals = (function(){
 	
 	instance.newTechs = 2;
 	
-	/*
-	instance.updateProductionGoals = function(self)
+	instance.lock = {};
+	instance.lock["energy"] = false;
+	instance.lock["science"] = false;
+	instance.lock["resource"] = false;
+	
+	instance.lockEverything = function(self)
 	{
-		if (self.balance.energy != 0)
-		{
-			for (i = 0; i < Script.energyTier; i++)
-			{
-				var mod = 0.1;
-				if (i == Script.decisions.energyFocus.id) {mod = 1 - 0.1 * (Script.energyTier - 1);}
-				var energyBuilding = Script.data.energyData[i];
-				for (key in energyBuilding.cost)
-				{
-					var prod = getProduction(key);
-					if (prod < 1) {prod = 0.1;}
-					self.productionGoals[key] += mod * energyBuilding.cost[key] / (100*prod);
-				}
-				for (key in energyBuilding.cons) {self.productionGoals[key] += mod * energyBuilding.cons[key];}
-			}
-		}
-		
-		var labBuilding = Script.data.labData[Script.decisions.labFocus.id];
-		for (key in labBuilding.cost) {
-			var prod = getProduction(key);
-			if (prod < 1) {prod = 0.1;}
-			self.productionGoals[key] += 0.1 * self.balance["science"] * labBuilding.cost[key] / (100*prod);
-		}
-		
-		if (Script.phase == 1) {self.productionGoals["gem"] += 0.2;}
-		if (Script.phase == 2) {self.productionGoals["gem"] += 0.4; if (getProduction("rocketFuel") < 1) {self.productionGoals["rocketFuel"] += 1;}}
-		if (Script.phase == 3) {self.productionGoals["lunarite"] += 0.5; self.productionGoals["titanium"] += 0.5; if (getProduction("rocketFuel") < 5) {self.productionGoals["rocketFuel"] += 1;}}
+		self.lock["energy"] = true;
+		self.lock["science"] = true;
+		self.lock["resource"] = true;
 	};
-	*/
 	
 	instance.setGoals = function(self)
 	{
@@ -59,9 +38,13 @@ Script.goals = (function(){
 	
 	instance.build = function()
 	{
-		Script.energy.build(Script.energy);
-		Script.data.build(Script.data);
-		Script.science.build(Script.science);
+		if (!Script.goals.lock["energy"]) {Script.energy.build(Script.energy);}
+		if (!Script.goals.lock["science"]) {Script.data.build(Script.data)};
+		if (!Script.goals.lock["resource"]) {Script.science.build(Script.science)};
+		
+		Script.goals.lock["energy"] = false;
+		Script.goals.lock["science"] = false;
+		Script.goals.lock["resource"] = false;
 	};
 	
 	return instance;

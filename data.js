@@ -136,8 +136,10 @@ Script.data = (function(){
 				score /= building.cons["energy"];
 			}
 			else {score /= 8;}
-			if (score > result.score) {result.score = score;}
 			
+			if (Script.goals[target] === "urgent") {score *= Script.energy.energyPriority;}
+			
+			if (score > result.score) {result.score = score;}
 			if (getStorage(key) < building.cost[key]) {lackingStorage = true;}
 		}
 		
