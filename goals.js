@@ -30,7 +30,7 @@ Script.goals = (function(){
 			
 			if (Script.cost.counter[key])
 			{
-				request = 1.5 * Script.data.maxProd * Script.cost.balance[key];
+				request = 1.2 * Script.data.maxProd * Script.cost.balance[key];
 				if (request > self[key].amount) {self[key].amount = request; self[key].type = "cost";}
 			}
 		}
