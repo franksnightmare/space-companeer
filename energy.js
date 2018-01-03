@@ -85,7 +85,7 @@ Script.energy = (function(){
 		
 		var production = getProduction("energy");
 		if (production > 0) {
-			self.energyPriority = 2 * self.max / (2 * self.max + production);
+			self.energyPriority = 4 * self.max / (4 * self.max + production);
 		}
 		else {self.energyPriority = 1;}
 	};
