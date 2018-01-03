@@ -73,7 +73,7 @@ Script.data = (function(){
 				var diff = (Script.goals[key].amount - production) / Script.goals[key].amount;
 				var score = Math.pow(2, diff);
 				if (diff >= 0 && Script.goals[key].type === "cons") {score *= 1.1;}
-				if (diff >= 0 && Script.goals[key].type === "urgent") {score *= 1.4;}
+				if (diff >= 0 && Script.goals[key].type === "urgent") {score *= 1.4 * Script.energy.energyPriority;}
 				
 				var canBuild = false;
 				for (id in data.producerData[key])
@@ -136,8 +136,6 @@ Script.data = (function(){
 				score /= building.cons["energy"];
 			}
 			else {score /= 8;}
-			
-			if (Script.goals[target] === "urgent") {score *= Script.energy.energyPriority;}
 			
 			if (score > result.score) {result.score = score;}
 			if (getStorage(key) < building.cost[key]) {lackingStorage = true;}
