@@ -29,7 +29,7 @@ Script.wonders = (function(){
 				for (key in wonder.cost)
 				{
 					var mult = 1;
-					var amount = wonder.cost[key] / (200 * (1 + Math.log10(wonder.cost[key]) * 4));
+					var amount = wonder.cost[key] / (10 * (1 + Math.log10(wonder.cost[key]) * 4));
 					
 					if (key === "plasma") {mult /= 4;}
 					if (key === "meteorite") {mult /= 16;}
