@@ -39,8 +39,8 @@ Script.goals = (function(){
 	instance.build = function()
 	{
 		if (!Script.goals.lock["energy"]) {Script.energy.build(Script.energy);}
-		if (!Script.goals.lock["science"]) {Script.data.build(Script.data)};
-		if (!Script.goals.lock["resource"]) {Script.science.build(Script.science)};
+		if (!Script.goals.lock["science"]) {Script.data.build(Script.data);}
+		if (!Script.goals.lock["resource"]) {Script.science.build(Script.science);}
 		
 		Script.goals.lock["energy"] = false;
 		Script.goals.lock["science"] = false;
