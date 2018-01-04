@@ -1,6 +1,6 @@
 Script.upgradeStorage = function ()
 {
-	if (Game.tech.isPurchased("unlockStorage"))
+	if (Game.tech.isPurchased("unlockStorage") && !Script.goals.lock["storage"])
 	{
 		upgradeMetalStorage();
 		upgradeGemStorage();

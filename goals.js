@@ -9,12 +9,16 @@ Script.goals = (function(){
 	instance.lock["energy"] = false;
 	instance.lock["science"] = false;
 	instance.lock["resource"] = false;
+	instance.lock["storage"] = false;
+	
+	instance.unlockEverything = function(self)
+	{
+		for (key in self.lock) {lock[key] = false;}
+	};
 	
 	instance.lockEverything = function(self)
 	{
-		self.lock["energy"] = true;
-		self.lock["science"] = true;
-		self.lock["resource"] = true;
+		for (key in self.lock) {lock[key] = true;}
 	};
 	
 	instance.setGoals = function(self)
@@ -43,9 +47,7 @@ Script.goals = (function(){
 		if (!Script.goals.lock["science"]) {Script.data.build(Script.data);}
 		if (!Script.goals.lock["resource"]) {Script.science.build(Script.science);}
 		
-		Script.goals.lock["energy"] = false;
-		Script.goals.lock["science"] = false;
-		Script.goals.lock["resource"] = false;
+		Script.goals.unlockEverything(Script.goals);
 	};
 	
 	return instance;
