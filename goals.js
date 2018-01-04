@@ -13,12 +13,12 @@ Script.goals = (function(){
 	
 	instance.unlockEverything = function(self)
 	{
-		for (key in self.lock) {lock[key] = false;}
+		for (key in self.lock) {self.lock[key] = false;}
 	};
 	
 	instance.lockEverything = function(self)
 	{
-		for (key in self.lock) {lock[key] = true;}
+		for (key in self.lock) {self.lock[key] = true;}
 	};
 	
 	instance.setGoals = function(self)
