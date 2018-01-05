@@ -29,7 +29,7 @@ Script.science = (function(){
 	instance.techs["unlockPlasmaTier2"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["plasma"] = 2;}};
 	instance.techs["unlockEmc"] = {available:false, done:false, unlocks:["unlockMeteorite", "energyEfficiencyResearch", "scienceEfficiencyResearch"], consequences:function(){}};
 	instance.techs["unlockMeteorite"] = {available:false, done:false, unlocks:["unlockMeteoriteTier1"], consequences:function(){}};
-	instance.techs["unlockMeteoriteTier1"] = {available:false, done:false, unlocks:["unlockMeteoriteTier2"], consequences:function(){Script.data.unlockResource(Script.data, "meteorite"); Script.wonders.wonders["meteorite1"].available = true; Script.tier["meteorite"] = 1;}};
+	instance.techs["unlockMeteoriteTier1"] = {available:false, done:false, unlocks:["unlockMeteoriteTier2"], consequences:function(){Script.data.unlockResource(Script.data, "meteorite"); Script.tier["meteorite"] = 1;}};
 	instance.techs["unlockMeteoriteTier2"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["meteorite"] = 2;}};
 	instance.techs["unlockDyson"] = {available:false, done:false, unlocks:["unlockDysonSphere"], consequences:function(){}};
 	instance.techs["unlockDysonSphere"] = {available:false, done:false, unlocks:[], consequences:function(){}};

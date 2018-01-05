@@ -37,7 +37,7 @@ var Script = (function() {
 		if (Script.energyTier >= 4) {Script.cons.addCons(Script.cons, "rocketFuel", 5);}
 		if (Script.energyTier >= 6) {Script.cons.addCons(Script.cons, "rocketFuel", 10);}
 		//if (Script.tier["plasma"] >= 1) {Script.cons.addCons(Script.cons, "plasma", 6);}
-		if (Script.tier["meteorite"] >= 1) {Script.cons.addCons(Script.cons, "meteorite", 3);}
+		if (Script.tier["meteorite"] >= 1) {Script.cons.addCons(Script.cons, "meteorite", 3); Script.wonders.wonders["meteorite1"].available = true;}
 		
 		Script.energy.update(Script.energy);
 		if (getProduction("meteorite") >= 1) {Script.energy.dyson.update(Script.energy.dyson);}
