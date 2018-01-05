@@ -74,7 +74,7 @@ Script.data = (function(){
 				var score = Math.pow(2, diff);
 				if (diff >= 0 && Script.goals[key].type === "cons") {score *= 1.1;}
 				if (diff >= 0 && Script.goals[key].type === "urgent") {score *= 1.4 * Script.energy.energyPriority;}
-				if (key === "lunarite") {score *= 1.2;}
+				if (key === "lunarite") {score *= 1.1;}
 				
 				var canBuild = false;
 				for (id in data.producerData[key])
