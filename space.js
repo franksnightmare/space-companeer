@@ -33,6 +33,7 @@ Script.space = (function(){
 	
 	instance.explorePlace = function(self)
 	{
+		
 		var counter = 0;
 		for (key in self.milestones)
 		{
@@ -44,7 +45,10 @@ Script.space = (function(){
 				{
 					if (Game.statistics.entries.placesExplored.value > counter) {canGo = true;}
 				}
-				else {counter = 0;}
+				else
+				{
+					if (Game.statistics.entries.placesExplored.value) {canGo = true;}
+				}
 				
 				if (!canGo)
 				{
@@ -61,7 +65,7 @@ Script.space = (function(){
 					place.consequences();
 				}
 			}
-			counter++;
+			if (key !== "rocket" && key !== "launch") {counter += 1;}
 		}
 	};
 	
