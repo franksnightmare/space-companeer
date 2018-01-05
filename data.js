@@ -157,7 +157,7 @@ Script.data = (function(){
 				production -= web * webPlasmaInput;
 				if (Script.goals[target] === "urgent" && key === "energy")
 				{
-					if (production < building.cons[key] * (1.05 + 1.2 * Math.pow(2, -drain))) {result.canBuild = false;}
+					if (production < building.cons[key] * (1.1 + 0.7 * Math.pow(2, -drain))) {result.canBuild = false;}
 				}
 				else
 				{
@@ -167,7 +167,7 @@ Script.data = (function(){
 			else {
 				if (Script.goals[target] === "urgent" && key === "energy")
 				{
-					if (getProduction(key) < building.cons[key] * (1.05 + 1.2 * Math.pow(2, -drain))) {result.canBuild = false;}
+					if (getProduction(key) < building.cons[key] * (1.1 + 0.7 * Math.pow(2, -drain))) {result.canBuild = false;}
 				}
 				else
 				{
