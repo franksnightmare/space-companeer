@@ -77,6 +77,7 @@ Script.data = (function(){
 				if (key === "gem") {score *= 1.1;}
 				if (key === "lunarite") {score *= 1.1;}
 				if (key === "titanium") {score *= 1.1;}
+				if (key === "silicon") {score *= 1.1;}
 				
 				var canBuild = false;
 				for (id in data.producerData[key])
