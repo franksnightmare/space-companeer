@@ -55,7 +55,7 @@ var Script = (function() {
 		Script.goals.setGoals(Script.goals)
 		
 		if (Script.phase >= 3) {Script.goals["methane"].type = "urgent"; Script.goals["uranium"].type = "urgent"; Script.goals["lava"].type = "urgent"; Script.goals["hydrogen"].type = "urgent"; Script.goals["helium"].type = "urgent";}
-		if (Script.data.producerData === "plasma" || Script.data.producerData === "meteorite") {Script.goals["helium"].type = "cons";}
+		if (Script.data.producerColumn === "plasma" || Script.data.producerColumn === "meteorite") {Script.goals["helium"].type = "cons";}
 		if (Script.tier["rocketFuel"] >= 3) {Script.goals["methane"].type = "cons";}
 		
 		Script.goals.build();
@@ -72,8 +72,6 @@ var Script = (function() {
 			clearInterval(instance.boosterino_t);
 			setInterval(instance.spaceCompaneer, 2000);
 			Script.data.init(Script.data);
-			// Script.decisions.init(Script.decisions);
-			// Script.goals.modifiers["science"] = 1;
 			console.log("Space Companeer: Phase 0 complete!");
 		}
 	};
