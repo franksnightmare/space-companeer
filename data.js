@@ -155,10 +155,24 @@ Script.data = (function(){
 				production += plasmatic * plasmaticOutput * mult;
 				production -= printer * printerPlasmaInput;
 				production -= web * webPlasmaInput;
-				if (production < building.cons[key] * (1.1 + 1.4 * Math.pow(2, -drain))) {result.canBuild = false;}
+				if (Script.goals[target] === "urgent" && key === "energy")
+				{
+					if (production < building.cons[key] * (1.05 + 1.2 * Math.pow(2, -drain))) {result.canBuild = false;}
+				}
+				else
+				{
+					if (production < building.cons[key] * (1.1 + 1.4 * Math.pow(2, -drain))) {result.canBuild = false;}
+				}
 			}
 			else {
-				if (getProduction(key) < building.cons[key] * (1.1 + 1.4 * Math.pow(2, -drain))) {result.canBuild = false;}
+				if (Script.goals[target] === "urgent" && key === "energy")
+				{
+					if (getProduction(key) < building.cons[key] * (1.05 + 1.2 * Math.pow(2, -drain))) {result.canBuild = false;}
+				}
+				else
+				{
+					if (getProduction(key) < building.cons[key] * (1.1 + 1.4 * Math.pow(2, -drain))) {result.canBuild = false;}
+				}
 			}
 		}
 		
