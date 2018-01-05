@@ -71,16 +71,19 @@ Script.energy = (function(){
 				if (result.score > highest && result.canBuild) {highest = result.score; highId = id;}
 			}
 		}
-		if (self.score[highId].canBuild)
+		if (highId in self.score)
 		{
-			if (self.score[highId].realTime < self.score[highId].time / 3)
+			if (self.score[highId].canBuild)
 			{
-				Script.goals.lockEverything(Script.goals);
-				Script.goals.lock["energy"] = false;
-				Script.goals.lock["storage"] = false;
-				console.log("Rushing energy building: " + highId);
+				if (self.score[highId].realTime < self.score[highId].time / 3)
+				{
+					Script.goals.lockEverything(Script.goals);
+					Script.goals.lock["energy"] = false;
+					Script.goals.lock["storage"] = false;
+					console.log("Rushing energy building: " + highId);
+				}
+				self.data[highId].mk();
 			}
-			self.data[highId].mk();
 		}
 	};
 	
