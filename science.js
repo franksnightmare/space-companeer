@@ -27,7 +27,7 @@ Script.science = (function(){
 	instance.techs["unlockBatteriesT4"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["battery"] = 4;}};
 	instance.techs["unlockPlasma"] = {available:false, done:false, unlocks:["unlockPlasmaTier2", "unlockPSU"], consequences:function(){Script.data.unlockResource(Script.data, "plasma"); Script.wonders.wonders["emc"].available = true; Script.wonders.wonders["dyson"].available = true; Script.tier["plasma"] = 1;}};
 	instance.techs["unlockPlasmaTier2"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["plasma"] = 2;}};
-	instance.techs["unlockEmc"] = {available:false, done:false, unlocks:["unlockMeteorite", "energyEfficiencyResearch", "scienceEfficiencyResearch"], consequences:function(){}};
+	instance.techs["unlockEmc"] = {available:false, done:false, unlocks:["unlockMeteorite"], consequences:function(){}};
 	instance.techs["unlockMeteorite"] = {available:false, done:false, unlocks:["unlockMeteoriteTier1"], consequences:function(){}};
 	instance.techs["unlockMeteoriteTier1"] = {available:false, done:false, unlocks:["unlockMeteoriteTier2"], consequences:function(){Script.data.unlockResource(Script.data, "meteorite"); Script.tier["meteorite"] = 1;}};
 	instance.techs["unlockMeteoriteTier2"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["meteorite"] = 2;}};
@@ -35,7 +35,7 @@ Script.science = (function(){
 	instance.techs["unlockDysonSphere"] = {available:false, done:false, unlocks:[], consequences:function(){}};
 	instance.techs["unlockRocketFuelT3"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["rocketFuel"] = 3;}};
 	instance.techs["unlockLabT4"] = {available:false, done:false, unlocks:[], consequences:function(){Script.labTier = 4;}};
-	instance.techs["unlockPSU"] = {available:false, done:false, unlocks:["unlockPSUT2"], consequences:function(){Script.tier["plasmaStorage"] = 1;}};
+	instance.techs["unlockPSU"] = {available:false, done:false, unlocks:["energyEfficiencyResearch", "scienceEfficiencyResearch", "unlockPSUT2"], consequences:function(){Script.tier["plasmaStorage"] = 1;}};
 	instance.techs["unlockPSUT2"] = {available:false, done:false, unlocks:[], consequences:function(){Script.tier["plasmaStorage"] = 2;}};
 	instance.techs["energyEfficiencyResearch"] = {available:false, done:false, unlocks:[], consequences:function(){Script.science.techs["energyEfficiencyResearch"].done = false; Script.goals.newTechs += 1;}};
 	instance.techs["efficiencyResearch"] = {available:false, done:false, unlocks:[], consequences:function(){Script.science.techs["efficiencyResearch"].done = false; Script.goals.newTechs += 1;}};
