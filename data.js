@@ -155,14 +155,7 @@ Script.data = (function(){
 				production += plasmatic * plasmaticOutput * mult;
 				production -= printer * printerPlasmaInput;
 				production -= web * webPlasmaInput;
-				if (Script.goals[target] === "urgent" && key === "energy")
-				{
-					if (production < building.cons[key] * (1.1 + 0.7 * Math.pow(2, -drain))) {result.canBuild = false;}
-				}
-				else
-				{
-					if (production < building.cons[key] * (1.1 + 1.4 * Math.pow(2, -drain))) {result.canBuild = false;}
-				}
+				if (production < building.cons[key] * (1.1 + 1.4 * Math.pow(2, -drain))) {result.canBuild = false;}
 			}
 			else {
 				if (Script.goals[target] === "urgent" && key === "energy")
