@@ -51,7 +51,8 @@ Script.energy = (function(){
 		for (key in building.cons)
 		{
 			var drain = building.cons[key] / 1000 + result.time / 2400;
-			if (getProduction(key) < building.cons[key] * (1.1 + 1.4 * Math.pow(2, -drain))) {result.canBuild = false;}
+			// if (getProduction(key) < building.cons[key] * (1.1 + 1.4 * Math.pow(2, -drain))) {result.canBuild = false;}
+			if (getProduction(key) < building.cons[key] * (1.05 + 1.2 * Math.pow(2, -drain))) {result.canBuild = false;}
 		}
 		
 		return result;
