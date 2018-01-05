@@ -9,6 +9,24 @@ Script.energy = (function(){
 	instance.data = {};
 	instance.score = {};
 	
+	instance.init = function(self)
+	{
+		// Energy Producers
+		self.data["engine"] = {unlocked:false, cost:{"metal":charcoalEngineMetalCost, "gem":charcoalEngineGemCost}, prod:charcoalEngineOutput, cons:{"charcoal":charcoalEngineCharcoalInput}, mk:getCharcoalEngine};
+		self.data["solar"] = {unlocked:false, cost:{"metal":solarPanelMetalCost, "gem":solarPanelGemCost}, prod:solarPanelOutput, cons:{}, mk:getSolarPanel};
+		self.data["methane"] = {unlocked:false, cost:{"lunarite":methaneStationLunariteCost, "titanium":methaneStationTitaniumCost}, prod:methaneStationOutput, cons:{"methane":methaneStationMethaneInput}, mk:getMethaneStation};
+		self.data["nuclear"] = {unlocked:false, cost:{"lunarite":nuclearStationLunariteCost, "titanium":nuclearStationTitaniumCost}, prod:nuclearStationOutput, cons:{"uranium":nuclearStationUraniumInput}, mk:getNuclearStation};
+		self.data["magmatic"] = {unlocked:false, cost:{"lunarite":magmaticLunariteCost, "gem":magmaticGemCost, "silver":magmaticSilverCost}, prod:magmaticOutput, cons:{"lava":magmaticLavaInput}, mk:getMagmatic};
+		self.data["fusion"] = {unlocked:false, cost:{"lunarite":fusionReactorLunariteCost, "titanium":fusionReactorTitaniumCost, "silicon":fusionReactorSiliconCost}, prod:fusionReactorOutput, cons:{"hydrogen":fusionReactorHydrogenInput, "helium":fusionReactorHeliumInput}, mk:getFusionReactor};
+		
+		self.score["engine"] = {};
+		self.score["solar"] = {};
+		self.score["methane"] = {};
+		self.score["nuclear"] = {};
+		self.score["magmatic"] = {};
+		self.score["fusion"] = {};
+	};
+	
 	instance.energyScore = function(building)
 	{
 		var result = {time:0, realTime:0, score:0, cost:{}, canBuild:true};

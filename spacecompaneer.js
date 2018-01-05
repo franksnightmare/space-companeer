@@ -70,6 +70,7 @@ var Script = (function() {
 			clearInterval(instance.boosterino_t);
 			setInterval(instance.spaceCompaneer, 2000);
 			Script.data.init(Script.data);
+			Script.energy.init(Script.energy);
 			console.log("Space Companeer: Phase 0 complete!");
 		}
 	};
