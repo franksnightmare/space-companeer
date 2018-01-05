@@ -5,9 +5,9 @@ Script.wonders = (function(){
 	
 	instance.wonders = {};
 	instance.wonders["precious1"] = {cost:{"gem":10000, "gold":5000, "silver":7500}, available:true, done:false, mk:achievePreciousWonder, unlocks:["precious2"], consequences:function(){}, skip:function(){return Game.statistics.entries.wondersBuilt.value >= 1;}};
-	instance.wonders["precious2"] = {cost:{"gem":30000, "gold":10000, "silver":20000}, available:false, done:false, mk:activatePreciousWonder, unlocks:[], consequences:function(){Script.wonders.wonders["energetic1"].available = true; Script.data.unlockResource(Script.data, "uranium"); Script.energyTier = 4;}, skip:function(){return Game.statistics.entries.wondersActivated.value >= 1;}};
+	instance.wonders["precious2"] = {cost:{"gem":30000, "gold":10000, "silver":20000}, available:false, done:false, mk:activatePreciousWonder, unlocks:[], consequences:function(){Script.wonders.wonders["energetic1"].available = true; Script.data.unlockResource(Script.data, "uranium"); Script.energy.data["nuclear"].unlocked = true;}, skip:function(){return Game.statistics.entries.wondersActivated.value >= 1;}};
 	instance.wonders["energetic1"] = {cost:{"wood":10000, "charcoal":5000, "uranium":200}, available:false, done:false, mk:achieveEnergeticWonder, unlocks:["energetic2", "tech1"], consequences:function(){}, skip:function(){return Game.statistics.entries.wondersBuilt.value >= 2;}};
-	instance.wonders["energetic2"] = {cost:{"wood":30000, "charcoal":15000, "uranium":500}, available:false, done:false, mk:activateEnergeticWonder, unlocks:[], consequences:function(){Script.data.unlockResource(Script.data, "lava"); Script.energyTier = 5;}, skip:function(){return Game.statistics.entries.wondersActivated.value >= 2;}};
+	instance.wonders["energetic2"] = {cost:{"wood":30000, "charcoal":15000, "uranium":500}, available:false, done:false, mk:activateEnergeticWonder, unlocks:[], consequences:function(){Script.data.unlockResource(Script.data, "lava"); Script.energy.data["magmatic"].unlocked = true;}, skip:function(){return Game.statistics.entries.wondersActivated.value >= 2;}};
 	instance.wonders["tech1"] = {cost:{"gem":40000, "silicon":30000, "gold":18000}, available:false, done:false, mk:achieveTechWonder, unlocks:["tech2"], consequences:function(){}, skip:function(){return Game.statistics.entries.wondersBuilt.value >= 3;}};
 	instance.wonders["tech2"] = {cost:{"gem":60000, "silicon":50000, "gold":30000}, available:false, done:false, mk:activateTechWonder, unlocks:[], consequences:function(){Script.machineTier = 3;}, skip:function(){return Game.statistics.entries.wondersActivated.value >= 3;}};
 	instance.wonders["plasma"] = {cost:{"hydrogen":1500, "uranium":1500, "oil":15000, "wood":15000}, available:false, done:false, mk:unlockPlasmaResearch, unlocks:[], consequences:function(){Script.science.techs["unlockPlasma"].available = true;}, skip:function(){return Game.tech.isPurchased("unlockPlasma");}};
@@ -31,7 +31,7 @@ Script.wonders = (function(){
 					var mult = 1;
 					var amount = wonder.cost[key] / (10 * (2 + Math.log10(wonder.cost[key]) * Math.log10(wonder.cost[key])));
 					
-					if (key === "plasma") {mult /= 4;}
+					if (key === "plasma") {mult /= 16;}
 					if (key === "meteorite") {mult /= 16;}
 					if (key !== "energy")
 					{

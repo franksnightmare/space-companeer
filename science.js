@@ -9,8 +9,8 @@ Script.science = (function(){
 	
 	instance.techs = {};
 	instance.techs["unlockStorage"] = {available:true, done:false, unlocks:["unlockOil"], consequences:function(){}};
-	instance.techs["unlockBasicEnergy"] = {available:true, done:false, unlocks:["unlockSolar", "unlockMachines", "upgradeEngineTech"], consequences:function(){Script.data.unlockResource(Script.data, "charcoal"); Script.energyTier = 1;}};
-	instance.techs["unlockOil"] = {available:false, done:false, unlocks:[], consequences:function(){Script.data.unlockResource(Script.data, "oil"); Script.phase = 2;}};
+	instance.techs["unlockBasicEnergy"] = {available:true, done:false, unlocks:["unlockSolar", "unlockMachines", "upgradeEngineTech"], consequences:function(){Script.data.unlockResource(Script.data, "charcoal"); Script.energy.data["engine"].unlocked = true;}};
+	instance.techs["unlockOil"] = {available:false, done:false, unlocks:[], consequences:function(){Script.data.unlockResource(Script.data, "oil"); Script.energy.data["solar"].unlocked = true;}};
 	instance.techs["unlockSolar"] = {available:false, done:false, unlocks:["upgradeSolarTech"], consequences:function(){Script.energyTier = 2;}};
 	instance.techs["unlockMachines"] = {available:false, done:false, unlocks:["unlockDestruction", "unlockSolarSystem", "upgradeResourceTech"], consequences:function(){Script.machineTier = 2; Script.energy.energyPriority = 1;}};
 	instance.techs["unlockSolarSystem"] = {available:false, done:false, unlocks:["unlockLabT2", "unlockRocketFuelT2"], consequences:function(){Script.data.unlockResource(Script.data, "rocketFuel"); Script.tier["rocketFuel"] = 1; Script.phase = 3;}};

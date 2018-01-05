@@ -6,8 +6,8 @@ Script.energy = (function(){
 	instance.energyPriority = 0;
 	instance.max = 0;
 	instance.maxScore = 0;
-	instance.data = [{}, {}, {}, {}, {}, {}];
-	instance.score = [{}, {}, {}, {}, {}, {}];
+	instance.data = {};
+	instance.score = {};
 	
 	instance.energyScore = function(building)
 	{
@@ -44,11 +44,14 @@ Script.energy = (function(){
 		if (Game.tech.isUnlocked("unlockDyson") && Game.statistics.entries.wondersActivated.value >= 4) {self.dyson.build(self.dyson);}
 		
 		var highest = 0;
-		var highId = 0;
-		for (id = 0; id < Script.energyTier; id++)
+		var highId = "null";
+		for (id in self.data)
 		{
-			var result = self.score[id];
-			if (result.score > highest && result.canBuild) {highest = result.score; highId = id;}
+			if (self.data[id].unlocked)
+			{
+				var result = self.score[id];
+				if (result.score > highest && result.canBuild) {highest = result.score; highId = id;}
+			}
 		}
 		if (self.score[highId].canBuild)
 		{
@@ -57,6 +60,7 @@ Script.energy = (function(){
 				Script.goals.lockEverything(Script.goals);
 				Script.goals.lock["energy"] = false;
 				Script.goals.lock["storage"] = false;
+				console.log("Rushing energy building: " + highId);
 			}
 			self.data[highId].mk();
 		}
@@ -65,31 +69,37 @@ Script.energy = (function(){
 	instance.update = function(self)
 	{
 		// Energy Producers
-		self.data[0] = {cost:{"metal":charcoalEngineMetalCost, "gem":charcoalEngineGemCost}, prod:charcoalEngineOutput, cons:{"charcoal":charcoalEngineCharcoalInput}, mk:getCharcoalEngine};
-		self.data[1] = {cost:{"metal":solarPanelMetalCost, "gem":solarPanelGemCost}, prod:solarPanelOutput, cons:{}, mk:getSolarPanel};
-		self.data[2] = {cost:{"lunarite":methaneStationLunariteCost, "titanium":methaneStationTitaniumCost}, prod:methaneStationOutput, cons:{"methane":methaneStationMethaneInput}, mk:getMethaneStation};
-		self.data[3] = {cost:{"lunarite":nuclearStationLunariteCost, "titanium":nuclearStationTitaniumCost}, prod:nuclearStationOutput, cons:{"uranium":nuclearStationUraniumInput}, mk:getNuclearStation};
-		self.data[4] = {cost:{"lunarite":magmaticLunariteCost, "gem":magmaticGemCost, "silver":magmaticSilverCost}, prod:magmaticOutput, cons:{"lava":magmaticLavaInput}, mk:getMagmatic};
-		self.data[5] = {cost:{"lunarite":fusionReactorLunariteCost, "titanium":fusionReactorTitaniumCost, "silicon":fusionReactorSiliconCost}, prod:fusionReactorOutput, cons:{"hydrogen":fusionReactorHydrogenInput, "helium":fusionReactorHeliumInput}, mk:getFusionReactor};
+		self.data["engine"] = {unlocked:false, cost:{"metal":charcoalEngineMetalCost, "gem":charcoalEngineGemCost}, prod:charcoalEngineOutput, cons:{"charcoal":charcoalEngineCharcoalInput}, mk:getCharcoalEngine};
+		self.data["solar"] = {unlocked:false, cost:{"metal":solarPanelMetalCost, "gem":solarPanelGemCost}, prod:solarPanelOutput, cons:{}, mk:getSolarPanel};
+		self.data["methane"] = {unlocked:false, cost:{"lunarite":methaneStationLunariteCost, "titanium":methaneStationTitaniumCost}, prod:methaneStationOutput, cons:{"methane":methaneStationMethaneInput}, mk:getMethaneStation};
+		self.data["nuclear"] = {unlocked:false, cost:{"lunarite":nuclearStationLunariteCost, "titanium":nuclearStationTitaniumCost}, prod:nuclearStationOutput, cons:{"uranium":nuclearStationUraniumInput}, mk:getNuclearStation};
+		self.data["magmatic"] = {unlocked:false, cost:{"lunarite":magmaticLunariteCost, "gem":magmaticGemCost, "silver":magmaticSilverCost}, prod:magmaticOutput, cons:{"lava":magmaticLavaInput}, mk:getMagmatic};
+		self.data["fusion"] = {unlocked:false, cost:{"lunarite":fusionReactorLunariteCost, "titanium":fusionReactorTitaniumCost, "silicon":fusionReactorSiliconCost}, prod:fusionReactorOutput, cons:{"hydrogen":fusionReactorHydrogenInput, "helium":fusionReactorHeliumInput}, mk:getFusionReactor};
 		
 		self.maxScore = 0;
-		for (id = 0; id < Script.energyTier; id++)
+		for (id in self.data)
 		{
-			var building = self.data[id];
-			var result = self.energyScore(building);
-			self.score[id] = result;
-			if (result.score > self.maxScore) {self.maxScore = result.score;}
+			if (self.data[id].unlocked)
+			{
+				var building = self.data[id];
+				var result = self.energyScore(building);
+				self.score[id] = result;
+				if (result.score > self.maxScore) {self.maxScore = result.score;}
+			}
 		}
 		
-		for (id = 0; id < Script.energyTier; id++)
+		for (id in self.data)
 		{
-			var building = self.data[id];
-			var result = self.score[id];
-			
-			for (key in building.cons) {Script.cons.addCons(Script.cons, key, building.cons[key] * 4);}
-			var addition = self.energyPriority * self.max;
-			if (self.maxScore) {addition *= (result.score / self.maxScore);}
-			for (key in building.cost) {Script.cost.addCost(Script.cost, key, addition * building.cost[key]);}
+			if (self.data[id].unlocked)
+			{
+				var building = self.data[id];
+				var result = self.score[id];
+				
+				for (key in building.cons) {Script.cons.addCons(Script.cons, key, building.cons[key] * 4);}
+				var addition = self.energyPriority * self.max;
+				if (self.maxScore) {addition *= (result.score / self.maxScore);}
+				for (key in building.cost) {Script.cost.addCost(Script.cost, key, addition * building.cost[key]);}
+			}
 		}
 		
 		var production = getProduction("energy");

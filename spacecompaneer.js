@@ -6,7 +6,6 @@ var Script = (function() {
 	instance.phase = 0;
 	instance.machineTier = 1;
 	instance.labTier = 1;
-	instance.energyTier = 0;
 	
 	instance.tier = {};
 	instance.tier["rocketFuel"] = 0;
@@ -34,9 +33,8 @@ var Script = (function() {
 		if (Script.data.producerColumn === "lunarite") {Script.cons.addCons(Script.cons, "lunarite", 10);}
 		if (Script.data.producerColumn === "methane") {Script.cons.addCons(Script.cons, "lunarite", 20);}
 		if (Script.data.producerColumn === "silicon" || Script.data.producerColumn === "silver" || Script.data.producerColumn === "hydrogen" || Script.data.producerColumn === "helium") {Script.cons.addCons(Script.cons, "lunarite", 50); Script.cons.addCons(Script.cons, "titanium", 50);}
-		if (Script.energyTier >= 4) {Script.cons.addCons(Script.cons, "rocketFuel", 5);}
-		if (Script.energyTier >= 6) {Script.cons.addCons(Script.cons, "rocketFuel", 10);}
-		//if (Script.tier["plasma"] >= 1) {Script.cons.addCons(Script.cons, "plasma", 6);}
+		if (Script.energy.data["uranium"].unlocked) {Script.cons.addCons(Script.cons, "rocketFuel", 5);}
+		if (Script.energy.data["fusion"].unlocked) {Script.cons.addCons(Script.cons, "rocketFuel", 10);}
 		if (Script.tier["meteorite"] >= 1) {Script.cons.addCons(Script.cons, "meteorite", 3); Script.wonders.wonders["meteorite1"].available = true;}
 		
 		Script.energy.update(Script.energy);
