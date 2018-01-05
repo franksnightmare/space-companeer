@@ -139,7 +139,7 @@ Script.data = (function(){
 			if ("energy" in building.cons) {
 				score /= building.cons["energy"];
 			}
-			else {score /= Math.sqrt(time);}
+			else {score /= 2 * Math.sqrt(time);}
 			
 			if (score > result.score) {result.score = score;}
 			if (getStorage(key) < building.cost[key]) {lackingStorage = true;}
