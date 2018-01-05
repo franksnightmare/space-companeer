@@ -11,7 +11,7 @@ Script.energy = (function(){
 	
 	instance.energyScore = function(building)
 	{
-		var result = {time:0, score:0, cost:{}, canBuild:true};
+		var result = {time:0, realTime:0, score:0, cost:{}, canBuild:true};
 		for (key in building.cost)
 		{
 			var prod = getProduction(key);
@@ -19,6 +19,9 @@ Script.energy = (function(){
 			
 			// Cost is cost per energy unit
 			var time = building.cost[key] / prod;
+			var realTime = (building.cost[key] - getResource(key)) / prod;
+			if (realTime <= 0) {realTime = 0;}
+			if (realTime > result.realTime) {result.realTime = realTime;}
 			if (time > result.time) {result.time = time;}
 			result.cost[key] = building.cost[key] / building.prod;
 			
@@ -49,6 +52,12 @@ Script.energy = (function(){
 		}
 		if (self.score[highId].canBuild)
 		{
+			if (self.score[highId].realTime < self.score[highId].time / 3)
+			{
+				Script.goals.lockEverything(Script.goals);
+				Script.goals.lock["energy"] = false;
+				Script.goals.lock["storage"] = false;
+			}
 			self.data[highId].mk();
 		}
 	};
