@@ -71,7 +71,6 @@ Script.energy = (function(){
 				if (result.score > highest && result.canBuild) {highest = result.score; highId = id;}
 			}
 		}
-		console.log(highId);
 		if (highId in self.score)
 		{
 			if (self.score[highId].canBuild)
@@ -91,12 +90,12 @@ Script.energy = (function(){
 	instance.update = function(self)
 	{
 		// Energy Producers
-		self.data["engine"] = {unlocked:false, cost:{"metal":charcoalEngineMetalCost, "gem":charcoalEngineGemCost}, prod:charcoalEngineOutput, cons:{"charcoal":charcoalEngineCharcoalInput}, mk:getCharcoalEngine};
-		self.data["solar"] = {unlocked:false, cost:{"metal":solarPanelMetalCost, "gem":solarPanelGemCost}, prod:solarPanelOutput, cons:{}, mk:getSolarPanel};
-		self.data["methane"] = {unlocked:false, cost:{"lunarite":methaneStationLunariteCost, "titanium":methaneStationTitaniumCost}, prod:methaneStationOutput, cons:{"methane":methaneStationMethaneInput}, mk:getMethaneStation};
-		self.data["nuclear"] = {unlocked:false, cost:{"lunarite":nuclearStationLunariteCost, "titanium":nuclearStationTitaniumCost}, prod:nuclearStationOutput, cons:{"uranium":nuclearStationUraniumInput}, mk:getNuclearStation};
-		self.data["magmatic"] = {unlocked:false, cost:{"lunarite":magmaticLunariteCost, "gem":magmaticGemCost, "silver":magmaticSilverCost}, prod:magmaticOutput, cons:{"lava":magmaticLavaInput}, mk:getMagmatic};
-		self.data["fusion"] = {unlocked:false, cost:{"lunarite":fusionReactorLunariteCost, "titanium":fusionReactorTitaniumCost, "silicon":fusionReactorSiliconCost}, prod:fusionReactorOutput, cons:{"hydrogen":fusionReactorHydrogenInput, "helium":fusionReactorHeliumInput}, mk:getFusionReactor};
+		self.data["engine"] = {unlocked:Script.energy.data["engine"].unlocked, cost:{"metal":charcoalEngineMetalCost, "gem":charcoalEngineGemCost}, prod:charcoalEngineOutput, cons:{"charcoal":charcoalEngineCharcoalInput}, mk:getCharcoalEngine};
+		self.data["solar"] = {unlocked:Script.energy.data["solar"].unlocked, cost:{"metal":solarPanelMetalCost, "gem":solarPanelGemCost}, prod:solarPanelOutput, cons:{}, mk:getSolarPanel};
+		self.data["methane"] = {unlocked:Script.energy.data["methane"].unlocked, cost:{"lunarite":methaneStationLunariteCost, "titanium":methaneStationTitaniumCost}, prod:methaneStationOutput, cons:{"methane":methaneStationMethaneInput}, mk:getMethaneStation};
+		self.data["nuclear"] = {unlocked:Script.energy.data["nuclear"].unlocked, cost:{"lunarite":nuclearStationLunariteCost, "titanium":nuclearStationTitaniumCost}, prod:nuclearStationOutput, cons:{"uranium":nuclearStationUraniumInput}, mk:getNuclearStation};
+		self.data["magmatic"] = {unlocked:Script.energy.data["magmatic"].unlocked, cost:{"lunarite":magmaticLunariteCost, "gem":magmaticGemCost, "silver":magmaticSilverCost}, prod:magmaticOutput, cons:{"lava":magmaticLavaInput}, mk:getMagmatic};
+		self.data["fusion"] = {unlocked:Script.energy.data["fusion"].unlocked, cost:{"lunarite":fusionReactorLunariteCost, "titanium":fusionReactorTitaniumCost, "silicon":fusionReactorSiliconCost}, prod:fusionReactorOutput, cons:{"hydrogen":fusionReactorHydrogenInput, "helium":fusionReactorHeliumInput}, mk:getFusionReactor};
 		
 		self.maxScore = 0;
 		for (id in self.data)
