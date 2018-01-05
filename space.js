@@ -33,7 +33,6 @@ Script.space = (function(){
 	
 	instance.explorePlace = function(self)
 	{
-		
 		var counter = 0;
 		for (key in self.milestones)
 		{

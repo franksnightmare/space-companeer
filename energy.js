@@ -71,6 +71,7 @@ Script.energy = (function(){
 				if (result.score > highest && result.canBuild) {highest = result.score; highId = id;}
 			}
 		}
+		console.log(highId);
 		if (highId in self.score)
 		{
 			if (self.score[highId].canBuild)
