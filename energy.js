@@ -125,7 +125,7 @@ Script.energy = (function(){
 					var maxScore = Script.data.producerScore[key].maxScore;
 					if (maxScore)
 					{
-						for (id2 = 0; id2 < Script.machineTier; id++)
+						for (id2 = 0; id2 < Script.machineTier; id2++)
 						{
 							if (key in Script.tier && id2 == Script.tier[key]) {break;}
 							var producer = Script.data.producerData[key][id2];
