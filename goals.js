@@ -23,6 +23,14 @@ Script.goals = (function(){
 	
 	instance.setGoals = function(self)
 	{
+		if (Script.cons["wood"] && Script.cons["charcoal"])
+		{
+			if (self["wood"] < self["charcoal"] * 2)
+			{
+				Script.cons.addCons(Script.cons, "wood", self["charcoal"] * 2);
+			}
+		}
+		
 		if (Script.cost.total) {for (key in Script.data.producerData) {Script.cost.balance[key] = Script.cost[key] / Script.cost.total;}}
 		
 		for (key in Script.data.producerData)
