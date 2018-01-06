@@ -80,7 +80,7 @@ Script.data = (function(){
 				if (key === "silicon") {score *= 1.1;}
 				
 				var canBuild = false;
-				for (id = 0; id < data.producerData[key]; id++)
+				for (id = 0; id < Script.machineTier; id++)
 				{
 					var building = data.producerData[key][id];
 					var result = data.producerScore[key].result[id];
@@ -93,7 +93,6 @@ Script.data = (function(){
 					if (id == Script.machineTier) {break;}
 					if (key in Script.tier && id == Script.tier[key]) {break;}
 				}
-				console.log(score);
 				if (!canBuild) {score = 0;}
 				
 				if (score > maxScore) {maxScore = score; resource = key;}
