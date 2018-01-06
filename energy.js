@@ -130,7 +130,7 @@ Script.energy = (function(){
 							if (key in Script.tier && id2 == Script.tier[key]) {break;}
 							var producer = Script.data.producerData[key][id2];
 							var score = Script.data.producerScore[key].result[id2];
-							for (key in producer.cost) {Script.cost.addCost(Script.cost, key, addition * producer.cost[key] * score / maxScore);}
+							for (key2 in producer.cost) {Script.cost.addCost(Script.cost, key2, addition * producer.cost[key] * score / maxScore);}
 						}
 					}
 				}
