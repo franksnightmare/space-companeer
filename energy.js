@@ -136,6 +136,8 @@ Script.energy = (function(){
 							console.log(score);
 							console.log(maxScore);
 							console.log(mult);
+							console.log(producer);
+							console.log(producer.cost);
 							for (key2 in producer.cost) {console.log(mult * producer.cost[key2]); Script.cost.addCost(Script.cost, key2, mult * producer.cost[key2]);}
 						}
 					}
