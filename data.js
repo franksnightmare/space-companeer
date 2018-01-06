@@ -93,9 +93,9 @@ Script.data = (function(){
 					if (id == Script.machineTier) {break;}
 					if (key in Script.tier && id == Script.tier[key]) {break;}
 				}
+				console.log(score);
 				if (!canBuild) {score = 0;}
 				
-				console.log(Script.goals[key]);
 				if (score > maxScore) {maxScore = score; resource = key;}
 			}
 			
