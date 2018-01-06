@@ -35,10 +35,10 @@ var Script = (function() {
 		if (Script.data.producerColumn === "silicon" || Script.data.producerColumn === "silver" || Script.data.producerColumn === "hydrogen" || Script.data.producerColumn === "helium") {Script.cons.addCons(Script.cons, "lunarite", 50); Script.cons.addCons(Script.cons, "titanium", 50);}
 		if (Script.energy.data["nuclear"].unlocked) {Script.cons.addCons(Script.cons, "rocketFuel", 5);}
 		if (Script.energy.data["fusion"].unlocked) {Script.cons.addCons(Script.cons, "rocketFuel", 10);}
-		if (Script.tier["meteorite"] >= 1) {Script.cons.addCons(Script.cons, "meteorite", 3); Script.wonders.wonders["meteorite1"].available = true;}
+		if (Script.tier["meteorite"] >= 1) {Script.cons.addCons(Script.cons, "meteorite", 3);}
 		
 		Script.energy.update(Script.energy);
-		if (getProduction("meteorite") >= 1) {Script.energy.dyson.update(Script.energy.dyson);}
+		if (getProduction("meteorite") >= 1) {Script.energy.dyson.update(Script.energy.dyson); Script.wonders.wonders["meteorite1"].available = true;}
 		Script.data.update(Script.data);
 		Script.science.update(Script.science);
 		

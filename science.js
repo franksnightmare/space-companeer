@@ -55,7 +55,7 @@ Script.science = (function(){
 			result.cost[key] = building.cost[key] / building.prod;
 			
 			var score = building.prod / time;
-			if (score > result.score) {result.score = score;}
+			if (score < result.score || score == 0) {result.score = score;}
 			
 			//if (getResource(key) < building.cost[key] * 2) {result.canBuild = false;}
 		}
@@ -85,7 +85,7 @@ Script.science = (function(){
 			var building = self.data[id];
 			var result = self.score[id];
 			
-			var addition = 10;
+			var addition = 10 * (1 + Math.sqrt(getProduction("science")));
 			if (self.maxScore) {addition *= (result.score / self.maxScore);}
 			for (key in building.cost) {Script.cost.addCost(Script.cost, key, addition * result.cost[key]);}
 		}

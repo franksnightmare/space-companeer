@@ -117,9 +117,23 @@ Script.energy = (function(){
 				var building = self.data[id];
 				var result = self.score[id];
 				
-				for (key in building.cons) {Script.cons.addCons(Script.cons, key, building.cons[key] * 4);}
 				var addition = self.energyPriority * self.max;
 				if (self.maxScore) {addition *= (result.score / self.maxScore);}
+				for (key in building.cons)
+				{
+					Script.cons.addCons(Script.cons, key, building.cons[key] * 4);
+					var maxScore = Script.data.producerScore[key].maxScore;
+					if (maxScore)
+					{
+						for (id2 = 0; id2 < Script.machineTier)
+						{
+							if (key in Script.tier && id2 == Script.tier[key]) {break;}
+							var producer = Script.data.producerData[key][id2];
+							var score = Script.data.producerScore[key].result[id2];
+							for (key in producer.cost) {Script.cost.addCost(Script.cost, key, addition * producer.cost[key] * score / maxScore);}
+						}
+					}
+				}
 				for (key in building.cost) {Script.cost.addCost(Script.cost, key, addition * building.cost[key]);}
 			}
 		}

@@ -80,7 +80,7 @@ Script.data = (function(){
 				if (key === "silicon") {score *= 1.1;}
 				
 				var canBuild = false;
-				for (id in data.producerData[key])
+				for (id = 0; id < data.producerData[key]; id++)
 				{
 					var building = data.producerData[key][id];
 					var result = data.producerScore[key].result[id];
