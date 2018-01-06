@@ -76,7 +76,7 @@ Script.energy = (function(){
 		{
 			if (self.score[highId].canBuild)
 			{
-				if (self.score[highId].realTime < self.score[highId].time / 3 && self.score["methane"].unlocked = true)
+				if (self.score[highId].realTime < self.score[highId].time / 3 && self.score["methane"].unlocked == true)
 				{
 					Script.goals.lockEverything(Script.goals);
 					Script.goals.lock["energy"] = false;
