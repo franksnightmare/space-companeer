@@ -41,13 +41,15 @@ Script.energy.dyson = (function(){
 		
 		for (id = 0; id < 3; id++) {var score = self.score[id].score; if (score > Script.energy.maxScore && self.score[id].canBuild) {Script.energy.maxScore = score; self.target = id;}}
 		
+		var mult = Math.sqrt(1 + ring + swarm + sphere);
+		
 		for (id = 0; id < 3; id++)
 		{
 			var cost = self.score[id].cost;
 			for (key in cost)
 			{
 				//Script.cons.addCons(Script.cons, key, Script.energy.max * self.score[id].score * cost[key] / (3600 * Script.energy.maxScore));
-				Script.cost.addCost(Script.cost, key, 3600 * Script.energy.max * self.score[id].score * cost[key] / Script.energy.maxScore);
+				Script.cost.addCost(Script.cost, key, mult * 3600 * Script.energy.max * self.score[id].score * cost[key] / Script.energy.maxScore);
 			} 
 		}
 	};
