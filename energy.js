@@ -125,12 +125,13 @@ Script.energy = (function(){
 					var maxScore = Script.data.producerScore[key].maxScore;
 					if (maxScore)
 					{
-						for (id2 = 0; id2 < Script.machineTier; id2++)
+						for (var id2 = 0; id2 < Script.machineTier; id2++)
 						{
 							if (key in Script.tier && id2 == Script.tier[key]) {break;}
+							
 							var producer = Script.data.producerData[key][id2];
 							var score = Script.data.producerScore[key].result[id2];
-							for (key2 in producer.cost) {Script.cost.addCost(Script.cost, key2, addition * producer.cost[key] * score / maxScore);}
+							for (key2 in producer.cost) {Script.cost.addCost(Script.cost, key2, addition * producer.cost[key2] * score / maxScore);}
 						}
 					}
 				}
