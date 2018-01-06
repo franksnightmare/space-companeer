@@ -25,7 +25,7 @@ Script.goals = (function(){
 	{
 		if (Script.cons["wood"] < Script.cons["charcoal"] * 2)
 		{
-			Script.cons.addCons(Script.cons, "wood", self["charcoal"] * 2);
+			Script.cons.addCons(Script.cons, "wood", Script.cons["charcoal"] * 2);
 		}
 		
 		if (Script.cost.total) {for (key in Script.data.producerData) {Script.cost.balance[key] = Script.cost[key] / Script.cost.total;}}
