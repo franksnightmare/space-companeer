@@ -87,7 +87,7 @@ Script.science = (function(){
 			
 			var addition = 2;
 			if (self.maxScore) {addition *= (result.score / self.maxScore);}
-			for (key in building.cost) {Script.cost.addCost(Script.cost, key, addition * Math.sqrt(result.cost[key]));}
+			for (key in building.cost) {Script.cost.addCost(Script.cost, key, addition * Math.sqrt(Math.sqrt(result.cost[key])));}
 		}
 		
 		self.purchaseTech(self);
