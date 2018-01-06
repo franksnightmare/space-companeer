@@ -82,6 +82,9 @@ Script.data = (function(){
 				var canBuild = false;
 				for (id = 0; id < Script.machineTier; id++)
 				{
+					if (id == Script.machineTier) {break;}
+					if (key in Script.tier && id == Script.tier[key]) {break;}
+					
 					var building = data.producerData[key][id];
 					var result = data.producerScore[key].result[id];
 					var buildStep = false;
@@ -89,9 +92,6 @@ Script.data = (function(){
 					
 					for (key2 in building.cost) {if (getStorage(key2) < building.cost[key2]) {buildStep = false;}}
 					if (buildStep) {canBuild = true;}
-					
-					if (id == Script.machineTier) {break;}
-					if (key in Script.tier && id == Script.tier[key]) {break;}
 				}
 				if (!canBuild) {score = 0;}
 				
