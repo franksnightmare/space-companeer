@@ -100,6 +100,9 @@ Script.data = (function(){
 			
 			if (key === data.producerColumn) {break;}
 		}
+		
+		if (!(resource in data.producerScore)) {console.log("Invalid resource: " + resource); return;}
+		
 		maxScore = 0;
 		var target = 0;
 		for (id = 0; id < Script.machineTier; id++)
@@ -110,7 +113,6 @@ Script.data = (function(){
 			if (result.score > maxScore && result.canBuild) {maxScore = result.score; target = id;}
 		}
 		
-		if (!(resource in data.producerScore)) {return;}
 		
 		var message = "Buildtarget: " + resource + "; tier: " + target + ".";
 		console.log(message);
