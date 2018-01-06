@@ -55,7 +55,6 @@ Script.data = (function(){
 		var resource = "null";
 		for (key in data.producerData)
 		{
-			console.log(key);
 			if (Script.goals[key].amount)
 			{
 				var production = 0;
@@ -96,6 +95,7 @@ Script.data = (function(){
 				}
 				if (!canBuild) {score = 0;}
 				
+				console.log(score);
 				if (score > maxScore) {maxScore = score; resource = key;}
 			}
 			
