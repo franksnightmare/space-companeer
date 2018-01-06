@@ -55,7 +55,7 @@ Script.science = (function(){
 			result.cost[key] = building.cost[key] / building.prod;
 			
 			var score = building.prod / time;
-			if (score < result.score || score == 0) {result.score = score;}
+			if (score < result.score || result.score == 0) {result.score = score;}
 			
 			//if (getResource(key) < building.cost[key] * 2) {result.canBuild = false;}
 		}
