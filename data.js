@@ -95,7 +95,7 @@ Script.data = (function(){
 				}
 				if (!canBuild) {score = 0;}
 				
-				console.log(score);
+				console.log(Script.goals[key]);
 				if (score > maxScore) {maxScore = score; resource = key;}
 			}
 			
