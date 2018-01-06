@@ -131,7 +131,13 @@ Script.energy = (function(){
 							
 							var producer = Script.data.producerData[key][id2];
 							var score = Script.data.producerScore[key].result[id2].score;
-							for (key2 in producer.cost) {Script.cost.addCost(Script.cost, key2, addition * producer.cost[key2] * score / maxScore);}
+							var mult = addition * score / maxScore;
+							console.log(addition);
+							console.log(score);
+							console.log(maxScore);
+							console.log(mult);
+							console.log(mult * producer.cost[key2]);
+							for (key2 in producer.cost) {Script.cost.addCost(Script.cost, key2, mult * producer.cost[key2]);}
 						}
 					}
 				}
