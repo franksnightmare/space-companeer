@@ -55,6 +55,7 @@ Script.data = (function(){
 		var resource = "null";
 		for (key in data.producerData)
 		{
+			console.log(key);
 			if (Script.goals[key].amount)
 			{
 				var production = 0;
