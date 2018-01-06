@@ -117,7 +117,7 @@ Script.energy = (function(){
 				var building = self.data[id];
 				var result = self.score[id];
 				
-				var addition = self.energyPriority * self.max;
+				var addition = self.energyPriority;
 				if (self.maxScore) {addition *= (result.score / self.maxScore);}
 				for (key in building.cons)
 				{
@@ -132,13 +132,7 @@ Script.energy = (function(){
 							var producer = Script.data.producerData[key][id2];
 							var score = Script.data.producerScore[key].result[id2].score;
 							var mult = addition * score / maxScore;
-							console.log(addition);
-							console.log(score);
-							console.log(maxScore);
-							console.log(mult);
-							console.log(producer);
-							console.log(producer.cost);
-							for (key2 in producer.cost) {console.log(mult * producer.cost[key2]); Script.cost.addCost(Script.cost, key2, mult * producer.cost[key2]);}
+							for (key2 in producer.cost) {Script.cost.addCost(Script.cost, key2, mult * producer.cost[key2]);}
 						}
 					}
 				}
