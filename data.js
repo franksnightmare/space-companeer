@@ -74,6 +74,7 @@ Script.data = (function(){
 				var score = Math.pow(2, diff);
 				if (diff >= 0 && Script.goals[key].type === "cons") {score *= 1.1;}
 				if (diff >= 0 && Script.goals[key].type === "urgent") {score *= 1.4 * Script.energy.energyPriority;}
+				if (key === "metal") {score *= 1.1;}
 				if (key === "gem") {score *= 1.1;}
 				if (key === "lunarite") {score *= 1.1;}
 				if (key === "titanium") {score *= 1.1;}
