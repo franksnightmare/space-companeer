@@ -82,7 +82,6 @@ Script.data = (function(){
 				var canBuild = false;
 				for (id = 0; id < Script.machineTier; id++)
 				{
-					if (id == Script.machineTier) {break;}
 					if (key in Script.tier && id == Script.tier[key]) {break;}
 					
 					var building = data.producerData[key][id];
