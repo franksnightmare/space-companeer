@@ -43,7 +43,7 @@ Script.goals = (function(){
 			if (Script.cost.counter[key])
 			{
 				request = 1.6 * Script.data.maxProd * Script.cost.balance[key];
-				if (Script.phase <= 3) {request *= 1.3;}
+				if (Script.phase <= 3) {request *= 1.15;}
 				if (request > self[key].amount) {self[key].amount = request; self[key].type = "cost";}
 			}
 		}
