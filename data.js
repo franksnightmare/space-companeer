@@ -144,7 +144,10 @@ Script.data = (function(){
 			if ("energy" in building.cons) {
 				score /= building.cons["energy"];
 			}
-			else {score /= 2 * Math.sqrt(time);}
+			else
+			{
+				if (Script.energy.data["methane"].unlocked) {score /= 2 * Math.sqrt(time);}
+			}
 			
 			if (score > result.score) {result.score = score;}
 			if (getStorage(key) < building.cost[key]) {lackingStorage = true;}
