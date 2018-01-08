@@ -44,6 +44,31 @@ Script.cost = (function(){
 			}
 		}
 		
+		for (key in self.counter)
+		{
+			if (self.counter[key] && self.counter["lunarite"])
+			{
+				if (self[key] / self.counter[key] > self["lunarite"] / self.counter["lunarite"])
+				{
+					self["lunarite"] = self[key] / self.counter[key];
+					self.counter["lunarite"] = 1;
+				}
+			}
+		}
+		
+		for (key in Script.cons)
+		{
+			if (self.counter["lunarite"])
+			{
+				if (self[key] > self["lunarite"])
+				{
+					self["lunarite"] = Script.cons[key];
+					self.counter["lunarite"] = 1;
+				}
+			}
+			else {self["lunarite"] = Script.cons[key]; self.counter["lunarite"] = 1;}
+		}
+		
 		if (self.counter["metal"] && self.counter["lunarite"])
 		{
 			var c1 = self.counter["metal"];
