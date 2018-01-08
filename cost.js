@@ -60,7 +60,7 @@ Script.cost = (function(){
 		{
 			if (self.counter["lunarite"])
 			{
-				if (self[key] > self["lunarite"])
+				if (Script.cons[key] > self["lunarite"] / self.counter["lunarite"])
 				{
 					self["lunarite"] = Script.cons[key];
 					self.counter["lunarite"] = 1;
