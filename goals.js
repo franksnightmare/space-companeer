@@ -28,6 +28,14 @@ Script.goals = (function(){
 			Script.cons.addCons(Script.cons, "wood", Script.cons["charcoal"] * 2);
 		}
 		
+		for (key in Script.cons)
+		{
+			if (Script.cons[key] > Script.cons["lunarite"])
+			{
+				Script.cons.addCons(Script.cons, "lunarite", Script.cons[key]);
+			}
+		}
+		
 		if (Script.cost.total) {for (key in Script.data.producerData) {Script.cost.balance[key] = Script.cost[key] / Script.cost.total;}}
 		
 		for (key in Script.data.producerData)
