@@ -48,7 +48,7 @@ Script.goals = (function(){
 			var c2 = Script.cost.counter["lunarite"];
 			if (Script.cost["metal"] / c1 < Script.cost["lunarite"] / c2)
 			{
-				self.addCost(Script.cost, "metal", Script.cost["lunarite"]);
+				Script.cost.addCost(Script.cost, "metal", Script.cost["lunarite"]);
 				Script.cost.counter["metal"] = 1;
 			}
 		}
