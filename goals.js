@@ -28,11 +28,28 @@ Script.goals = (function(){
 			Script.cons.addCons(Script.cons, "wood", Script.cons["charcoal"] * 2);
 		}
 		
-		for (key in Script.cons)
+		for (key in Script.cost)
 		{
-			if (Script.cons[key] > Script.cons["lunarite"])
+			if (Script.cost.counter["lunarite"] && Script.cost.counter[key])
 			{
-				Script.cons.addCons(Script.cons, "lunarite", Script.cons[key]);
+				var c1 = Script.cost.counter["lunarite"];
+				var c2 = Script.cost.counter[key];
+				if (Script.cost["lunarite"] / c1 < Script.cost[key] / c2)
+				{
+					Script.cost.addCost(Script.cost, "lunarite", Script.cost[key]);
+					Script.cost.counter["lunarite"] = 1;
+				}
+			}
+		}
+		
+		if (Script.cost.counter["metal"] && Script.cost.counter["lunarite"])
+		{
+			var c1 = Script.cost.counter["metal"];
+			var c2 = Script.cost.counter["lunarite"];
+			if (Script.cost["metal"] / c1 < Script.cost["lunarite"] / c2)
+			{
+				self.addCost(Script.cost, "metal", Script.cost["lunarite"]);
+				Script.cost.counter["metal"] = 1;
 			}
 		}
 		
