@@ -24,7 +24,7 @@ Script.energy.dyson = (function(){
 			if (time > result.time) {result.time = time;}
 			result.cost[key] = cost[key] / dysonPart.prod;
 			
-			var score = 20000 * dysonPart.prod / Math.pow(time, 2);
+			var score = 50000 * dysonPart.prod / Math.pow(time, 2);
 			if (score < result.score || result.score == 0) {result.score = score;}
 		}
 		
@@ -76,7 +76,7 @@ Script.energy.dyson = (function(){
 	
 	instance.build = function(self)
 	{
-		if (target >= 0)
+		if (self.target >= 0)
 		{
 			buildDysonTo(250);
 			building = self.data[self.target];
